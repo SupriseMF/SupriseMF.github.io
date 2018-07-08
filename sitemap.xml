@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://suprisemf.github.io/2018/07/06/test2/</loc>
+    
+    <lastmod>2018-07-08T11:36:32.654Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://suprisemf.github.io/404.html</loc>
     
     <lastmod>2018-07-08T09:34:27.250Z</lastmod>
@@ -26,13 +33,6 @@
     <loc>http://suprisemf.github.io/tags/index.html</loc>
     
     <lastmod>2018-07-08T09:02:45.564Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://suprisemf.github.io/2018/07/06/test2/</loc>
-    
-    <lastmod>2018-07-06T07:33:39.684Z</lastmod>
     
   </url>
   

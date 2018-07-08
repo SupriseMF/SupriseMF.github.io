@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-07-06T07:33:39.684Z</updated>
+  <updated>2018-07-08T11:36:32.654Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -17,19 +17,20 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>test2</title>
+    <title>Test2</title>
     <link href="http://suprisemf.github.io/2018/07/06/test2/"/>
     <id>http://suprisemf.github.io/2018/07/06/test2/</id>
     <published>2018-07-06T07:31:55.000Z</published>
-    <updated>2018-07-06T07:33:39.684Z</updated>
+    <updated>2018-07-08T11:36:32.654Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2018/07/06/test2/实现.png" alt="ls"></p>]]></content>
+    <content type="html"><![CDATA[<a id="more"></a><p><img src="/2018/07/06/test2/实现.png" alt="ls"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;img src=&quot;/2018/07/06/test2/实现.png&quot; alt=&quot;ls&quot;&gt;&lt;/p&gt;
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;&lt;img src=&quot;/2018/07/06/test2/实现.png&quot; alt=&quot;ls&quot;&gt;&lt;/p&gt;
 
       
     
