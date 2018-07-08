@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://suprisemf.github.io/404.html</loc>
+    
+    <lastmod>2018-07-08T13:21:58.583Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://suprisemf.github.io/2018/07/06/UML%E4%B9%8B%E7%B1%BB%E5%9B%BE/</loc>
     
     <lastmod>2018-07-08T12:08:13.758Z</lastmod>
@@ -19,13 +26,6 @@
     <loc>http://suprisemf.github.io/2018/07/06/test2/</loc>
     
     <lastmod>2018-07-08T11:50:40.990Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://suprisemf.github.io/404.html</loc>
-    
-    <lastmod>2018-07-08T09:34:27.250Z</lastmod>
     
   </url>
   
