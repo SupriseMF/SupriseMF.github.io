@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-07-08T12:08:11.378Z</updated>
+  <updated>2018-07-09T15:21:50.027Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,65 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>（基于Java）编写编译器和解释器-第一章：书的组织结构</title>
+    <link href="http://suprisemf.github.io/2018/07/09/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%84%E6%88%90/"/>
+    <id>http://suprisemf.github.io/2018/07/09/第一章组成/</id>
+    <published>2018-07-09T14:45:50.000Z</published>
+    <updated>2018-07-09T15:21:50.027Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>该书共有19章，加上最后的名词索引表部分</p></blockquote><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>该章是一个总体介绍。</p><h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。</p><h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。</p><blockquote><p>接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次迭代的语法分析和解释。</p></blockquote><h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>该章来语法分析表达式和赋值语句。</p><h3 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h3><p>该章将第五章的部分进行解释。</p><h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><p>该章语法分析控制语句。</p><h3 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h3><p>该章来解释第七章的部分。</p><h3 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h3><p>该章来语法分析声明语句。</p><h3 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h3><p>该章来处理类型检查。</p><h3 id="第十一章"><a href="#第十一章" class="headerlink" title="第十一章"></a>第十一章</h3><p>该章来语法分析过程语句、方法部分和整个Pascal程序。</p><h3 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h3><p>该章完成解释器并执行整个Pascal程序。</p><blockquote><p>接下来的两章会基于工作的解释器来建立。当你是第一次读该书的话，你可以选择跳过接下来的两章节，但是一定要确定来回头好好看一下，毕竟它对你还是很有帮助的。</p></blockquote><h3 id="第十三章"><a href="#第十三章" class="headerlink" title="第十三章"></a>第十三章</h3><p>该章增加了一个交互式的源级别的debugger，通过它你可以通过在命令行敲打命令来跟它进行交流。</p><h3 id="第十四章"><a href="#第十四章" class="headerlink" title="第十四章"></a>第十四章</h3><p>该章为这个基于命令行的debugger包装了一个图形交互页面来建一个集成开发环境IDE。</p><blockquote><p>该书的最后部分通过重用早些章节的代码来形成这个编译器。</p></blockquote><h3 id="第十五章"><a href="#第十五章" class="headerlink" title="第十五章"></a>第十五章</h3><p>该章介绍了Java虚拟机（JVM）和Jasmin的构造结构，其中Jasmin是一个帮助java虚拟机生成汇编语言的工具。</p><h3 id="第十六章"><a href="#第十六章" class="headerlink" title="第十六章"></a>第十六章</h3><p>该章编译程序、赋值语句和表达式。（迭代早些章节的实现）</p><h3 id="第十七章"><a href="#第十七章" class="headerlink" title="第十七章"></a>第十七章</h3><p>该章编译过程部分、方法部分回调，和string的操作。</p><h3 id="第十八章"><a href="#第十八章" class="headerlink" title="第十八章"></a>第十八章</h3><p>该章通过编译控制语句、arrays和记录来完成这个编译器。</p><h3 id="第十九章"><a href="#第十九章" class="headerlink" title="第十九章"></a>第十九章</h3><p>该最后一章是一个对许多对于编写编译器方面但没有在其他章节中提及到简短的介绍，例如代码优化和基于表格驱动的源码扫描器和语法分析器。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;该书共有19章，加上最后的名词索引表部分&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;第一章&quot;&gt;&lt;a href=&quot;#第一章&quot; class=&quot;headerlink&quot; title=&quot;第一章&quot;&gt;&lt;/a&gt;第一章&lt;/h3&gt;&lt;p&gt;该章是一个总体介绍。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="编译器" scheme="http://suprisemf.github.io/tags/%E7%BC%96%E8%AF%91%E5%99%A8/"/>
+    
+      <category term="解释器" scheme="http://suprisemf.github.io/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>（基于Java）编写编译器和解释器-第一章：介绍之前</title>
+    <link href="http://suprisemf.github.io/2018/07/09/%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
+    <id>http://suprisemf.github.io/2018/07/09/第一章/</id>
+    <published>2018-07-09T14:12:52.000Z</published>
+    <updated>2018-07-09T15:27:49.462Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍"><a href="#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍" class="headerlink" title="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍"></a>关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍</h2><h3 id="翻译这本书的想法"><a href="#翻译这本书的想法" class="headerlink" title="翻译这本书的想法"></a>翻译这本书的想法</h3><blockquote><p>这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。</p></blockquote><p>本学期的《编译原理课程设计》中最后用C++实现了一个小编译器，但是其中很大部分是借用该书的讲解实现，而且是C++语言。在Google、百度之后，千挑万选发现了这本很有名的但是并不为多数人了解的书（大家都不是特别关心编译器的实现）。</p><p>相对于号称编译原理界的“三大圣书”：龙书——《编译原理技术和工具》-作者:Alfred V.Aho,Ravi Sethi,Jeffrey D.Ullman 、虎书——《现代编译原理-C语言描述》-作者：Andrew W.Appel,with Jens Palsberg 、鲸书——《高级编译器设计与实现》-作者：Steven S.Muchnick<br>“三大圣书”详情请访问<a src="https://www.cnblogs.com/Amedeo/archive/2017/11/24/7881889.html">参考链接</a></p><p>但是，这本书是基于java，而且有更加详实完善的代码讲解，该书作者也是大名鼎鼎的Ronald Mak,其前两版讲解编译器的是使用的C/C++，加上目前该书目前没有英文版，故此笔者决定擅自翻译该书。</p><blockquote><p>笔者英语水平目前较差，仅是英语六级水平，但是为了读者理解，并尽量保证翻译质量，笔者会用心做好的。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍&quot;&gt;&lt;a href=&quot;#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍&quot; class=&quot;hea
+      
+    
+    </summary>
+    
+      <category term="编译器和解释器" scheme="http://suprisemf.github.io/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8C%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="编译器" scheme="http://suprisemf.github.io/tags/%E7%BC%96%E8%AF%91%E5%99%A8/"/>
+    
+      <category term="解释器" scheme="http://suprisemf.github.io/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>全新博客界面</title>

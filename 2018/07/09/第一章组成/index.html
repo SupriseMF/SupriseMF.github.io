@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,编译器,解释器," />
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="限于Git空间有限，就不往博客中插入静态图片了，但是我的微信订阅号【星球码】上是有更加完整的文章。欢迎关注~  UML介绍统一建模语言（英语：Unified Modeling Language，缩写 UML）是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在对">
-<meta name="keywords" content="Java Python 编译器 操作系统">
+<meta name="description" content="该书共有19章，加上最后的名词索引表部分  第一章该章是一个总体介绍。 第二章该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。 第三章第四章第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。  接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次">
+<meta name="keywords" content="Java,编译器,解释器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="UML之类图">
-<meta property="og:url" content="http://suprisemf.github.io/2018/07/06/UML之类图/index.html">
+<meta property="og:title" content="（基于Java）编写编译器和解释器-第一章：书的组织结构">
+<meta property="og:url" content="http://suprisemf.github.io/2018/07/09/第一章组成/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="限于Git空间有限，就不往博客中插入静态图片了，但是我的微信订阅号【星球码】上是有更加完整的文章。欢迎关注~  UML介绍统一建模语言（英语：Unified Modeling Language，缩写 UML）是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在对">
+<meta property="og:description" content="该书共有19章，加上最后的名词索引表部分  第一章该章是一个总体介绍。 第二章该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。 第三章第四章第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。  接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-08T12:08:13.758Z">
+<meta property="og:updated_time" content="2018-07-09T15:21:50.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UML之类图">
-<meta name="twitter:description" content="限于Git空间有限，就不往博客中插入静态图片了，但是我的微信订阅号【星球码】上是有更加完整的文章。欢迎关注~  UML介绍统一建模语言（英语：Unified Modeling Language，缩写 UML）是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在对">
+<meta name="twitter:title" content="（基于Java）编写编译器和解释器-第一章：书的组织结构">
+<meta name="twitter:description" content="该书共有19章，加上最后的名词索引表部分  第一章该章是一个总体介绍。 第二章该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。 第三章第四章第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。  接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次">
 
 
 
@@ -159,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/2018/07/06/UML之类图/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/07/09/第一章组成/"/>
 
 
 
 
 
-  <title>UML之类图 | 红宝石星球</title>
+  <title>（基于Java）编写编译器和解释器-第一章：书的组织结构 | 红宝石星球</title>
   
 
 
@@ -622,7 +622,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/07/06/UML之类图/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/07/09/第一章组成/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,7 +639,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">UML之类图</h2>
+          <h2 class="post-title" itemprop="name headline">（基于Java）编写编译器和解释器-第一章：书的组织结构</h2>
         
 
         <div class="post-meta">
@@ -651,8 +651,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-06T13:42:00+08:00">
-                2018-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T22:45:50+08:00">
+                2018-07-09
               </time>
             
 
@@ -667,8 +667,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-08T20:08:13+08:00">
-                2018-07-08
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-09T23:21:50+08:00">
+                2018-07-09
               </time>
             
           </span>
@@ -682,8 +682,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/06/UML之类图/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/06/UML之类图/" itemprop="commentCount"></span>
+                <a href="/2018/07/09/第一章组成/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/09/第一章组成/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -691,7 +691,7 @@
 
           
           
-             <span id="/2018/07/06/UML之类图/" class="leancloud_visitors" data-flag-title="UML之类图">
+             <span id="/2018/07/09/第一章组成/" class="leancloud_visitors" data-flag-title="（基于Java）编写编译器和解释器-第一章：书的组织结构">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -754,40 +754,35 @@
 
       
         <blockquote>
-<p>限于Git空间有限，就不往博客中插入静态图片了，但是我的微信订阅号【星球码】上是有更加完整的文章。欢迎关注~</p>
+<p>该书共有19章，加上最后的名词索引表部分</p>
 </blockquote>
-<h2 id="UML介绍"><a href="#UML介绍" class="headerlink" title="UML介绍"></a>UML介绍</h2><p>统一建模语言（英语：Unified Modeling Language，缩写 UML）是非专利的第三代建模和规约语言。UML是一种开放的方法，用于说明、可视化、构建和编写一个正在开发的、面向对象的、软件密集系统的制品的开放方法。UML展现了一系列最佳工程实践，这些最佳实践在对大规模，复杂系统进行建模方面，特别是在软件架构层次已经被验证有效。（来自维基百科） UML是在（常见但不限于）数据库设计过程中，在E-R图（实体-联系图）设计后的进一步建模。</p>
-<h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><p>用例图、类图（今天主角）、对象图、包图、活动图、状态图、序列图（顺序图）、协作图、构件图、部署图（配置图）</p>
+<h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>该章是一个总体介绍。</p>
+<h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。</p>
+<h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。</p>
 <blockquote>
-<p>笔者在大三第一学期修了UML课程，当时是第一次接触UML，其中的各种图形，线条搞得有些乱套，好在最后课程大作业设计中，小组连战2天最后利用StarUML软件设计出一个图书管理系统，并利用给出一些简单的GUI。</p>
+<p>接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次迭代的语法分析和解释。</p>
 </blockquote>
-<h2 id="UML类图线条"><a href="#UML类图线条" class="headerlink" title="UML类图线条"></a>UML类图线条</h2><blockquote>
-<p>说明：类图中方法或属性前会出现+、-、#，该符号分表表示其访问权限是public、private、protected。</p>
-<p>推荐大家使用一款免费的在线制作各种流程图的工具——ProcessOn。包括各种价值链图、过程链图、常规流程图、组织结构图、原型设计等，当然也支持熟悉的UML。（一条五毛~）</p>
-</blockquote>
-<p>线条表示类之间的关系，以下按照类之间关系由强到弱说明，即泛化=实现&gt;组合&gt;聚合&gt;关联&gt;依赖</p>
+<h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>该章来语法分析表达式和赋值语句。</p>
+<h3 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h3><p>该章将第五章的部分进行解释。</p>
+<h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><p>该章语法分析控制语句。</p>
+<h3 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h3><p>该章来解释第七章的部分。</p>
+<h3 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h3><p>该章来语法分析声明语句。</p>
+<h3 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h3><p>该章来处理类型检查。</p>
+<h3 id="第十一章"><a href="#第十一章" class="headerlink" title="第十一章"></a>第十一章</h3><p>该章来语法分析过程语句、方法部分和整个Pascal程序。</p>
+<h3 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h3><p>该章完成解释器并执行整个Pascal程序。</p>
 <blockquote>
-<p>泛化和实现：子类或实现下面的方法表示增加/复写/实现了哪些方法</p>
+<p>接下来的两章会基于工作的解释器来建立。当你是第一次读该书的话，你可以选择跳过接下来的两章节，但是一定要确定来回头好好看一下，毕竟它对你还是很有帮助的。</p>
 </blockquote>
-<h3 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h3><p>泛化：实线空白箭头，箭头指向父类，表示继承</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>实现：虚线空白箭头，箭头指向接口。</p>
-<h3 id="组合"><a href="#组合" class="headerlink" title="组合"></a>组合</h3><blockquote>
-<p>通过属性的引用形成组合关系，例如属性集合的引用。</p>
+<h3 id="第十三章"><a href="#第十三章" class="headerlink" title="第十三章"></a>第十三章</h3><p>该章增加了一个交互式的源级别的debugger，通过它你可以通过在命令行敲打命令来跟它进行交流。</p>
+<h3 id="第十四章"><a href="#第十四章" class="headerlink" title="第十四章"></a>第十四章</h3><p>该章为这个基于命令行的debugger包装了一个图形交互页面来建一个集成开发环境IDE。</p>
+<blockquote>
+<p>该书的最后部分通过重用早些章节的代码来形成这个编译器。</p>
 </blockquote>
-<p>组合：是一种部分对整体的关系，实线，箭头指向部分，实心菱形指向整体。</p>
-<h3 id="聚合"><a href="#聚合" class="headerlink" title="聚合"></a>聚合</h3><blockquote>
-<p>通过属性引用形成的聚合关系，与关联类似，需要视具体场景。</p>
-</blockquote>
-<p>聚合：是群体对个体的关系，空心菱形指向群体，箭头指向其构成的个体。</p>
-<h3 id="关联"><a href="#关联" class="headerlink" title="关联"></a>关联</h3><blockquote>
-<p>通过属性引用形成的关联关系。</p>
-</blockquote>
-<p>关联：表示拥有关系，即has-a关系，箭头指向拥有者；但是如果是双向关联，两个箭头可以省略，即只有一条实线。</p>
-<h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><blockquote>
-<p>通过方法参数的依赖关系。</p>
-</blockquote>
-<p>依赖：表示一种协助关系，虚线，箭头指向被依赖者。</p>
-<h3 id="欢迎搜索关注微信订阅号：【星球码】"><a href="#欢迎搜索关注微信订阅号：【星球码】" class="headerlink" title="欢迎搜索关注微信订阅号：【星球码】"></a>欢迎搜索关注微信订阅号：【星球码】</h3><p>笔者现在的知识十分有限，文章出现错误在所难免，还请各位能够多多包涵，并不吝指出啊~</p>
+<h3 id="第十五章"><a href="#第十五章" class="headerlink" title="第十五章"></a>第十五章</h3><p>该章介绍了Java虚拟机（JVM）和Jasmin的构造结构，其中Jasmin是一个帮助java虚拟机生成汇编语言的工具。</p>
+<h3 id="第十六章"><a href="#第十六章" class="headerlink" title="第十六章"></a>第十六章</h3><p>该章编译程序、赋值语句和表达式。（迭代早些章节的实现）</p>
+<h3 id="第十七章"><a href="#第十七章" class="headerlink" title="第十七章"></a>第十七章</h3><p>该章编译过程部分、方法部分回调，和string的操作。</p>
+<h3 id="第十八章"><a href="#第十八章" class="headerlink" title="第十八章"></a>第十八章</h3><p>该章通过编译控制语句、arrays和记录来完成这个编译器。</p>
+<h3 id="第十九章"><a href="#第十九章" class="headerlink" title="第十九章"></a>第十九章</h3><p>该最后一章是一个对许多对于编写编译器方面但没有在其他章节中提及到简短的介绍，例如代码优化和基于表格驱动的源码扫描器和语法分析器。</p>
 
       
     </div>
@@ -850,7 +845,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/07/06/UML之类图/" title="UML之类图">http://suprisemf.github.io/2018/07/06/UML之类图/</a>
+    <a href="http://suprisemf.github.io/2018/07/09/第一章组成/" title="（基于Java）编写编译器和解释器-第一章：书的组织结构">http://suprisemf.github.io/2018/07/09/第一章组成/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -862,6 +857,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/编译器/" rel="tag"># 编译器</a>
+          
+            <a href="/tags/解释器/" rel="tag"># 解释器</a>
+          
+        </div>
       
 
       
@@ -887,8 +892,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/03/SecondBlog-ChangeTheme/" rel="next" title="SecondBlog,ChangeTheme">
-                <i class="fa fa-chevron-left"></i> SecondBlog,ChangeTheme
+              <a href="/2018/07/09/第一章/" rel="next" title="（基于Java）编写编译器和解释器-第一章：介绍之前">
+                <i class="fa fa-chevron-left"></i> （基于Java）编写编译器和解释器-第一章：介绍之前
               </a>
             
           </div>
@@ -896,10 +901,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/06/test/" rel="prev" title="">
-                 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -918,10 +919,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/07/06/UML之类图/"
-     data-title="UML之类图"
+        <div class="ds-share flat" data-thread-key="2018/07/09/第一章组成/"
+     data-title="（基于Java）编写编译器和解释器-第一章：书的组织结构"
      data-content=""
-     data-url="http://suprisemf.github.io/2018/07/06/UML之类图/">
+     data-url="http://suprisemf.github.io/2018/07/09/第一章组成/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -952,8 +953,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018/07/06/UML之类图/"
-           data-title="UML之类图" data-url="http://suprisemf.github.io/2018/07/06/UML之类图/">
+      <div class="ds-thread" data-thread-key="2018/07/09/第一章组成/"
+           data-title="（基于Java）编写编译器和解释器-第一章：书的组织结构" data-url="http://suprisemf.github.io/2018/07/09/第一章组成/">
       </div>
     </div>
 
@@ -1121,7 +1122,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#UML介绍"><span class="nav-number">1.</span> <span class="nav-text">UML介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#UML图"><span class="nav-number">1.1.</span> <span class="nav-text">UML图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UML类图线条"><span class="nav-number">2.</span> <span class="nav-text">UML类图线条</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#泛化"><span class="nav-number">2.1.</span> <span class="nav-text">泛化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现"><span class="nav-number">2.2.</span> <span class="nav-text">实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合"><span class="nav-number">2.3.</span> <span class="nav-text">组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合"><span class="nav-number">2.4.</span> <span class="nav-text">聚合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联"><span class="nav-number">2.5.</span> <span class="nav-text">关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">2.6.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#欢迎搜索关注微信订阅号：【星球码】"><span class="nav-number">2.7.</span> <span class="nav-text">欢迎搜索关注微信订阅号：【星球码】</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一章"><span class="nav-number">1.</span> <span class="nav-text">第一章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二章"><span class="nav-number">2.</span> <span class="nav-text">第二章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三章"><span class="nav-number">3.</span> <span class="nav-text">第三章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四章"><span class="nav-number">4.</span> <span class="nav-text">第四章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第五章"><span class="nav-number">5.</span> <span class="nav-text">第五章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第六章"><span class="nav-number">6.</span> <span class="nav-text">第六章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第七章"><span class="nav-number">7.</span> <span class="nav-text">第七章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第八章"><span class="nav-number">8.</span> <span class="nav-text">第八章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第九章"><span class="nav-number">9.</span> <span class="nav-text">第九章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十章"><span class="nav-number">10.</span> <span class="nav-text">第十章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十一章"><span class="nav-number">11.</span> <span class="nav-text">第十一章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十二章"><span class="nav-number">12.</span> <span class="nav-text">第十二章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十三章"><span class="nav-number">13.</span> <span class="nav-text">第十三章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十四章"><span class="nav-number">14.</span> <span class="nav-text">第十四章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十五章"><span class="nav-number">15.</span> <span class="nav-text">第十五章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十六章"><span class="nav-number">16.</span> <span class="nav-text">第十六章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十七章"><span class="nav-number">17.</span> <span class="nav-text">第十七章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十八章"><span class="nav-number">18.</span> <span class="nav-text">第十八章</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第十九章"><span class="nav-number">19.</span> <span class="nav-text">第十九章</span></a></li></ol></div>
             
 
           </div>
