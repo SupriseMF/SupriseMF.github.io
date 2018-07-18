@@ -118,19 +118,19 @@
 
 
 
-<meta name="description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：  用Java写的编译器，编译Pascal(一个高级的面向过程的编程语言)的一个主要子集。(即包含主要的语言特征，但去掉一些为写编译器方便而去掉的无关大雅的特性。) 用Java写的解释器且包含一个交互式的符号调试器(符号调试器即基于符号表，而不是基于机器的">
+<meta name="description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：">
 <meta name="keywords" content="Java,编译器,解释器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="（基于Java）编写编译器和解释器-第一章-第一部分：介绍">
+<meta property="og:title" content="（基于Java）编写编译器和解释器-第一章：介绍-Part-1">
 <meta property="og:url" content="http://suprisemf.github.io/2018/07/18/编译器第一章/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：  用Java写的编译器，编译Pascal(一个高级的面向过程的编程语言)的一个主要子集。(即包含主要的语言特征，但去掉一些为写编译器方便而去掉的无关大雅的特性。) 用Java写的解释器且包含一个交互式的符号调试器(符号调试器即基于符号表，而不是基于机器的">
+<meta property="og:description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://suprisemf.github.io/2018/07/18/编译器第一章/1-1.png">
-<meta property="og:updated_time" content="2018-07-18T11:50:03.251Z">
+<meta property="og:updated_time" content="2018-07-18T11:52:47.229Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="（基于Java）编写编译器和解释器-第一章-第一部分：介绍">
-<meta name="twitter:description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：  用Java写的编译器，编译Pascal(一个高级的面向过程的编程语言)的一个主要子集。(即包含主要的语言特征，但去掉一些为写编译器方便而去掉的无关大雅的特性。) 用Java写的解释器且包含一个交互式的符号调试器(符号调试器即基于符号表，而不是基于机器的">
+<meta name="twitter:title" content="（基于Java）编写编译器和解释器-第一章：介绍-Part-1">
+<meta name="twitter:description" content="本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。  目标和方法本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：">
 <meta name="twitter:image" content="http://suprisemf.github.io/2018/07/18/编译器第一章/1-1.png">
 
 
@@ -167,7 +167,7 @@
 
 
 
-  <title>（基于Java）编写编译器和解释器-第一章-第一部分：介绍 | 红宝石星球</title>
+  <title>（基于Java）编写编译器和解释器-第一章：介绍-Part-1 | 红宝石星球</title>
   
 
 
@@ -641,7 +641,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">（基于Java）编写编译器和解释器-第一章-第一部分：介绍</h2>
+          <h2 class="post-title" itemprop="name headline">（基于Java）编写编译器和解释器-第一章：介绍-Part-1</h2>
         
 
         <div class="post-meta">
@@ -669,7 +669,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T19:50:03+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-07-18T19:52:47+08:00">
                 2018-07-18
               </time>
             
@@ -715,7 +715,7 @@
 
           
           
-             <span id="/2018/07/18/编译器第一章/" class="leancloud_visitors" data-flag-title="（基于Java）编写编译器和解释器-第一章-第一部分：介绍">
+             <span id="/2018/07/18/编译器第一章/" class="leancloud_visitors" data-flag-title="（基于Java）编写编译器和解释器-第一章：介绍-Part-1">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -781,6 +781,7 @@
 <p>本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。</p>
 </blockquote>
 <h2 id="目标和方法"><a href="#目标和方法" class="headerlink" title="目标和方法"></a>目标和方法</h2><p>本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：</p>
+<a id="more"></a>
 <ul>
 <li>用Java写的编译器，编译Pascal(一个高级的面向过程的编程语言)的一个主要子集。<code>(即包含主要的语言特征，但去掉一些为写编译器方便而去掉的无关大雅的特性。)</code></li>
 <li>用Java写的解释器且包含一个交互式的符号调试器<code>(符号调试器即基于符号表，而不是基于机器的指令集、硬件的调试功能)</code>，解释同样的Pascal语言子集。</li>
@@ -867,7 +868,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/07/18/编译器第一章/" title="（基于Java）编写编译器和解释器-第一章-第一部分：介绍">http://suprisemf.github.io/2018/07/18/编译器第一章/</a>
+    <a href="http://suprisemf.github.io/2018/07/18/编译器第一章/" title="（基于Java）编写编译器和解释器-第一章：介绍-Part-1">http://suprisemf.github.io/2018/07/18/编译器第一章/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -942,7 +943,7 @@
     <div class="post-spread">
       
         <div class="ds-share flat" data-thread-key="2018/07/18/编译器第一章/"
-     data-title="（基于Java）编写编译器和解释器-第一章-第一部分：介绍"
+     data-title="（基于Java）编写编译器和解释器-第一章：介绍-Part-1"
      data-content=""
      data-url="http://suprisemf.github.io/2018/07/18/编译器第一章/">
   <div class="ds-share-inline">
@@ -976,7 +977,7 @@
   
     <div class="comments" id="comments">
       <div class="ds-thread" data-thread-key="2018/07/18/编译器第一章/"
-           data-title="（基于Java）编写编译器和解释器-第一章-第一部分：介绍" data-url="http://suprisemf.github.io/2018/07/18/编译器第一章/">
+           data-title="（基于Java）编写编译器和解释器-第一章：介绍-Part-1" data-url="http://suprisemf.github.io/2018/07/18/编译器第一章/">
       </div>
     </div>
 
