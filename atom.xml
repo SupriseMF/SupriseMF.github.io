@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-07-10T03:02:24.005Z</updated>
+  <updated>2018-07-18T11:50:03.251Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -17,11 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>（基于Java）编写编译器和解释器-第一章：书的组织结构</title>
+    <title>（基于Java）编写编译器和解释器-第一章-第一部分：介绍</title>
+    <link href="http://suprisemf.github.io/2018/07/18/%E7%BC%96%E8%AF%91%E5%99%A8%E7%AC%AC%E4%B8%80%E7%AB%A0/"/>
+    <id>http://suprisemf.github.io/2018/07/18/编译器第一章/</id>
+    <published>2018-07-18T10:08:43.000Z</published>
+    <updated>2018-07-18T11:50:03.251Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。</p></blockquote><h2 id="目标和方法"><a href="#目标和方法" class="headerlink" title="目标和方法"></a>目标和方法</h2><p>本书讲授编译器和解释器的基本写法，目标是呈现给你怎样设计和开发它们：</p><ul><li>用Java写的编译器，编译Pascal(一个高级的面向过程的编程语言)的一个主要子集。<code>(即包含主要的语言特征，但去掉一些为写编译器方便而去掉的无关大雅的特性。)</code></li><li>用Java写的解释器且包含一个交互式的符号调试器<code>(符号调试器即基于符号表，而不是基于机器的指令集、硬件的调试功能)</code>，解释同样的Pascal语言子集。</li><li>带图形用户界面的集成开发环境(IDE)。这个IDE是你看到的功能全面的开源的Eclipse或者Borland的JBuilder等IDE的一个简化版。不过，它也包含一个源程序编辑器和一个交互界面用来设置断点，单步调试，查看和修改变量值等等其它。</li></ul><p>达成这些个极具野心的目标是个大挑战。好的技能将会帮你如何如把程序编译成为机器语言或解释执行程序。现代软件工程法则和优秀的面向对象设计思想将会给你呈现怎么通过代码实现一个编译器或解释器而最终所有组件能良好协作。编译器和解释器程序大且复杂。开发个小程序仅需要某种技能即可，然NB的程序如编译器或解释器还需要软件工程法则和面向对象设计。因此本书强调必备技能，软件工程法则和面向对象思想。</p><h2 id="什么是编译器和解释器"><a href="#什么是编译器和解释器" class="headerlink" title="什么是编译器和解释器"></a>什么是编译器和解释器</h2><p>编译器和解释器的主要目的是“翻译”由高阶(High-Level)源语言写的源程序。把源程序翻译成什么样是接下几个段落的主题。</p><p>本书中源语言为Pascal的一个大子集，换句话说，你能够编译或解释正规的Pascal程序。因为编译器和解释器是用Java写的，实现语言是Java。</p><p>Pascal编译器将Pascal源程序翻译成为低阶(Low-Level)的某具体机器的机器语言<code>（更准确的讲是CPU的机器语言)</code>。通常源程序是文本格式。如果编译器工作正常，对应的机器语言和最初的Pascal源程序殊路同归<code>（一样的行为，只不过呈现方式不一样。比如你用钥匙而偷车的直接电线打火发动汽车一样）</code>。机器语言是目标语言，编译器生成用机器语言组成目标代码。代码生成之后，编译器任务就算完成。目标代码一般写到文件里<code>（一般是二进制文件）</code>。</p><p>一个程序可包含数个源文件，而编译器为每个文件生成一个目标文件。一个名叫“链接器”(linker)的辅助程序将这些目标文件的内容连同运行时库程序合成到一个计算机能够加载和执行的目标程序<code>(如windows的PE程序)</code>中。库程序一般来自于预先编译好的目标文件。</p><p>因为机器语言不好记，编译器可生成汇编语言作为目标语言，汇编语言离机器语言只有一步之遥。通常每个汇编指令都有机器语言的指令与之对应。如果你掌握了短助记名<code>（比如ADD和MOV等）</code>汇编语言好记多了。汇编器<code>（另一个编译器）</code>将汇编语言翻译成为机器语言。</p><p>下图概括了将一个或多个源程序编译成为目标程序的过程。</p><p><img src="/2018/07/18/编译器第一章/1-1.png" alt="图1"></p><p>上图展示了将一个包含三个源文件sort1.pas、sort2.pas、sort3.pas的Pascal程序翻译成为三个相应机器语言目标文件sort1.obj、sort2.obj、sort3.obj。链接器将三个目标文件<code>（连带相关运行时库)</code> 合成为一个可执行的目标程序sort.exe。图右边展示了编译器将Pascal源文件翻译为汇编语言目标文件sort1.asm、sort2.asm、sort3.asm，接着汇编器将其转化为机器语言目标文件。最后链接器产生目标程序sort.exe。</p><h4 id="那么编译器和解释器到底有和不同？"><a href="#那么编译器和解释器到底有和不同？" class="headerlink" title="那么编译器和解释器到底有和不同？"></a>那么编译器和解释器到底有和不同？</h4><p>解释器不生成任何目标程序，相反它读进源程序就会执行。这好比你被一个Pascal程序把住手，按照它说的某种语句读进顺序去做。你可以在一张草稿纸上记下程序的变量值直到程序结束才输出每条语句的输出结果。本质上你做的正是Pascal解释器干的事情。Pascal解释器读进程序，执行程序。没有任何目标程序需要生成和加载，相反，解释器将程序翻译成为一系列用来执行程序的动作(Action)。</p><h2 id="比较编译器和解释器"><a href="#比较编译器和解释器" class="headerlink" title="比较编译器和解释器"></a>比较编译器和解释器</h2><h4 id="该如何决策何时用编译器和何时用解释器？"><a href="#该如何决策何时用编译器和何时用解释器？" class="headerlink" title="该如何决策何时用编译器和何时用解释器？"></a>该如何决策何时用编译器和何时用解释器？</h4><p>当你把一个源程序交给解释器，解释器接管检查和执行。编译器也检查但生成目标代码。运行完编译器之后还有运行链接器产生目标程序，且还需加载目标程序到内存中去执行它。如果编译器生成汇编语言代码，你还得运行汇编器。所以很显然解释器需要更少步骤。<br>解释器比编译器更常见。你可用Java写个Pascal解释器运行在基于微软Windows的PC上，苹果的MAC或某个Linux主机上，解释器能够在前面提到的平台上执行Pascal程序。而编译器必须为某个具体的机器生成代码<code>（无论直接生成或间接通过汇编器生成)</code>。所以即使你要把原来为PC写的Pascal编译器放到MAC上运行，它生成的代码仍旧是PC的，如果想让它为MAC生成代码，你可能得重写编译器的某些部分。</p><blockquote><p>接下来讨论的编译器将问题的重心放在为Java虚拟机生成代码上，因为虚拟机能够运行在很多平台上。所以为具体机器生成代码先放一边，有兴趣可以将虚拟机替换成为真实PC机上生成x86指令看看。</p></blockquote><h4 id="如果源程序中包含逻辑错误，比如除值为0的变量，直到运行时才发现，那么会发生什么情况？"><a href="#如果源程序中包含逻辑错误，比如除值为0的变量，直到运行时才发现，那么会发生什么情况？" class="headerlink" title="如果源程序中包含逻辑错误，比如除值为0的变量，直到运行时才发现，那么会发生什么情况？"></a>如果源程序中包含逻辑错误，比如除值为0的变量，直到运行时才发现，那么会发生什么情况？</h4><p>因为解释器在执行程序过程中控制一切，它能停下来告诉你出问题的行数和变量名称。它甚至能提示你在继续执行程序之前可以做哪些正确操作比如修改变量值为非零。解释器可包含一个交互式的源级<code>(source-level)</code>调试器，俗称符号调试器<code>(symbolic debugger)</code>。符号调试器意味着你可用程序中的符号，比如变量名。<br>另一方面，由编译器和链接器产生的目标程序通常自我运行<code>（由机器执行，无需第三方）</code>。源程序有关行号和变量名等信息在目标程序中不可见。当运行时抛错，程序简单中断，还可能打印一条包含出问题指令地址的消息。于是找出源程序中相关语句变量除零的问题就交给你了。</p><p>所以通常就调试来说，解释器才是正道。有些编译器在目标代码中添加一些额外的信息，这样当错我发生时，目标程序能打印出相应的问题行数和变量名等。于是你改正错误，重新编译，然后重新运行。生成额外的信息会导致程序执行的比正常要慢<code>（这也是Visual C++为什么有Run/Debug编译模式）</code>。这提示你在认为程序到达最终“产品”版本后，应关掉调试特征重新编译。</p><p>假设你已经成功调试好程序，那重点将是怎样使运行更快。因为机器能够以最快速度执行原生机器语言程序，编译程序能够比解释器快好几个量级。显然就速来来说编译器是胜者，当优化版编译器知道怎么生成具体场景的优化代码的情况下尤其确定。所以是否使用编译器或解释器取决于程序的开发和执行谁更重要。理想情况是一个带符号源级调试器的解释器用在开发过程中，一个生成机器代码的编译器在程序调试OK之后以求更快的执行速度。这些就是本书的目标，因为它编译器，解释器都教。</p><h2 id="情景变得有点模糊"><a href="#情景变得有点模糊" class="headerlink" title="情景变得有点模糊"></a>情景变得有点模糊</h2><p>编译器和解释器的差异很容易说明清楚，但是随着虚拟机的快速流行，情景变得有点模糊。</p><p>虚拟机是一个用来模拟机器<code>（计算机）</code>的程序。此程序能够运行在不同的真实计算机平台上。举个例子，Java 虚拟机(JVM)能够运行在基于微软Windows的PC上，苹果的MAC，Linux系统和其它很多平台上。<code>（比如Sparc，IBM小型机等）</code>。</p><p>虚拟机有自己的虚拟机器语言，而虚拟语言指令被真实宿主机所解释。那么如果你写了一个翻译器将Pascal源程序翻译成为被宿主机解释的虚拟机语言，这个翻译器算编译器还是解释器？</p><p>不斤斤计较了，我们本书约定如果一个翻译器将源程序转化成为机器语言，不管是真实的机器语言还是虚拟机器语言，那么这个翻译器就是编译器。翻译器没有优先生成机器语言去执行程序的就算解释器。</p><blockquote><p>声明：本文转载自博客园Bang老师，为英版原书《Writing Compilers and Interpreters 3rd Edition》译文。转载只为学习。<a href="https://www.cnblogs.com/lifesting/archive/2012/07/11/2585860.html" target="_blank" rel="noopener">博客地址</a><br>至今与Bang老师联系不上，译文阅读量极低，故为扩大该译文的影响力，笔者擅自转载。由于Bang老师只译到第十一章，但最后的九个章节笔者会自己翻译。</p></blockquote>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;本章描述了本书的目标和用到的方法并鸟瞰编译器和解释器的全貌。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;目标和方法&quot;&gt;&lt;a href=&quot;#目标和方法&quot; class=&quot;headerlink&quot; title=&quot;目标和方法&quot;&gt;&lt;/a&gt;目标和方法&lt;
+      
+    
+    </summary>
+    
+      <category term="编译器和解释器" scheme="http://suprisemf.github.io/categories/%E7%BC%96%E8%AF%91%E5%99%A8%E5%92%8C%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="编译器" scheme="http://suprisemf.github.io/tags/%E7%BC%96%E8%AF%91%E5%99%A8/"/>
+    
+      <category term="解释器" scheme="http://suprisemf.github.io/tags/%E8%A7%A3%E9%87%8A%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>（基于Java）编写编译器和解释器：书的组织结构</title>
     <link href="http://suprisemf.github.io/2018/07/09/%E7%AC%AC%E4%B8%80%E7%AB%A0%E7%BB%84%E6%88%90/"/>
     <id>http://suprisemf.github.io/2018/07/09/第一章组成/</id>
     <published>2018-07-09T14:45:50.000Z</published>
-    <updated>2018-07-10T03:02:24.005Z</updated>
+    <updated>2018-07-18T10:11:24.103Z</updated>
     
     <content type="html"><![CDATA[<blockquote><p>该书共有19章，加上最后的名词索引表部分</p></blockquote><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>该章是一个总体介绍。<br><a id="more"></a></p><h3 id="第二章"><a href="#第二章" class="headerlink" title="第二章"></a>第二章</h3><p>该章描述组织该编译器和解释器的总体框架。它用来设计和测试它的结构化建立端，以便于所有章节的代码都能成功地基于它建立起来。</p><h3 id="第三章"><a href="#第三章" class="headerlink" title="第三章"></a>第三章</h3><h3 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h3><p>第三章和第四章来对付处理一些基础的翻译任务，即第三章来扫描源程序，第四章建立一个符号表。</p><blockquote><p>接下来的章节来建立工作的Pascal解释器。为使用逐渐增加的发展方法，本书采用个个章节进行多次迭代的语法分析和解释。</p></blockquote><h3 id="第五章"><a href="#第五章" class="headerlink" title="第五章"></a>第五章</h3><p>该章来语法分析表达式和赋值语句。</p><h3 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h3><p>该章将第五章的部分进行解释。</p><h3 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h3><p>该章语法分析控制语句。</p><h3 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h3><p>该章来解释第七章的部分。</p><h3 id="第九章"><a href="#第九章" class="headerlink" title="第九章"></a>第九章</h3><p>该章来语法分析声明语句。</p><h3 id="第十章"><a href="#第十章" class="headerlink" title="第十章"></a>第十章</h3><p>该章来处理类型检查。</p><h3 id="第十一章"><a href="#第十一章" class="headerlink" title="第十一章"></a>第十一章</h3><p>该章来语法分析过程语句、方法部分和整个Pascal程序。</p><h3 id="第十二章"><a href="#第十二章" class="headerlink" title="第十二章"></a>第十二章</h3><p>该章完成解释器并执行整个Pascal程序。</p><blockquote><p>接下来的两章会基于工作的解释器来建立。当你是第一次读该书的话，你可以选择跳过接下来的两章节，但是一定要确定来回头好好看一下，毕竟它对你还是很有帮助的。</p></blockquote><h3 id="第十三章"><a href="#第十三章" class="headerlink" title="第十三章"></a>第十三章</h3><p>该章增加了一个交互式的源级别的debugger，通过它你可以通过在命令行敲打命令来跟它进行交流。</p><h3 id="第十四章"><a href="#第十四章" class="headerlink" title="第十四章"></a>第十四章</h3><p>该章为这个基于命令行的debugger包装了一个图形交互页面来建一个集成开发环境IDE。</p><blockquote><p>该书的最后部分通过重用早些章节的代码来形成这个编译器。</p></blockquote><h3 id="第十五章"><a href="#第十五章" class="headerlink" title="第十五章"></a>第十五章</h3><p>该章介绍了Java虚拟机（JVM）和Jasmin的构造结构，其中Jasmin是一个帮助java虚拟机生成汇编语言的工具。</p><h3 id="第十六章"><a href="#第十六章" class="headerlink" title="第十六章"></a>第十六章</h3><p>该章编译程序、赋值语句和表达式。（迭代早些章节的实现）</p><h3 id="第十七章"><a href="#第十七章" class="headerlink" title="第十七章"></a>第十七章</h3><p>该章编译过程部分、方法部分回调，和string的操作。</p><h3 id="第十八章"><a href="#第十八章" class="headerlink" title="第十八章"></a>第十八章</h3><p>该章通过编译控制语句、arrays和记录来完成这个编译器。</p><h3 id="第十九章"><a href="#第十九章" class="headerlink" title="第十九章"></a>第十九章</h3><p>该最后一章是一个对许多对于编写编译器方面但没有在其他章节中提及到简短的介绍，例如代码优化和基于表格驱动的源码扫描器和语法分析器。</p>]]></content>
     
