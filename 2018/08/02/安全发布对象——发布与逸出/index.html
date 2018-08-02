@@ -118,20 +118,20 @@
 
 
 
-<meta name="description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象   对象逸出是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。 发布对象示范例子：1234567891011121314151617181920@Slf4j@NotThreadSafepublic class No">
+<meta name="description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安全发布对象——发布与逸出">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象   对象逸出是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。 发布对象示范例子：1234567891011121314151617181920@Slf4j@NotThreadSafepublic class No">
+<meta property="og:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/发布逸出.png">
-<meta property="og:updated_time" content="2018-08-02T10:17:27.177Z">
+<meta property="og:updated_time" content="2018-08-02T10:20:36.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安全发布对象——发布与逸出">
-<meta name="twitter:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象   对象逸出是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。 发布对象示范例子：1234567891011121314151617181920@Slf4j@NotThreadSafepublic class No">
+<meta name="twitter:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
 <meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png">
 
 
@@ -670,7 +670,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T18:17:27+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T18:20:36+08:00">
                 2018-08-02
               </time>
             
@@ -786,6 +786,7 @@
 <li>通过公有的静态变量发布对象</li>
 </ol>
 </blockquote>
+<a id="more"></a>
 <h4 id="对象逸出"><a href="#对象逸出" class="headerlink" title="对象逸出"></a>对象逸出</h4><p>是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。</p>
 <h5 id="发布对象示范例子："><a href="#发布对象示范例子：" class="headerlink" title="发布对象示范例子："></a>发布对象示范例子：</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> NotSafePublish &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span>[] states = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过类的非私有方法，返回对象的引用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span>[] getStates() &#123;</span><br><span class="line">        <span class="keyword">return</span> states;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        NotSafePublish unsafePublish = <span class="keyword">new</span> NotSafePublish();</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过上面的非法发布，修改其私有变量</span></span><br><span class="line">        unsafePublish.getStates()[<span class="number">0</span>] = <span class="string">"d"</span>;</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>观察结果：</p>
