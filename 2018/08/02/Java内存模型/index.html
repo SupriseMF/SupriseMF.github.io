@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="Java,编译器,解释器," />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,18 +118,22 @@
 
 
 
-<meta name="description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
-<meta name="keywords" content="Java,编译器,解释器">
+<meta name="description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
+<meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="（基于Java）编写编译器和解释器-第一章：介绍之前">
-<meta property="og:url" content="http://suprisemf.github.io/2018/07/09/第一章/index.html">
+<meta property="og:title" content="Java内存模型">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/Java内存模型/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
+<meta property="og:description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T03:08:11.673Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM抽象结构.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/同步操作与规则.png">
+<meta property="og:updated_time" content="2018-08-02T07:39:32.636Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="（基于Java）编写编译器和解释器-第一章：介绍之前">
-<meta name="twitter:description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
+<meta name="twitter:title" content="Java内存模型">
+<meta name="twitter:description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png">
 
 
 
@@ -159,13 +163,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/2018/07/09/第一章/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/Java内存模型/"/>
 
 
 
 
 
-  <title>（基于Java）编写编译器和解释器-第一章：介绍之前 | 红宝石星球</title>
+  <title>Java内存模型 | 红宝石星球</title>
   
 
 
@@ -622,7 +626,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/07/09/第一章/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/Java内存模型/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,7 +643,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">（基于Java）编写编译器和解释器-第一章：介绍之前</h2>
+          <h2 class="post-title" itemprop="name headline">Java内存模型</h2>
         
 
         <div class="post-meta">
@@ -651,8 +655,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T22:12:52+08:00">
-                2018-07-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:29:16+08:00">
+                2018-08-02
               </time>
             
 
@@ -667,8 +671,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T11:08:11+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T15:39:32+08:00">
+                2018-08-02
               </time>
             
           </span>
@@ -686,8 +690,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译器和解释器/" itemprop="url" rel="index">
-                    <span itemprop="name">编译器和解释器</span>
+                  <a href="/categories/Java并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
                   </a>
                 </span>
 
@@ -704,8 +708,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/09/第一章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/09/第一章/" itemprop="commentCount"></span>
+                <a href="/2018/08/02/Java内存模型/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/Java内存模型/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -713,7 +717,7 @@
 
           
           
-             <span id="/2018/07/09/第一章/" class="leancloud_visitors" data-flag-title="（基于Java）编写编译器和解释器-第一章：介绍之前">
+             <span id="/2018/08/02/Java内存模型/" class="leancloud_visitors" data-flag-title="Java内存模型">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -738,7 +742,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  354 字
+                  1,232 字
                 </span>
               
 
@@ -754,7 +758,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  4 分钟
                 </span>
               
             </div>
@@ -775,14 +779,47 @@
       
 
       
-        <h2 id="关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍"><a href="#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍" class="headerlink" title="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍"></a>关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍</h2><h3 id="翻译这本书的想法"><a href="#翻译这本书的想法" class="headerlink" title="翻译这本书的想法"></a>翻译这本书的想法</h3><blockquote>
-<p>这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。<br><a id="more"></a><br>本学期的《编译原理课程设计》中最后用C++实现了一个小编译器，但是其中很大部分是借用该书的讲解实现，而且是C++语言。在Google、百度之后，千挑万选发现了这本很有名的但是并不为多数人了解的书（大家都不是特别关心编译器的实现）。</p>
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
+<p>已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。<br>其中<strong>Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范</strong></p>
 </blockquote>
-<p>相对于号称编译原理界的“三大圣书”：龙书——《编译原理技术和工具》-作者:Alfred V.Aho,Ravi Sethi,Jeffrey D.Ullman 、虎书——《现代编译原理-C语言描述》-作者：Andrew W.Appel,with Jens Palsberg 、鲸书——《高级编译器设计与实现》-作者：Steven S.Muchnick<br>“三大圣书”详情请访问<a href="https://www.cnblogs.com/Amedeo/archive/2017/11/24/7881889.html" target="_blank" rel="noopener">参考链接</a></p>
-<p>但是，这本书是基于java，而且有更加详实完善的代码讲解，该书作者也是大名鼎鼎的Ronald Mak,其前两版讲解编译器的是使用的C/C++，加上目前该书目前没有英文版，故此笔者决定擅自翻译该书。</p>
+<a id="more"></a>
+<h5 id="JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"><a href="#JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。" class="headerlink" title="JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"></a>JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</h5><h4 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h4><p>JMM与硬件结构如下图：</p>
+<p><img src="/2018/08/02/Java内存模型/JMM与硬件结构.png" alt=""></p>
+<p>JMM内部抽象结构如下图：</p>
+<p><img src="/2018/08/02/Java内存模型/JMM抽象结构.png" alt="此处JMM"></p>
+<p>堆区（Heap）：是运行时数据区，并由GC（Garbage Collection）负责，可以在运行时动态分配内存大小，也不必通知编译器。<strong>缺点：由于运行时动态分配内存，故存取速度稍慢</strong></p>
 <blockquote>
-<p>笔者英语水平目前较差，仅是英语六级水平，但是为了读者理解，并尽量保证翻译质量，笔者会用心做好的。</p>
+<p>静态成员变量跟随类的定义一起存放在堆中。堆中的对象可以被对该对象持有引用的线程访问，且其成员变量也可以被访问；<strong>当多个线程对同一对象的同一方法进行访问时，其实每个线程都有对该对象的数据的<em>私有拷贝</em>，而不会出现混乱</strong>。</p>
 </blockquote>
+<hr>
+<p>栈区（Stack）：主要存放8种基本类型的变量和句柄，JMM要求调用栈的本地变量存放在本地线程栈中，但对象是存放在堆中；优点：存取速度快（相对于Heap），仅次于寄存器，其中的数据可以共享；缺点：其中的数据与其生存期是确定的，缺乏灵活性。</p>
+<blockquote>
+<p>本地变量（local variable）也可能是一个引用变量，指向一个变量的引用，此时引用变量是存放在线程栈（Thread Stack）中，但被引用变量仍然存放在堆Heap中。</p>
+</blockquote>
+<hr>
+<h3 id="同步的八种操纵"><a href="#同步的八种操纵" class="headerlink" title="同步的八种操纵"></a>同步的八种操纵</h3><ul>
+<li>lock（锁定）：作用于主内存的变量，把一个标示为一条线程独占状态；</li>
+<li>unloc（解锁）：作用于主内存的变量，把一个处于锁定状态的变量释放；</li>
+<li>read（读取）：作用于主内存的变量，把一个变量从主内存传输到编程的工作内存，供随后的load操作使用；</li>
+<li>load（载入）：作用于主内存的变量，它把read操作从主内存得到的变量值放入工作内存的变量副本中；</li>
+<li>use（使用）：作用于主内存的变量，把工作内存的一个变量值传递给执行引擎；</li>
+<li>assign（赋值）：作用于主内存的变量，它把一个从执行引擎收到的值赋值给工作内存的变量；</li>
+<li>store（存储）：作用于主内存的变量，将工作内存的一个变量的值传递给主内存中，供随后的write操作使用；</li>
+<li>write（写入）：作用于主内存的变量，将store操作从内存中的一个变量值传送到主内存的变量中。</li>
+</ul>
+<h3 id="同步的规则"><a href="#同步的规则" class="headerlink" title="同步的规则"></a>同步的规则</h3><p>同步操作与规则如下图：</p>
+<p><img src="/2018/08/02/Java内存模型/同步操作与规则.png" alt=""></p>
+<ul>
+<li>如果把一个变量从主内存中复制到工作内存，需要按顺序执行read和load操作；如果把变量从工作内存同步回主内存中，需要按顺序执行store和write操作。<strong>需要按照先后顺序，但不要求连续执行！</strong></li>
+<li>不允许read和load、store和write操作之一单独出现。</li>
+<li>不允许一个线程丢弃它的最近assign的操作，即变量在工作内存中改变了之后必须同步到主内存中。</li>
+<li>不允许一个线程无原因地（没有发生过任何assign操作）把数据从工作内存同步到主内存中。</li>
+<li>一个新的变量只能在主内存中诞生，不允许在工作内存中直接使用一个未被初始化（load或assign）的变量。即对一个变量执行use或store操作之前，必须先执行assign或load操作。</li>
+<li>一个变量在同一时刻只允许一条线程对其进行lock操作，但lock操作可以被同一条线程重复执行多次；多次执行lock后，只有执行相同次数的unlock后，变量才会被解锁。即lock和unlock必须成对出现。</li>
+<li>如果对一个变量执行lock操作，将会清空工作内存中此变量的值；在执行引擎使用这个变量前需要重新执行load或assign操作初始化变量的值。</li>
+<li>如果一个变量事先没有被lock操作锁定，则不允许对它执行unlock操作；也不允许去unlock一个被其他线程锁定的变量。</li>
+<li>对一个变量执行unlock操作之前，必须先把此变量同步到主内存中（执行store和write操作）。</li>
+</ul>
 
       
     </div>
@@ -840,7 +877,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/07/09/第一章/" title="（基于Java）编写编译器和解释器-第一章：介绍之前">http://suprisemf.github.io/2018/07/09/第一章/</a>
+    <a href="http://suprisemf.github.io/2018/08/02/Java内存模型/" title="Java内存模型">http://suprisemf.github.io/2018/08/02/Java内存模型/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -857,9 +894,7 @@
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/编译器/" rel="tag"># 编译器</a>
-          
-            <a href="/tags/解释器/" rel="tag"># 解释器</a>
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
         </div>
       
@@ -887,8 +922,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/08/blogUItry/" rel="next" title="全新博客界面">
-                <i class="fa fa-chevron-left"></i> 全新博客界面
+              <a href="/2018/08/02/乱序执行优化/" rel="next" title="CPU多级缓存——乱序执行优化">
+                <i class="fa fa-chevron-left"></i> CPU多级缓存——乱序执行优化
               </a>
             
           </div>
@@ -896,10 +931,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/09/第一章组成/" rel="prev" title="（基于Java）编写编译器和解释器：书的组织结构">
-                （基于Java）编写编译器和解释器：书的组织结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -918,10 +949,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/07/09/第一章/"
-     data-title="（基于Java）编写编译器和解释器-第一章：介绍之前"
+        <div class="ds-share flat" data-thread-key="2018/08/02/Java内存模型/"
+     data-title="Java内存模型"
      data-content=""
-     data-url="http://suprisemf.github.io/2018/07/09/第一章/">
+     data-url="http://suprisemf.github.io/2018/08/02/Java内存模型/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -952,8 +983,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018/07/09/第一章/"
-           data-title="（基于Java）编写编译器和解释器-第一章：介绍之前" data-url="http://suprisemf.github.io/2018/07/09/第一章/">
+      <div class="ds-thread" data-thread-key="2018/08/02/Java内存模型/"
+           data-title="Java内存模型" data-url="http://suprisemf.github.io/2018/08/02/Java内存模型/">
       </div>
     </div>
 
@@ -1121,7 +1152,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍"><span class="nav-number">1.</span> <span class="nav-text">关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#翻译这本书的想法"><span class="nav-number">1.1.</span> <span class="nav-text">翻译这本书的想法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"><span class="nav-number">1.1.</span> <span class="nav-text">JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java内存模型（JMM）"><span class="nav-number">2.</span> <span class="nav-text">Java内存模型（JMM）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的八种操纵"><span class="nav-number"></span> <span class="nav-text">同步的八种操纵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的规则"><span class="nav-number"></span> <span class="nav-text">同步的规则</span></a></div>
             
 
           </div>
