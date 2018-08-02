@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>线程安全-有序性</title>
+      <link href="/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89-%E6%9C%89%E5%BA%8F%E6%80%A7/"/>
+      <url>/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89-%E6%9C%89%E5%BA%8F%E6%80%A7/</url>
+      <content type="html"><![CDATA[<h4 id="问题导出"><a href="#问题导出" class="headerlink" title="问题导出"></a>问题导出</h4><ol><li>Java内存模型中，允许编译器和翻译器对指令进行重排序，但是重排序的过程不会影响到<strong>单线程</strong>程序的运行，却会影响到多线程并发执行的正确性。</li><li>Java中的volatile通过<code>内存屏障</code>也可以一定程度上禁止指令的重排序。</li><li>synchronized和Lock机制都是通过线程阻塞对于主内存来讲其同一时刻只有一个线程可以访问操作，保证了有序性。</li><li>Java内存模型实际存在先天的有序性：不需要通过任何手段即可保证一定的有序性，即happens-before原则。</li></ol><a id="more"></a><blockquote><p>如果两个操作的次序无法从happens-before原则中得到保证，那么该两个操作不能保证自己的有序性：即被JVM随意地进行重排序。</p></blockquote><h4 id="happens-before原则"><a href="#happens-before原则" class="headerlink" title="happens-before原则"></a>happens-before原则</h4><blockquote><p>前四条较为重要，后四条浅显易懂</p></blockquote><ol><li>程序次序规则：<strong>单线程内</strong>，按照代码顺序，书写在前面的操作先行发生与书写在后面的操作。（此时的JVM只会对非数据依赖的指令进行重排序）</li><li>锁定规则：一个unlock操作先行发生于后面对同一个锁的lock操作。</li><li><strong>volatile变量规则：对一个变量的写操作先行发生于后面对这个变量的读操作。</strong></li><li>传递规则：若操作A先行发生于操作B，B又先行发生于操作C，那么操作A先行发生于操作C。</li><li>线程启动规则：Thread对象的start()方法先行发生于此线程的每一个动作。</li><li>线程中断规则：对线程interrupt()方法的调用先行发生于被中断线程的代码检测到中断事件的发生。</li><li>线程终结规则：线程中所有的操作都先行发生于线程的终止检测，我们可以通过Thread.join()方法结束、Thread.isAlive()的返回值手段检测到线程已经终止执行。</li><li>对象终结规则：一个对象的初始化完成先行发生于它的finalize()方法的开始。</li></ol>]]></content>
+      
+      <categories>
+          
+          <category> Java之并发编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 并发编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>线程安全-可见性</title>
       <link href="/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/"/>
       <url>/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/</url>
