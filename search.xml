@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>并发的优势与风险</title>
+      <link href="/2018/08/02/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%BC%98%E5%8A%BF%E4%B8%8E%E9%A3%8E%E9%99%A9/"/>
+      <url>/2018/08/02/%E5%B9%B6%E5%8F%91%E7%9A%84%E4%BC%98%E5%8A%BF%E4%B8%8E%E9%A3%8E%E9%99%A9/</url>
+      <content type="html"><![CDATA[<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><h4 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h4><ul><li>系统可以处理多个请求，响应速度更快；</li><li>复杂的操作可以分割为多个进程同时进行。<a id="more"></a><h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4></li><li>程序的设计更加简单；</li><li>设计有更多的选择。<h4 id="资源利用"><a href="#资源利用" class="headerlink" title="资源利用"></a>资源利用</h4>CPU在等待IO时候可以做其他的工作，提高硬件资源利用率<h3 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h3><h4 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h4>多个线程共享数据可能会产生与期望不相符的结果<h4 id="活跃性"><a href="#活跃性" class="headerlink" title="活跃性"></a>活跃性</h4>某个操作无法继续进行下去时，会产生活跃性问题。如死锁饥饿等。<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4>线程过多时会使：</li></ul><ol><li>CPU上下文切换频繁，调度时间增加，想能降低；</li><li>同步机制耗时增加；</li><li>内存容量剧增。</li></ol>]]></content>
+      
+      <categories>
+          
+          <category> Java并发编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 并发编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Java内存模型</title>
       <link href="/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/"/>
       <url>/2018/08/02/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/</url>

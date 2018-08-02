@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="Java,编译器,解释器," />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
-<meta name="keywords" content="Java,编译器,解释器">
+<meta name="description" content="优势速度 系统可以处理多个请求，响应速度更快； 复杂的操作可以分割为多个进程同时进行。">
+<meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="（基于Java）编写编译器和解释器-第一章：介绍之前">
-<meta property="og:url" content="http://suprisemf.github.io/2018/07/09/第一章/index.html">
+<meta property="og:title" content="并发的优势与风险">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/并发的优势与风险/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
+<meta property="og:description" content="优势速度 系统可以处理多个请求，响应速度更快； 复杂的操作可以分割为多个进程同时进行。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-10T03:08:11.673Z">
+<meta property="og:updated_time" content="2018-08-02T07:44:19.709Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="（基于Java）编写编译器和解释器-第一章：介绍之前">
-<meta name="twitter:description" content="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍翻译这本书的想法 这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。">
+<meta name="twitter:title" content="并发的优势与风险">
+<meta name="twitter:description" content="优势速度 系统可以处理多个请求，响应速度更快； 复杂的操作可以分割为多个进程同时进行。">
 
 
 
@@ -159,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/2018/07/09/第一章/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/并发的优势与风险/"/>
 
 
 
 
 
-  <title>（基于Java）编写编译器和解释器-第一章：介绍之前 | 红宝石星球</title>
+  <title>并发的优势与风险 | 红宝石星球</title>
   
 
 
@@ -622,7 +622,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/07/09/第一章/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/并发的优势与风险/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,7 +639,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">（基于Java）编写编译器和解释器-第一章：介绍之前</h2>
+          <h2 class="post-title" itemprop="name headline">并发的优势与风险</h2>
         
 
         <div class="post-meta">
@@ -651,8 +651,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-09T22:12:52+08:00">
-                2018-07-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:43:02+08:00">
+                2018-08-02
               </time>
             
 
@@ -667,8 +667,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-10T11:08:11+08:00">
-                2018-07-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T15:44:19+08:00">
+                2018-08-02
               </time>
             
           </span>
@@ -686,8 +686,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/编译器和解释器/" itemprop="url" rel="index">
-                    <span itemprop="name">编译器和解释器</span>
+                  <a href="/categories/Java并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
                   </a>
                 </span>
 
@@ -704,8 +704,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/09/第一章/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/09/第一章/" itemprop="commentCount"></span>
+                <a href="/2018/08/02/并发的优势与风险/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/并发的优势与风险/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -713,7 +713,7 @@
 
           
           
-             <span id="/2018/07/09/第一章/" class="leancloud_visitors" data-flag-title="（基于Java）编写编译器和解释器-第一章：介绍之前">
+             <span id="/2018/08/02/并发的优势与风险/" class="leancloud_visitors" data-flag-title="并发的优势与风险">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -738,7 +738,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  354 字
+                  185 字
                 </span>
               
 
@@ -775,14 +775,18 @@
       
 
       
-        <h2 id="关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍"><a href="#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍" class="headerlink" title="关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍"></a>关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍</h2><h3 id="翻译这本书的想法"><a href="#翻译这本书的想法" class="headerlink" title="翻译这本书的想法"></a>翻译这本书的想法</h3><blockquote>
-<p>这学期在学完《编译原理》这门课程之后，我是深深地被编译器的实现迷住了。。。<br><a id="more"></a><br>本学期的《编译原理课程设计》中最后用C++实现了一个小编译器，但是其中很大部分是借用该书的讲解实现，而且是C++语言。在Google、百度之后，千挑万选发现了这本很有名的但是并不为多数人了解的书（大家都不是特别关心编译器的实现）。</p>
-</blockquote>
-<p>相对于号称编译原理界的“三大圣书”：龙书——《编译原理技术和工具》-作者:Alfred V.Aho,Ravi Sethi,Jeffrey D.Ullman 、虎书——《现代编译原理-C语言描述》-作者：Andrew W.Appel,with Jens Palsberg 、鲸书——《高级编译器设计与实现》-作者：Steven S.Muchnick<br>“三大圣书”详情请访问<a href="https://www.cnblogs.com/Amedeo/archive/2017/11/24/7881889.html" target="_blank" rel="noopener">参考链接</a></p>
-<p>但是，这本书是基于java，而且有更加详实完善的代码讲解，该书作者也是大名鼎鼎的Ronald Mak,其前两版讲解编译器的是使用的C/C++，加上目前该书目前没有英文版，故此笔者决定擅自翻译该书。</p>
-<blockquote>
-<p>笔者英语水平目前较差，仅是英语六级水平，但是为了读者理解，并尽量保证翻译质量，笔者会用心做好的。</p>
-</blockquote>
+        <h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><h4 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h4><ul>
+<li>系统可以处理多个请求，响应速度更快；</li>
+<li>复杂的操作可以分割为多个进程同时进行。<a id="more"></a>
+<h4 id="设计"><a href="#设计" class="headerlink" title="设计"></a>设计</h4></li>
+<li>程序的设计更加简单；</li>
+<li>设计有更多的选择。<h4 id="资源利用"><a href="#资源利用" class="headerlink" title="资源利用"></a>资源利用</h4>CPU在等待IO时候可以做其他的工作，提高硬件资源利用率<h3 id="风险"><a href="#风险" class="headerlink" title="风险"></a>风险</h3><h4 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h4>多个线程共享数据可能会产生与期望不相符的结果<h4 id="活跃性"><a href="#活跃性" class="headerlink" title="活跃性"></a>活跃性</h4>某个操作无法继续进行下去时，会产生活跃性问题。如死锁饥饿等。<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4>线程过多时会使：</li>
+</ul>
+<ol>
+<li>CPU上下文切换频繁，调度时间增加，想能降低；</li>
+<li>同步机制耗时增加；</li>
+<li>内存容量剧增。</li>
+</ol>
 
       
     </div>
@@ -840,7 +844,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/07/09/第一章/" title="（基于Java）编写编译器和解释器-第一章：介绍之前">http://suprisemf.github.io/2018/07/09/第一章/</a>
+    <a href="http://suprisemf.github.io/2018/08/02/并发的优势与风险/" title="并发的优势与风险">http://suprisemf.github.io/2018/08/02/并发的优势与风险/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -857,9 +861,7 @@
           
             <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/编译器/" rel="tag"># 编译器</a>
-          
-            <a href="/tags/解释器/" rel="tag"># 解释器</a>
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
         </div>
       
@@ -887,8 +889,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/08/blogUItry/" rel="next" title="全新博客界面">
-                <i class="fa fa-chevron-left"></i> 全新博客界面
+              <a href="/2018/08/02/Java内存模型/" rel="next" title="Java内存模型">
+                <i class="fa fa-chevron-left"></i> Java内存模型
               </a>
             
           </div>
@@ -896,10 +898,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/09/第一章组成/" rel="prev" title="（基于Java）编写编译器和解释器：书的组织结构">
-                （基于Java）编写编译器和解释器：书的组织结构 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -918,10 +916,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/07/09/第一章/"
-     data-title="（基于Java）编写编译器和解释器-第一章：介绍之前"
+        <div class="ds-share flat" data-thread-key="2018/08/02/并发的优势与风险/"
+     data-title="并发的优势与风险"
      data-content=""
-     data-url="http://suprisemf.github.io/2018/07/09/第一章/">
+     data-url="http://suprisemf.github.io/2018/08/02/并发的优势与风险/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -952,8 +950,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018/07/09/第一章/"
-           data-title="（基于Java）编写编译器和解释器-第一章：介绍之前" data-url="http://suprisemf.github.io/2018/07/09/第一章/">
+      <div class="ds-thread" data-thread-key="2018/08/02/并发的优势与风险/"
+           data-title="并发的优势与风险" data-url="http://suprisemf.github.io/2018/08/02/并发的优势与风险/">
       </div>
     </div>
 
@@ -1121,7 +1119,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#关于翻译《Writing-Compilers-and-Interpreters-3rd-Edition》书籍"><span class="nav-number">1.</span> <span class="nav-text">关于翻译《Writing Compilers and Interpreters 3rd Edition》书籍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#翻译这本书的想法"><span class="nav-number">1.1.</span> <span class="nav-text">翻译这本书的想法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#优势"><span class="nav-number">1.</span> <span class="nav-text">优势</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#速度"><span class="nav-number">1.1.</span> <span class="nav-text">速度</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#设计"><span class="nav-number">1.2.</span> <span class="nav-text">设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#资源利用"><span class="nav-number">1.3.</span> <span class="nav-text">资源利用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#风险"><span class="nav-number">2.</span> <span class="nav-text">风险</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#安全性"><span class="nav-number">2.1.</span> <span class="nav-text">安全性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#活跃性"><span class="nav-number">2.2.</span> <span class="nav-text">活跃性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-number">2.3.</span> <span class="nav-text">性能</span></a></li></ol></li></ol></div>
             
 
           </div>
