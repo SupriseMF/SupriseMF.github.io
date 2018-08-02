@@ -118,18 +118,20 @@
 
 
 
-<meta name="description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta name="description" content="概述 线程不安全类：如果一个类的对象同时被多个线程访问，若不做相应的同步或并发处理，容易出现线程不安全的现象，比如：抛出异常、逻辑处理错误等。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="内在锁Synchronized关键字">
-<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/index.html">
+<meta property="og:title" content="线程不安全——Part-1">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta property="og:description" content="概述 线程不安全类：如果一个类的对象同时被多个线程访问，若不做相应的同步或并发处理，容易出现线程不安全的现象，比如：抛出异常、逻辑处理错误等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-02T09:51:56.257Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/joda-Time测试.png">
+<meta property="og:updated_time" content="2018-08-02T11:12:59.896Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="内在锁Synchronized关键字">
-<meta name="twitter:description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta name="twitter:title" content="线程不安全——Part-1">
+<meta name="twitter:description" content="概述 线程不安全类：如果一个类的对象同时被多个线程访问，若不做相应的同步或并发处理，容易出现线程不安全的现象，比如：抛出异常、逻辑处理错误等。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/joda-Time测试.png">
 
 
 
@@ -159,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/"/>
 
 
 
 
 
-  <title>内在锁Synchronized关键字 | 红宝石星球</title>
+  <title>线程不安全——Part-1 | 红宝石星球</title>
   
 
 
@@ -622,7 +624,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,7 +641,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">内在锁Synchronized关键字</h2>
+          <h2 class="post-title" itemprop="name headline">线程不安全——Part-1</h2>
         
 
         <div class="post-meta">
@@ -651,7 +653,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T17:50:50+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:09:09+08:00">
                 2018-08-02
               </time>
             
@@ -667,7 +669,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:51:56+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:12:59+08:00">
                 2018-08-02
               </time>
             
@@ -704,8 +706,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/02/内在锁synchronized关键字/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/内在锁synchronized关键字/" itemprop="commentCount"></span>
+                <a href="/2018/08/02/线程不安全——part-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/线程不安全——part-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -713,7 +715,7 @@
 
           
           
-             <span id="/2018/08/02/内在锁synchronized关键字/" class="leancloud_visitors" data-flag-title="内在锁Synchronized关键字">
+             <span id="/2018/08/02/线程不安全——part-1/" class="leancloud_visitors" data-flag-title="线程不安全——Part-1">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -738,7 +740,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  472 字
+                  1,045 字
                 </span>
               
 
@@ -754,7 +756,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  5 分钟
                 </span>
               
             </div>
@@ -775,23 +777,43 @@
       
 
       
-        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。<a id="more"></a><br>在使用得当的时候，内在锁可以让程序做到线程安全，但是在使用锁定保护短的代码路径，而且线程频繁地争用锁的时候，锁定可能成为相当繁重的操作。<a href="https://www.ibm.com/developerworks/cn/java/j-jtp04186/" target="_blank" rel="noopener">参考学习</a></p>
-<blockquote>
-<p>内在锁synchronized关键字的实现依赖于JVM，因此<strong>在这个关键字作用的对象的作用范围内都是同一时刻只能有一个线程进行操作。</strong></p>
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
+<p>线程不安全类：如果一个类的对象同时被多个线程访问，若不做相应的同步或并发处理，容易出现线程不安全的现象，比如：抛出异常、逻辑处理错误等。</p>
 </blockquote>
-<p>它是一种同步锁，作用对象有四种：</p>
+<a id="more"></a>
+<h4 id="StringBiulder"><a href="#StringBiulder" class="headerlink" title="StringBiulder"></a>StringBiulder</h4><p>看一个例子：（借助之前的例子结构）<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StringExample1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    update();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"size:&#123;&#125;"</span>, stringBuilder.length());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        stringBuilder.append(<span class="string">"1"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>结果分析：</strong></p>
 <ol>
-<li>修饰代码块：指用大括号括起来的代码，被称为“同步代码块”，作用于调用该代码块的对象。</li>
-<li>修饰方法：指整个方法，被称为同步方法，作用于调用该方法的对象。</li>
-<li>修饰静态方法：指整个静态方法，由于静态方法可以被理解为类级别的对象，因此它作用于该类的所有的对象。</li>
-<li>修饰类：指整个类，作用于该类的所有的对象。</li>
+<li>多次运行，结果几乎未达5000，显然StringBuilder是非线程安全的。</li>
+<li>通过定义stringBuilder对象，核心方法为update() -&gt; 每次拼接一个字符串，最后取其长度length。</li>
 </ol>
-<h4 id="引申拓展：另一种锁Lock"><a href="#引申拓展：另一种锁Lock" class="headerlink" title="引申拓展：另一种锁Lock"></a>引申拓展：另一种锁Lock</h4><p>JDK提供的基于源码的锁，依赖于特殊的CPU指令、代码实现。其代表为ReentrantLock.<br>后续将会单独做一篇手记。</p>
-<h4 id="线程安全中原子性方式的简单对比"><a href="#线程安全中原子性方式的简单对比" class="headerlink" title="线程安全中原子性方式的简单对比"></a>线程安全中原子性方式的简单对比</h4><ol>
-<li>synchronized：是不可中断锁，适合竞争不激烈的场景，其可读性较好。</li>
-<li>Lock：可通过unlock进行锁的中断，在竞争激烈时仍可以保持常态，同步多样化。</li>
-<li>Atomic包：竞争激烈时也可以保持常态，性能比Lock好，但缺点是只能通过CAS同步一个值。</li>
+<h4 id="StringBuffer"><a href="#StringBuffer" class="headerlink" title="StringBuffer"></a>StringBuffer</h4><blockquote>
+<p>例子代码结构跟上面一样，只需将StringBiulder换为StringBuffer，且其两者方法名相同。</p>
+</blockquote>
+<p><strong>运行结果：</strong><br>多次运行，结果均为5000。StringBuffer是线程安全的！</p>
+<h5 id="查看StringBuffer源码"><a href="#查看StringBuffer源码" class="headerlink" title="查看StringBuffer源码"></a>查看StringBuffer源码</h5><figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> StringBuffer <span class="built_in">append</span>(<span class="keyword">String</span> <span class="built_in">str</span>) &#123;</span><br><span class="line">    toStringCache = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">super</span>.<span class="built_in">append</span>(<span class="built_in">str</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">StringBuffer</span></span></span><br><span class="line"><span class="class">   <span class="keyword">extends</span> <span class="title">AbstractStringBuilder</span></span></span><br><span class="line"><span class="class">   <span class="keyword">implements</span> <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span>, <span class="title">CharSequence</span></span>&#123;XXX省略&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="function">String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (toStringCache == <span class="keyword">null</span>) &#123;</span><br><span class="line">        toStringCache = Arrays.copyOfRange(value, <span class="number">0</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> String(toStringCache, <span class="keyword">true</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>源码分析：</strong></p>
+<ol>
+<li>几乎所有复写的方法都有toStringCache变量。为对象方便转为String类型的字段，调用Arrays.copyOfRange(value, 0, count)，return new String(toStringCache, true)：其中该构造方法是String包私有的构造方法，以确保数值分享的效率。</li>
+<li>StringBuffer继承自AbstractStringBuilder，并几乎重写了所有继承来的方法。调用父辈super的append方法，即AbstractStringBuilder的方法。且StringBuffer对象一经修改，toStringCache清空为null。类似String包装类的对象，避免多线程并发问题。（以后细说String包装类…）</li>
+<li>为了线程安全，几乎所有复写的方法都用synchronized进行标识，即使效率较低。</li>
+<li>StringBiulder性能好，但不适用于多线程。但适用于场景为方法内的局部变量操作（上篇线程封闭的手记中说到：隐式的堆栈封闭），线程安全且性能较好。</li>
 </ol>
+<h4 id="SimpleDateFormate"><a href="#SimpleDateFormate" class="headerlink" title="SimpleDateFormate"></a>SimpleDateFormate</h4><blockquote>
+<p>Java提供的供日期转换的类。该例子结构仍然和上述例子相同。只需定义一个simpleDateFormat实例，核心方法换为parse（xxx:日期语句）</p>
+</blockquote>
+<p><strong>运行结果：</strong><br>出现异常：<code>parse exception -- java.lang.NumberFormatException: multiple points</code><br>非常简单，说明了该日期转换方法是非线程间安全的。</p>
+<h5 id="正确写法：（通过堆栈封闭-gt-声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）"><a href="#正确写法：（通过堆栈封闭-gt-声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）" class="headerlink" title="正确写法：（通过堆栈封闭-&gt;声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）"></a>正确写法：（通过堆栈封闭-&gt;声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）</h5><blockquote>
+<p>仍然是之前的测试结构，但还是贴出来看看吧。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@ThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DateFormatExample2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    update();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            SimpleDateFormat simpleDateFormat = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyyMMdd"</span>);</span><br><span class="line">            simpleDateFormat.parse(<span class="string">"20180208"</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.<span class="keyword">error</span>(<span class="string">"parse exception"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>运行结果：</strong> 多次运行，不会报错！是线程安全！</p>
+<h4 id="Joda-Time"><a href="#Joda-Time" class="headerlink" title="Joda Time"></a>Joda Time</h4><blockquote>
+<p>该类本质上并不属于Java提供。需引入jar包。例子仍然是之前的测试结构。只不过日志输出了次数及当时日期<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123;</span><br><span class="line">    <span class="comment">//转换完后DateTime，调用toDate()转为Date对象。</span></span><br><span class="line">    <span class="built_in">log</span>.info(<span class="string">"&#123;&#125;, &#123;&#125;"</span>, i == <span class="number">4999</span> ? i+<span class="string">"--------------------------"</span> : i, DateTime.parse(<span class="string">"20180728"</span>, dateTimeFormatter).toDate());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p><strong>运行结果：</strong><br>由于调用是多并发的，调用次序是乱序，但总数一定！<br>由于i是从0到4999，即当i = 4999时说明已运行慢5000个，即线程安全！<br><strong>图片截图中字体小了，可以点开看~</strong><br><img src="/2018/08/02/线程不安全——part-1/joda-Time测试.png" alt="图示"></p>
+<p>（后接该手记part-2……）</p>
 
       
     </div>
@@ -849,7 +871,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/" title="内在锁Synchronized关键字">http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/</a>
+    <a href="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/" title="线程不安全——Part-1">http://suprisemf.github.io/2018/08/02/线程不安全——part-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -894,8 +916,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/02/AtomicStampReference：CAS中的ABA问题/" rel="next" title="AtomicStampReference：CAS中的ABA问题">
-                <i class="fa fa-chevron-left"></i> AtomicStampReference：CAS中的ABA问题
+              <a href="/2018/08/02/线程封闭/" rel="next" title="线程封闭">
+                <i class="fa fa-chevron-left"></i> 线程封闭
               </a>
             
           </div>
@@ -903,10 +925,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/02/线程安全-可见性/" rel="prev" title="线程安全-可见性">
-                线程安全-可见性 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -925,10 +943,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/08/02/内在锁synchronized关键字/"
-     data-title="内在锁Synchronized关键字"
+        <div class="ds-share flat" data-thread-key="2018/08/02/线程不安全——part-1/"
+     data-title="线程不安全——Part-1"
      data-content=""
-     data-url="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/">
+     data-url="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -959,8 +977,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018/08/02/内在锁synchronized关键字/"
-           data-title="内在锁Synchronized关键字" data-url="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/">
+      <div class="ds-thread" data-thread-key="2018/08/02/线程不安全——part-1/"
+           data-title="线程不安全——Part-1" data-url="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/">
       </div>
     </div>
 
@@ -1128,7 +1146,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引申拓展：另一种锁Lock"><span class="nav-number">2.</span> <span class="nav-text">引申拓展：另一种锁Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全中原子性方式的简单对比"><span class="nav-number">3.</span> <span class="nav-text">线程安全中原子性方式的简单对比</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#StringBiulder"><span class="nav-number">1.1.</span> <span class="nav-text">StringBiulder</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#StringBuffer"><span class="nav-number">1.2.</span> <span class="nav-text">StringBuffer</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#查看StringBuffer源码"><span class="nav-number">1.2.1.</span> <span class="nav-text">查看StringBuffer源码</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SimpleDateFormate"><span class="nav-number">1.3.</span> <span class="nav-text">SimpleDateFormate</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正确写法：（通过堆栈封闭-gt-声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）"><span class="nav-number">1.3.1.</span> <span class="nav-text">正确写法：（通过堆栈封闭-&gt;声明为核心方法内的局部变量，即每次声明一个新的对象进行调用）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Joda-Time"><span class="nav-number">1.4.</span> <span class="nav-text">Joda Time</span></a></li></ol></li></ol></div>
             
 
           </div>
