@@ -226,7 +226,7 @@
     <link href="http://suprisemf.github.io/2018/08/02/%E6%A6%82%E8%AE%BA%E5%A4%A7%E7%AC%94%E8%AE%B0/"/>
     <id>http://suprisemf.github.io/2018/08/02/概论大笔记/</id>
     <published>2018-08-02T06:58:51.000Z</published>
-    <updated>2018-08-02T07:15:53.117Z</updated>
+    <updated>2018-08-02T09:11:27.494Z</updated>
     
     <content type="html"><![CDATA[<h3 id="覆盖知识点"><a href="#覆盖知识点" class="headerlink" title="覆盖知识点"></a>覆盖知识点</h3><h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><h4 id="线程封闭"><a href="#线程封闭" class="headerlink" title="线程封闭"></a>线程封闭</h4><a id="more"></a><h4 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h4><h4 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h4><h4 id="并发容器"><a href="#并发容器" class="headerlink" title="并发容器"></a>并发容器</h4><h4 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h4><h4 id="J-U-C"><a href="#J-U-C" class="headerlink" title="J.U.C"></a>J.U.C</h4><h4 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h4><h3 id="高并发解决思路与方法"><a href="#高并发解决思路与方法" class="headerlink" title="高并发解决思路与方法"></a>高并发解决思路与方法</h3><h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><h4 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h4><h4 id="服务降级与熔断"><a href="#服务降级与熔断" class="headerlink" title="服务降级与熔断"></a>服务降级与熔断</h4><h4 id="数据库切库"><a href="#数据库切库" class="headerlink" title="数据库切库"></a>数据库切库</h4><h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><h4 id="杂项-1"><a href="#杂项-1" class="headerlink" title="杂项"></a>杂项</h4><h3 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h3><ul><li>Spring Boot</li><li>Maven</li><li>JDK 8</li><li>MySQL<h3 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h3></li><li>Mybatis</li><li>Guava</li><li>Lombok</li><li>Redis</li><li>Kafka<h3 id="高级组件"><a href="#高级组件" class="headerlink" title="高级组件"></a>高级组件</h3></li><li>Joda-Time</li><li>Atomic包</li><li>J.U.C(java.util.concurrent)</li><li>AQS</li><li>ThreadLocal</li><li>RateLimiter</li><li>Hystrix</li><li>threadPool</li><li>shardbatis</li><li>curator</li><li>elastic-job</li><li>…</li></ul>]]></content>
     
@@ -236,7 +236,7 @@
     
     </summary>
     
-      <category term="Java并发编程" scheme="http://suprisemf.github.io/categories/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+      <category term="Java的并发编程" scheme="http://suprisemf.github.io/categories/Java%E7%9A%84%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
     
     
       <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
