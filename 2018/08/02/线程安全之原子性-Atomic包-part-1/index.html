@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="hello,world," />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,20 +118,20 @@
 
 
 
-<meta name="description" content="今天换一个全新的博客界面。">
-<meta name="keywords" content="hello,world">
+<meta name="description" content="概览线程安全 原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作； 可见性：一个线程对主内存的修改可以及时地被其他线程知道； 有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。  使用AtomicInteger类之前当使用int时，根据结果知道，该操作是非线程安全的。当使用AtomicInteger类时，并使用count.incrementAnd">
+<meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="全新博客界面">
-<meta property="og:url" content="http://suprisemf.github.io/2018/07/08/blogUItry/index.html">
+<meta property="og:title" content="线程安全之原子性--Atomic包-Part-1">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="今天换一个全新的博客界面。">
+<meta property="og:description" content="概览线程安全 原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作； 可见性：一个线程对主内存的修改可以及时地被其他线程知道； 有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。  使用AtomicInteger类之前当使用int时，根据结果知道，该操作是非线程安全的。当使用AtomicInteger类时，并使用count.incrementAnd">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://suprisemf.github.io/2018/07/08/blogUItry/星球.jpg">
-<meta property="og:updated_time" content="2018-07-08T12:08:11.378Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/使用AtomicInteger代替int测试.png">
+<meta property="og:updated_time" content="2018-08-02T07:50:45.079Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="全新博客界面">
-<meta name="twitter:description" content="今天换一个全新的博客界面。">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/07/08/blogUItry/星球.jpg">
+<meta name="twitter:title" content="线程安全之原子性--Atomic包-Part-1">
+<meta name="twitter:description" content="概览线程安全 原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作； 可见性：一个线程对主内存的修改可以及时地被其他线程知道； 有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。  使用AtomicInteger类之前当使用int时，根据结果知道，该操作是非线程安全的。当使用AtomicInteger类时，并使用count.incrementAnd">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/使用AtomicInteger代替int测试.png">
 
 
 
@@ -161,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/2018/07/08/blogUItry/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/"/>
 
 
 
 
 
-  <title>全新博客界面 | 红宝石星球</title>
+  <title>线程安全之原子性--Atomic包-Part-1 | 红宝石星球</title>
   
 
 
@@ -624,7 +624,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/07/08/blogUItry/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -641,7 +641,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">全新博客界面</h2>
+          <h2 class="post-title" itemprop="name headline">线程安全之原子性--Atomic包-Part-1</h2>
         
 
         <div class="post-meta">
@@ -653,8 +653,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-08T17:23:10+08:00">
-                2018-07-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:47:11+08:00">
+                2018-08-02
               </time>
             
 
@@ -669,8 +669,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-07-08T20:08:11+08:00">
-                2018-07-08
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T15:50:45+08:00">
+                2018-08-02
               </time>
             
           </span>
@@ -688,8 +688,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Hexo使用/" itemprop="url" rel="index">
-                    <span itemprop="name">Hexo使用</span>
+                  <a href="/categories/Java并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java并发编程</span>
                   </a>
                 </span>
 
@@ -706,8 +706,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/07/08/blogUItry/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/07/08/blogUItry/" itemprop="commentCount"></span>
+                <a href="/2018/08/02/线程安全之原子性-Atomic包-part-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/线程安全之原子性-Atomic包-part-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -715,7 +715,7 @@
 
           
           
-             <span id="/2018/07/08/blogUItry/" class="leancloud_visitors" data-flag-title="全新博客界面">
+             <span id="/2018/08/02/线程安全之原子性-Atomic包-part-1/" class="leancloud_visitors" data-flag-title="线程安全之原子性--Atomic包-Part-1">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -740,7 +740,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  115 字
+                  1,161 字
                 </span>
               
 
@@ -756,16 +756,12 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  4 分钟
                 </span>
               
             </div>
           
 
-          
-              <div class="post-description">
-                  今天换一个全新的博客界面。
-              </div>
           
 
         </div>
@@ -781,12 +777,37 @@
       
 
       
-        <h2 id="博客界面更新换代啦"><a href="#博客界面更新换代啦" class="headerlink" title="博客界面更新换代啦"></a>博客界面更新换代啦</h2><p><img src="/2018/07/08/blogUItry/星球.jpg" alt="ls"></p>
+        <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h6><ul>
+<li>原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作；</li>
+<li>可见性：一个线程对主内存的修改可以及时地被其他线程知道；</li>
+<li>有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。</li>
+</ul>
+<h4 id="使用AtomicInteger类"><a href="#使用AtomicInteger类" class="headerlink" title="使用AtomicInteger类"></a>使用AtomicInteger类</h4><p>之前当使用int时，根据结果知道，该操作是非线程安全的。<br>当使用AtomicInteger类时，并使用<code>count.incrementAndGet();</code>而不是<code>count++;</code>后，多次验证其结果为：</p>
+<p><img src="/2018/08/02/线程安全之原子性-Atomic包-part-1/使用AtomicInteger代替int测试.png" alt="图"></p>
+<h5 id="为什么使用了count的incrementAndGet-方法后就变成线程安全的了呢？"><a href="#为什么使用了count的incrementAndGet-方法后就变成线程安全的了呢？" class="headerlink" title="为什么使用了count的incrementAndGet()方法后就变成线程安全的了呢？"></a>为什么使用了count的incrementAndGet()方法后就变成线程安全的了呢？</h5><p><strong>查看源码！</strong><br><code>count.incrementAndGet():</code><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Atomically increments by one the current value.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the updated value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="function"><span class="keyword">int</span> <span class="title">incrementAndGet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> unsafe.getAndAddInt(<span class="keyword">this</span>, valueOffset, <span class="number">1</span>) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>其中使用到unsafe的getAndAddInt(xxx)方法！！</strong></p>
+<p><em>那么这个方法是何方神圣？</em><br><strong>看看它的实现：</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以看出它使用do-while语句实现，其实不止getAndAddInt用到，其他的get(或set)AndAddxxx(Object)都是一样的实现方式。其中其判断的条件又用到unsafe类的compareAndSwapInt(xxx)方法，再点进去看看！！<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">native</span> <span class="function"><span class="keyword">boolean</span> <span class="title">compareAndSwapInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4, <span class="keyword">int</span> var5)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>就这一句没了……</p>
+<h5 id="但是！！！"><a href="#但是！！！" class="headerlink" title="但是！！！"></a><strong>但是！！！</strong></h5><p>我看到方法类型中有一个字段<code>native</code>！！！<br>这说明该方法是JNI框架(Java Native Interface,Java本地接口)的方法。</p>
+<p>再Google一下：</p>
 <blockquote>
-<p>之前的那个界面是使用的jelly之中的一个界面，但是介于个人习惯，我今天还是决定换上大名鼎鼎的NexT，果然现在到底界面更加简洁清晰，加载博客速度也上来了。</p>
+<p>在编程领域, JNI (Java Native Interface,Java本地接口)是一种编程框架,使得Java虚拟机中的Java程序可以调用本地应用/或库,也可以被其他程序调用。<strong>本地程序一般是用其它语言（C、C++或汇编语言等）编写的, 并且被编译为基于本机硬件和操作系统的程序。</strong><br>JNI框架允许Native方法调用Java对象，就像Java程序访问Native对象一样方便。Native方法可以创建Java对象，读取这些对象, 并调用Java对象执行某些方法。当然Native方法也可以读取由Java程序自身创建的对象,并调用这些对象的方法。</p>
 </blockquote>
-<p>欢迎关注我的微信公众号：【星球码】，一起学习分享java、python、操作系统、编译器等知识。</p>
-<p>作者：SupriseMF<br>日期：July,8th,2018</p>
+<blockquote>
+<p>JNI在某些情况下可能带来很大的开销和性能损失:</p>
+<ul>
+<li>调用 JNI 方法是很笨重的操作, 特别是在多次重复调用的情况下.</li>
+<li>Native 方法不会被 JVM 内联, 也不会被 JIT compiled 优化 , 因为方法已经被编译过了.</li>
+<li>Java 数组可能会被拷贝一份,以传递给 native 方法, 执行完之后再拷贝回去. 其开销与数组的长度是线性相关的.</li>
+<li>如果传递一个对象给方法,或者需要一个回调,那么 Native 方法可能会自己调用JVM。 访问Java对象的属性、方法和类型时, Native代码需要类似reflection的东西。签名由字符串指定,通从JVM中查询。这非常缓慢并且容易出错。</li>
+<li>Java 中的字符串(String) 也是对象, 有 length 属性,并且是编码过的. 读取或者创建字符串都需要一次时间复杂度为 O(n) 的复制操作.</li>
+</ul>
+</blockquote>
+<h5 id="再分析其函数的调用："><a href="#再分析其函数的调用：" class="headerlink" title="再分析其函数的调用："></a>再分析其函数的调用：</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">getAndAddInt</span><span class="params">(Object var1, <span class="keyword">long</span> var2, <span class="keyword">int</span> var4)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> var5;</span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">        var5 = <span class="keyword">this</span>.getIntVolatile(var1, var2);</span><br><span class="line">    &#125; <span class="keyword">while</span>(!<span class="keyword">this</span>.compareAndSwapInt(var1, var2, var5, var5 + var4));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> var5;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中var1为当前传入的对象即count，var2是当前count的值，var4即为incrementAndGet()方法的默认加数，为1，var5是调用的另一个JNI的方法得到底层当前的count值。<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">native</span> <span class="function"><span class="keyword">int</span> <span class="title">getIntVolatile</span><span class="params">(Object var1, <span class="keyword">long</span> var2)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Volatile关键字很熟悉，简述是保证了线程之间操作的对象的值互相透明、可见性。</strong><br>（Volatile关键字的详述又该是一个大文章了！过阵子再写！）<br>那么现在应该就懂了，<strong>用底层得到的值不断循环比较当前的值，如果两者相等就加一并再用JNI底层方法写入主内存。</strong><br>AtomicInteger类就是使用了该方法即<strong>CAS原理</strong>来保证线程安全的。（CAS原理也是一个大块头。。）<br>同理，AtomicXXX类（XXX是属于Java的Object，例如Long、Double等）都是该方法保证的！</p>
+<h4 id="ConpareAndSet概述"><a href="#ConpareAndSet概述" class="headerlink" title="ConpareAndSet概述"></a>ConpareAndSet概述</h4><p>该方法和ConpareAndSwap有些相似，但还有不同：ConpareAndSet(a,b)更多的是用在AtomicBoolean类中（Boolean要求false与true的转换同一时间只能被一个线程调用，且false(true)只能转换为true(false)，其中的参数a,b即为只能相互转换的数，<strong>顺序为：当为a的时候更新为b</strong>）。</p>
 
       
     </div>
@@ -844,7 +865,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://suprisemf.github.io/2018/07/08/blogUItry/" title="全新博客界面">http://suprisemf.github.io/2018/07/08/blogUItry/</a>
+    <a href="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/" title="线程安全之原子性--Atomic包-Part-1">http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -859,9 +880,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/hello/" rel="tag"># hello</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/world/" rel="tag"># world</a>
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
         </div>
       
@@ -889,8 +910,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/07/06/test2/" rel="next" title="Test2">
-                <i class="fa fa-chevron-left"></i> Test2
+              <a href="/2018/08/02/并发的优势与风险/" rel="next" title="并发的优势与风险">
+                <i class="fa fa-chevron-left"></i> 并发的优势与风险
               </a>
             
           </div>
@@ -898,10 +919,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/09/第一章/" rel="prev" title="（基于Java）编写编译器和解释器-第一章：介绍之前">
-                （基于Java）编写编译器和解释器-第一章：介绍之前 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -920,10 +937,10 @@
 
     <div class="post-spread">
       
-        <div class="ds-share flat" data-thread-key="2018/07/08/blogUItry/"
-     data-title="全新博客界面"
+        <div class="ds-share flat" data-thread-key="2018/08/02/线程安全之原子性-Atomic包-part-1/"
+     data-title="线程安全之原子性--Atomic包-Part-1"
      data-content=""
-     data-url="http://suprisemf.github.io/2018/07/08/blogUItry/">
+     data-url="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/">
   <div class="ds-share-inline">
     <ul  class="ds-share-icons-16">
 
@@ -954,8 +971,8 @@
 
   
     <div class="comments" id="comments">
-      <div class="ds-thread" data-thread-key="2018/07/08/blogUItry/"
-           data-title="全新博客界面" data-url="http://suprisemf.github.io/2018/07/08/blogUItry/">
+      <div class="ds-thread" data-thread-key="2018/08/02/线程安全之原子性-Atomic包-part-1/"
+           data-title="线程安全之原子性--Atomic包-Part-1" data-url="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/">
       </div>
     </div>
 
@@ -1123,7 +1140,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#博客界面更新换代啦"><span class="nav-number">1.</span> <span class="nav-text">博客界面更新换代啦</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概览"><span class="nav-number">1.</span> <span class="nav-text">概览</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#线程安全"><span class="nav-number">1.0.1.</span> <span class="nav-text">线程安全</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用AtomicInteger类"><span class="nav-number">2.</span> <span class="nav-text">使用AtomicInteger类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#为什么使用了count的incrementAndGet-方法后就变成线程安全的了呢？"><span class="nav-number">2.1.</span> <span class="nav-text">为什么使用了count的incrementAndGet()方法后就变成线程安全的了呢？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#但是！！！"><span class="nav-number">2.2.</span> <span class="nav-text">但是！！！</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#再分析其函数的调用："><span class="nav-number">2.3.</span> <span class="nav-text">再分析其函数的调用：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ConpareAndSet概述"><span class="nav-number">3.</span> <span class="nav-text">ConpareAndSet概述</span></a></li></ol></div>
             
 
           </div>
