@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-02T09:51:56.257Z</updated>
+  <updated>2018-08-02T10:01:10.467Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,38 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程安全-可见性</title>
+    <link href="http://suprisemf.github.io/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/"/>
+    <id>http://suprisemf.github.io/2018/08/02/线程安全-可见性/</id>
+    <published>2018-08-02T09:55:33.000Z</published>
+    <updated>2018-08-02T10:01:10.467Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>指一个线程对主内存的修改，可以及时地被其他线程观察到。</p><blockquote><p>导致共享变量在线程间不可见的原因有：</p><ol><li>多线程交叉进行。</li><li>重排序结合多线程运行。</li><li>共享变量更新后的值未及时进行工作内存与主内存的更新。</li></ol></blockquote><a id="more"></a><h4 id="可见性之synchronized关键字"><a href="#可见性之synchronized关键字" class="headerlink" title="可见性之synchronized关键字"></a>可见性之synchronized关键字</h4><p>Java内存模型对synchronized关键字有两条规定。</p><ol><li>线程解锁前必须把共享变量的最新值刷新到主内存。</li><li>线程加锁时，将清空工作内存中共享变量的值。那么工作内存需要时只能从工作内存中取值。</li></ol><p><strong>工作原理：此时的加锁和解锁用的是一个锁，即多线程之间共享synchronized一个锁。</strong></p><h4 id="可见性之volatile关键字"><a href="#可见性之volatile关键字" class="headerlink" title="可见性之volatile关键字"></a>可见性之volatile关键字</h4><p><strong>工作原理：通过加入<code>内存屏障</code>和<code>禁止重排序优化</code>来实现，即通过<code>内存屏障</code>保证了<code>禁止重排序优化</code></strong><br><code>内存屏障</code>从以下两点进行说明：</p><ol><li>对volatile变量进行写操作时，会在写操作后加入一条store屏障指令，将本地工作内存中的值刷新到主内存。</li><li>对volatile变量进行读操作时，会在读操作前加入一条load屏障指令，从主内存读取共享变量的值。<blockquote><p>即强迫从主内存中的共享变量进行交互。</p></blockquote></li></ol><p><strong>volatile写原理：</strong></p><p><img src="/2018/08/02/线程安全-可见性/volatile写.png" alt="volatile写"></p><p><strong>volatile读原理：</strong></p><p><img src="/2018/08/02/线程安全-可见性/volatile读.png" alt="volatile读"></p><p>示例代码：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample4</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="comment">// 1、count</span></span><br><span class="line">        <span class="comment">// 2、+1</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="comment">// 3、count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>多次运行结果：仍然无法保证线程安全<br>两次测试结果如下：</p><p><img src="/2018/08/02/线程安全-可见性/volatile可见性测试-1.png" alt="图示"></p><p><img src="/2018/08/02/线程安全-可见性/volatile可见性测试-2.png" alt="图示"></p><h5 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h5><p>volatile修饰的count进行++时，分为三步进行：</p><ol><li>取出count</li><li>count+1</li><li>写入count</li></ol><p>已知在第一步的取数时，取出的都是主内存的最新值。<strong>但是写入的时候就可能发生问题。</strong> 当多个线程进行操作时，同时取出主内存中的<code>count</code>，并执行+1，然后同时写入主内存，那么导致请求总数永远比<code>clientcount</code>值小，即<strong>volatile关键字只能保证可见性，但并具有原子性，不能保证线程安全</strong>！</p><h5 id="volatile使用的场景"><a href="#volatile使用的场景" class="headerlink" title="volatile使用的场景"></a>volatile使用的场景</h5><p>场景需具备的条件：</p><ol><li>对变量的写操作不依赖与当前值</li><li>该变量没有包含在具有其他变量的不变的式子中。</li></ol><p>因此，</p><ol><li><strong><code>volatile</code>适合作为状态标记量(boolean型)</strong></li><li><strong>适用于<code>doublecheck</code>场景。</strong>（例子会在之后手记中添上……）</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h4&gt;&lt;p&gt;指一个线程对主内存的修改，可以及时地被其他线程观察到。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;导致共享变量在线程间不可见的原因有：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;多线程交叉进行。&lt;/li&gt;
+&lt;li&gt;重排序结合多线程运行。&lt;/li&gt;
+&lt;li&gt;共享变量更新后的值未及时进行工作内存与主内存的更新。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>内在锁Synchronized关键字</title>
@@ -504,29 +536,6 @@
       
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://suprisemf.github.io/2018/07/02/hello-world/"/>
-    <id>http://suprisemf.github.io/2018/07/02/hello-world/</id>
-    <published>2018-07-02T12:12:12.595Z</published>
-    <updated>2018-08-02T09:27:38.619Z</updated>
-    
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
-      <category term="Hexo使用" scheme="http://suprisemf.github.io/categories/Hexo%E4%BD%BF%E7%94%A8/"/>
     
     
   </entry>
