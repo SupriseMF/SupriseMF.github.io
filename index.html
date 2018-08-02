@@ -669,7 +669,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T15:50:45+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T15:51:19+08:00">
                 2018-08-02
               </time>
             
@@ -778,14 +778,10 @@
 
       
         
-          
-          概览线程安全
-原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作；
-可见性：一个线程对主内存的修改可以及时地被其他线程知道；
-有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。
-
-使用AtomicInteger类之前当使用int时，根据结果知道，该操作是非线程安全的。当使用AtomicInteger类时，并使用count.incrementAnd
-          ...
+          <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h6><ul>
+<li>原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作；</li>
+<li>可见性：一个线程对主内存的修改可以及时地被其他线程知道；</li>
+<li>有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。</li></ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/02/线程安全之原子性-Atomic包-part-1/#more" rel="contents">
