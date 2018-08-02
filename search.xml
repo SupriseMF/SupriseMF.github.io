@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>并发模拟</title>
+      <link href="/2018/08/02/%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/"/>
+      <url>/2018/08/02/%E5%B9%B6%E5%8F%91%E6%A8%A1%E6%8B%9F/</url>
+      <content type="html"><![CDATA[<h4 id="并发模拟之工具"><a href="#并发模拟之工具" class="headerlink" title="并发模拟之工具"></a>并发模拟之工具</h4><h6 id="Postman：Http请求模拟工具。"><a href="#Postman：Http请求模拟工具。" class="headerlink" title="Postman：Http请求模拟工具。"></a>Postman：Http请求模拟工具。</h6><p>在接口测试中是一个十分给力的工具；但在并发模拟方面做得不够专业。</p><h6 id="Apache-Bench-AB-：Apache附带的工具，用以测试网站性能。"><a href="#Apache-Bench-AB-：Apache附带的工具，用以测试网站性能。" class="headerlink" title="Apache Bench (AB)：Apache附带的工具，用以测试网站性能。"></a>Apache Bench (AB)：Apache附带的工具，用以测试网站性能。</h6><p>AB小巧简单，上手容易，但是没有图形化界面，也无法做到实时监控。</p><h6 id="JMeter：Apache组织开发的压力测试工具。"><a href="#JMeter：Apache组织开发的压力测试工具。" class="headerlink" title="JMeter：Apache组织开发的压力测试工具。"></a>JMeter：Apache组织开发的压力测试工具。</h6><blockquote><p>下载安装并配置环境变量。</p></blockquote><a id="more"></a><p>配置总请求数量、线程上升期间(s)、循环次数：<br><img src="/2018/08/02/并发模拟/jmeter一.png" alt="实操+图示"><br>指定HTTP请求的基本信息：端口信息、请求方法、路径、编码方式等<br><img src="/2018/08/02/并发模拟/jmeter二.png" alt="实操+图示"><br>JMeter测试中数据统计：<br><img src="/2018/08/02/并发模拟/jmeter三.png" alt="实操+图示"><br>JMeter第一次测试失败，原因是连接异常（自己没启动SpringBoot，笑死我了……）<br><img src="/2018/08/02/并发模拟/jmeter四.png" alt="实操+图示"><br><strong>JMeter测试成功截图：</strong><br>jmeter结果树：<br><img src="/2018/08/02/并发模拟/jmeter结果树.png" alt="实操+图示"><br>jmeter结果树请求头：<br><img src="/2018/08/02/并发模拟/jmeter结果树请求头.png" alt="实操+图示"><br>jmeter结果树响应数据：<br><img src="/2018/08/02/并发模拟/jmeter结果树响应数据.png" alt="实操+图示"></p><hr><h4 id="并发模拟之代码"><a href="#并发模拟之代码" class="headerlink" title="并发模拟之代码"></a>并发模拟之代码</h4><h6 id="CountDownLatch类"><a href="#CountDownLatch类" class="headerlink" title="CountDownLatch类"></a>CountDownLatch类</h6><p>其原理图如下：</p><p><img src="/2018/08/02/并发模拟/CountDownLatch类.png" alt="图示+解释"></p><p>根据上图：其他线程每次执行结束即执行一次countDown()，已经执行结束任务的线程执行await()判断当前计数cnt是否为零，未至0则等待其他线程，只当计数cnt为0时该线程会被resumed去执行后续的操作。</p><p>该类可以通过计数来阻塞线程，主要用于线程执行完之后的其他处理：指定一个计数值，在并发环境下由线程进行减1操作，当计数值变为0之后，被await方法阻塞的线程将会唤醒，实现线程间的同步。<strong>通俗理解：已经执行完成的线程等待还未完成的线程，最后所有线程一同执行另外的任务。</strong></p><h6 id="Semphore类"><a href="#Semphore类" class="headerlink" title="Semphore类"></a>Semphore类</h6><p>Semphore从字面上理解就是信号量，学过《操作系统》课程的人应该知道，在操作系统调度任务时，根据其设定的Semphore值进行同时运行的线程数量的操作。<br>同理，此处的Semphore的含义也是如此。<strong>它主要是用来控制同时并发的线程数。</strong></p><blockquote><p><strong>该两个类通常会结合线程池ThreadPool进行并发的模拟。</strong></p></blockquote>]]></content>
+      
+      <categories>
+          
+          <category> Java并发编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 并发编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>Spring的自定义注解</title>
       <link href="/2018/08/02/spring%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/"/>
       <url>/2018/08/02/spring%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89%E6%B3%A8%E8%A7%A3/</url>
