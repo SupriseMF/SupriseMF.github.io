@@ -3,7 +3,30 @@
   
     
     <entry>
-      <title>CPU多级缓存</title>
+      <title>CPU多级缓存——乱序执行优化</title>
+      <link href="/2018/08/02/%E4%B9%B1%E5%BA%8F%E6%89%A7%E8%A1%8C%E4%BC%98%E5%8C%96/"/>
+      <url>/2018/08/02/%E4%B9%B1%E5%BA%8F%E6%89%A7%E8%A1%8C%E4%BC%98%E5%8C%96/</url>
+      <content type="html"><![CDATA[<h3 id="处理器为提高运算速度而做出违反源代码执行顺序的优化"><a href="#处理器为提高运算速度而做出违反源代码执行顺序的优化" class="headerlink" title="处理器为提高运算速度而做出违反源代码执行顺序的优化"></a>处理器为提高运算速度而做出违反源代码执行顺序的优化</h3><p>此方法在编译器的中间代码或四元式优化阶段及生成目标代码优化有过大量的使用，是主要的优化手段！<br><a id="more"></a></p><blockquote><p>关于乱序执行及代码优化中的原则，笔者会在编译器笔记中再次详细说明！</p></blockquote><p><strong>在单核CPU中是保证不会出现跟我们预期结果不一致的问题，但在多核CPU中，由于每个核心都有自己的缓存，而缓存又分多级缓存，导致即使的后层的代码也可能先执行，更不用说代码优化后的乱序执行了</strong></p>]]></content>
+      
+      <categories>
+          
+          <category> Java并发编程 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 并发编程 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>CPU多级缓存——缓存一致性</title>
       <link href="/2018/08/02/cpu%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/"/>
       <url>/2018/08/02/cpu%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/</url>
       <content type="html"><![CDATA[<h4 id="CPU多级缓存演进"><a href="#CPU多级缓存演进" class="headerlink" title="CPU多级缓存演进"></a>CPU多级缓存演进</h4><a id="more"></a><p><img src="/2018/08/02/cpu多级缓存/CPU多级缓存.png" alt="CPU多级缓存"></p><h4 id="CPU中cache的意义"><a href="#CPU中cache的意义" class="headerlink" title="CPU中cache的意义"></a>CPU中cache的意义</h4><p>由于CPU的频率太快了，快到主存跟不上，这样在处理器时钟周期内，CPU常常需要等待主存，浪费资源。所以cache的出现，是为了缓解CPU和内存之间速度的不匹配问题(结构：cpu-&gt;cache-&gt;memory)</p><h5 id="CPU-cache的局部性："><a href="#CPU-cache的局部性：" class="headerlink" title="CPU cache的局部性："></a>CPU cache的局部性：</h5><ol><li>时间局部性：如果某个数据被访问，那么在不久的将来它很可能再次被访问；</li><li>空间局部性：如果某个数据被访问，那么与它相邻的数据很快也能被访问。<h3 id="缓存一致性-MESI"><a href="#缓存一致性-MESI" class="headerlink" title="缓存一致性(MESI)"></a>缓存一致性(MESI)</h3>保证多个CPU的cache之间缓存共享数据的一致性，其中MESI即其中的四种状态：Modified（被修改的）、Exclusive（独享的）、Shared（共享的）、Invalid（无效的）；<br>如下图所示：图中M、E、S、I分别指的是Modified、Exclusive、Shared、Invalid。</li></ol><p><img src="/2018/08/02/cpu多级缓存/MESI.png" alt="图示"></p><blockquote><ul><li>Modified（被修改的）:该值现存于缓存cache中，且由于被修改而与内存中的对应值不一致，且在未来会被写入内存；</li><li>Exclusive（独享的）：该缓存行中的数据与内存中的对应值是一致的，当系统调用到该数据时及转化为Shared（共享的）状态；</li><li>Shared（共享的）：该缓存行可能会被多个CPU调用，且与多个cache中数据一致，当被一个CPU修改时，其他缓存中的该数据转化为Invalid（无效的）即被作废；</li><li>Invalid（无效的）：可能是其他CPU修改了该缓存行；</li><li><strong>其中四个状态转换之间的操作为：local read、local write、remote read、remote write。其中local指的是本地缓存，remote指的是主内存</strong></li></ul></blockquote><h4 id="在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local-write或remote-write）；若当前状态为Shared（共享的），且被remote-write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。"><a href="#在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local-write或remote-write）；若当前状态为Shared（共享的），且被remote-write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。" class="headerlink" title="在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local write或remote write）；若当前状态为Shared（共享的），且被remote write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。"></a><strong>在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local write或remote write）；若当前状态为Shared（共享的），且被remote write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。</strong></h4><blockquote><p>由上来看：Exclusive（独享的）状态更像是一中投机性优化，因为若一个CPU想修改处于Shared（共享的）状态的缓存行，须调用总线bus事务将所有该缓存行的copy值转化为Invalid（无效的）状态；而修改处于Exclusive（独享的）状态的缓存行则不需使用总线事务</p></blockquote>]]></content>
