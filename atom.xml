@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-02T11:12:59.896Z</updated>
+  <updated>2018-08-02T11:17:31.521Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程不安全——Part-2</title>
+    <link href="http://suprisemf.github.io/2018/08/02/%E7%BA%BF%E7%A8%8B%E4%B8%8D%E5%AE%89%E5%85%A8%E2%80%94%E2%80%94part-2/"/>
+    <id>http://suprisemf.github.io/2018/08/02/线程不安全——part-2/</id>
+    <published>2018-08-02T11:16:14.000Z</published>
+    <updated>2018-08-02T11:17:31.521Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="Collections部分"><a href="#Collections部分" class="headerlink" title="Collections部分"></a>Collections部分</h3><blockquote><p>一般情况下，我们使用ArrayList、HashSet、HashMap是在方法中定义局部变量，此时由于堆栈封闭的特性，自然不会有线程安全问题。但是，当将其定义为静态域中，且未做线程安全措施时，极有可能会导致多线程并发错误。</p></blockquote><a id="more"></a><h4 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h4><p><strong>由于该三个集合是Java中最常见的、最重要的集合，此处仅分析说明是非线程安全的类。其详细内容我会另起手记再做说明！！</strong></p><h4 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h4><p>弄个例子：(还是之前的框架)<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ArrayListExample</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> List&lt;Integer&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> count = i;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    update(count);</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"size:&#123;&#125;"</span>, list.size());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">update</span><span class="params">(<span class="keyword">int</span> i)</span> </span>&#123; list.add(i); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><strong>运行结果：</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">13<span class="selector-pseudo">:31</span><span class="selector-pseudo">:39.296</span> <span class="selector-attr">[main]</span> <span class="selector-tag">INFO</span> <span class="selector-tag">com</span><span class="selector-class">.mmall</span><span class="selector-class">.concurrency</span><span class="selector-class">.commonUnsafe</span><span class="selector-class">.ArrayListExample</span> <span class="selector-tag">-</span> <span class="selector-tag">size</span><span class="selector-pseudo">:4986</span></span><br></pre></td></tr></table></figure></p><p>显而易见，是非线程安全的。</p><h4 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a>HashSet</h4><p>同理，HashSet同样进行测试，结果表明同样是非线程安全的！</p><h4 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h4><p>同理，HashMap同样进行测试，结果表明同样是非线程安全的！</p><h3 id="线程不安全的写法"><a href="#线程不安全的写法" class="headerlink" title="线程不安全的写法"></a>线程不安全的写法</h3><p><strong>先检查再执行</strong>：<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="comment">(aaaa)</span></span><br><span class="line">&#123;</span><br><span class="line">  bbbbbbbbb;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p>这个较易解释，在之前说AtomicXXX时说过：<br>在多线程并发时，可能多个线程执行到<code>if</code>语句的判断，且同时符合，然后分别作出修改。即该操作的原子性不能得到保证！故当有多线程并发问题时，考虑清楚，加锁进行处理。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;Collections部分&quot;&gt;&lt;a href=&quot;#Collections部分&quot; class=&quot;headerlink&quot; title=&quot;Collections部分&quot;&gt;&lt;/a&gt;Collections部分&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;一般情况下，我们使用ArrayList、HashSet、HashMap是在方法中定义局部变量，此时由于堆栈封闭的特性，自然不会有线程安全问题。但是，当将其定义为静态域中，且未做线程安全措施时，极有可能会导致多线程并发错误。&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>线程不安全——Part-1</title>
@@ -525,30 +551,6 @@
     <summary type="html">
     
       &lt;h4 id=&quot;CPU多级缓存演进&quot;&gt;&lt;a href=&quot;#CPU多级缓存演进&quot; class=&quot;headerlink&quot; title=&quot;CPU多级缓存演进&quot;&gt;&lt;/a&gt;CPU多级缓存演进&lt;/h4&gt;
-    
-    </summary>
-    
-      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
-    
-      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发编程与高并发解决方案概论</title>
-    <link href="http://suprisemf.github.io/2018/08/02/%E6%A6%82%E8%AE%BA%E5%A4%A7%E7%AC%94%E8%AE%B0/"/>
-    <id>http://suprisemf.github.io/2018/08/02/概论大笔记/</id>
-    <published>2018-08-02T06:58:51.000Z</published>
-    <updated>2018-08-02T09:13:35.401Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="覆盖知识点"><a href="#覆盖知识点" class="headerlink" title="覆盖知识点"></a>覆盖知识点</h3><h4 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h4><h4 id="线程封闭"><a href="#线程封闭" class="headerlink" title="线程封闭"></a>线程封闭</h4><a id="more"></a><h4 id="线程调度"><a href="#线程调度" class="headerlink" title="线程调度"></a>线程调度</h4><h4 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h4><h4 id="并发容器"><a href="#并发容器" class="headerlink" title="并发容器"></a>并发容器</h4><h4 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h4><h4 id="J-U-C"><a href="#J-U-C" class="headerlink" title="J.U.C"></a>J.U.C</h4><h4 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h4><h3 id="高并发解决思路与方法"><a href="#高并发解决思路与方法" class="headerlink" title="高并发解决思路与方法"></a>高并发解决思路与方法</h3><h4 id="扩容"><a href="#扩容" class="headerlink" title="扩容"></a>扩容</h4><h4 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h4><h4 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h4><h4 id="拆分"><a href="#拆分" class="headerlink" title="拆分"></a>拆分</h4><h4 id="服务降级与熔断"><a href="#服务降级与熔断" class="headerlink" title="服务降级与熔断"></a>服务降级与熔断</h4><h4 id="数据库切库"><a href="#数据库切库" class="headerlink" title="数据库切库"></a>数据库切库</h4><h4 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h4><h4 id="杂项-1"><a href="#杂项-1" class="headerlink" title="杂项"></a>杂项</h4><h3 id="总体架构"><a href="#总体架构" class="headerlink" title="总体架构"></a>总体架构</h3><ul><li>Spring Boot</li><li>Maven</li><li>JDK 8</li><li>MySQL<h3 id="基础组件"><a href="#基础组件" class="headerlink" title="基础组件"></a>基础组件</h3></li><li>Mybatis</li><li>Guava</li><li>Lombok</li><li>Redis</li><li>Kafka<h3 id="高级组件"><a href="#高级组件" class="headerlink" title="高级组件"></a>高级组件</h3></li><li>Joda-Time</li><li>Atomic包</li><li>J.U.C(java.util.concurrent)</li><li>AQS</li><li>ThreadLocal</li><li>RateLimiter</li><li>Hystrix</li><li>threadPool</li><li>shardbatis</li><li>curator</li><li>elastic-job</li><li>…</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;覆盖知识点&quot;&gt;&lt;a href=&quot;#覆盖知识点&quot; class=&quot;headerlink&quot; title=&quot;覆盖知识点&quot;&gt;&lt;/a&gt;覆盖知识点&lt;/h3&gt;&lt;h4 id=&quot;线程安全&quot;&gt;&lt;a href=&quot;#线程安全&quot; class=&quot;headerlink&quot; title=&quot;线程安全&quot;&gt;&lt;/a&gt;线程安全&lt;/h4&gt;&lt;h4 id=&quot;线程封闭&quot;&gt;&lt;a href=&quot;#线程封闭&quot; class=&quot;headerlink&quot; title=&quot;线程封闭&quot;&gt;&lt;/a&gt;线程封闭&lt;/h4&gt;
     
     </summary>
     
