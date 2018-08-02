@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-02T09:20:30.750Z</updated>
+  <updated>2018-08-02T09:30:35.898Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>线程安全之原子性--Atomic包-Part-2</title>
+    <link href="http://suprisemf.github.io/2018/08/02/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E4%B9%8B%E5%8E%9F%E5%AD%90%E6%80%A7-Atomic%E5%8C%85-part-2/"/>
+    <id>http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-2/</id>
+    <published>2018-08-02T09:29:56.000Z</published>
+    <updated>2018-08-02T09:30:35.898Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="AtomicLong与AtomicInteger"><a href="#AtomicLong与AtomicInteger" class="headerlink" title="AtomicLong与AtomicInteger"></a>AtomicLong与AtomicInteger</h4><p>根据part-1中代码，其实使用<code>AtomicLong</code>代替<code>AtomicInteger</code>，而其他不用替换是完全可以的。同样也是线程安全的。</p><h3 id="AtomicLong与LongAdder"><a href="#AtomicLong与LongAdder" class="headerlink" title="AtomicLong与LongAdder"></a>AtomicLong与LongAdder</h3><p>但是重点是JDK 1.8中新增的<code>LongAdder</code>类，它与<code>AtomicLong</code>在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。</p><p><strong>那两者的区别是什么？</strong></p><p>肯定的说，新增的该类一定或多或少比<code>AtomicLong</code>类及<code>AtomicInteger</code>类有优点的，那么是什么？<br>浅析如下：</p><h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><ol><li><p>由于AtomicLong的底层是CAS原理，即通过死循环不断地比较当前值与主内存的值，那么当线程并发量较少时其比较成功的概率是高的，但放并发量很大时，比较成功概率就会很低，越低则死循环持续的时间越久，占用的系统资源越大，系统运行的效率越低。</p></li><li><p>对于基础数据类型的long或double时,JVM会允许将64位的读操作或写操作拆分为两个32位的操作。同理，LongAdder也是采用相似的思想。</p><blockquote><p>LongAdder的实现思想为：<strong>热点数据分离</strong>：将AtomicLong的核心数据value分离为一个数组，每个线程访问时通过hash等算法预测到其中的一个数字进行计数，最终的计数结果为该数组各部分的求和。热点数据value会被分为多个部分的shell，每个shell独自维护各自的值，而当前对象的实际值为各部分shell的累加和。保证热点数据的有效分离，提高并行度。<strong>LongAdder类实际是在AtomicLong的基础上进行了优化：在低并发时不做分离，同AtomicLong是对base的直接CAS更新，但是高并发时将单点的压力分摊到各部分的shell上以提高性能。</strong></p></blockquote></li></ol><h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>该类将数据分类后，再次进行各部分shell的数据进行统计时，如果此时存在并发更新，可能会导致统计的数据出现误差。</p><p><strong>实际使用中，在处理高并发情况的时候要优先使用LongAdder类。当线程竞争低、全局唯一的准确是数值类似序列号生成等情况优先使用AtomicXXX类</strong></p><h4 id="知识拓展补充"><a href="#知识拓展补充" class="headerlink" title="知识拓展补充"></a>知识拓展补充</h4><p>下表为JAVA的8种基本数据类型所占位数及初始值:<br>基础数据类型 | 所占位数 | 初始值<br>-|-|-<br>byte字节型| 1字节(8bit) |    0<br>char字符型  | 2字节(16bit)    | 空格<br>short短整型 |  2字节(16bit)    | 0<br>int整型 |  4字节(32bit)    | 0<br>long长整型  | 8字节(64Bit)    | 0L<br>float单精度浮点型 |  4字节(32bit)    | 0.0f<br>double双精度浮点型  | 8字节(64bit) |    0.0d<br>boolean    | java未明确指出的大小(可能1bit、1byte、4byte)    | false</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;AtomicLong与AtomicInteger&quot;&gt;&lt;a href=&quot;#AtomicLong与AtomicInteger&quot; class=&quot;headerlink&quot; title=&quot;AtomicLong与AtomicInteger&quot;&gt;&lt;/a&gt;AtomicLong与Ato
+      
+    
+    </summary>
+    
+      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>第一次并发模拟</title>
@@ -202,7 +229,7 @@
     <link href="http://suprisemf.github.io/2018/08/02/cpu%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98/"/>
     <id>http://suprisemf.github.io/2018/08/02/cpu多级缓存/</id>
     <published>2018-08-02T07:12:45.000Z</published>
-    <updated>2018-08-02T09:13:33.591Z</updated>
+    <updated>2018-08-02T09:20:34.683Z</updated>
     
     <content type="html"><![CDATA[<h4 id="CPU多级缓存演进"><a href="#CPU多级缓存演进" class="headerlink" title="CPU多级缓存演进"></a>CPU多级缓存演进</h4><a id="more"></a><p><img src="/2018/08/02/cpu多级缓存/CPU多级缓存.png" alt="CPU多级缓存"></p><h4 id="CPU中cache的意义"><a href="#CPU中cache的意义" class="headerlink" title="CPU中cache的意义"></a>CPU中cache的意义</h4><p>由于CPU的频率太快了，快到主存跟不上，这样在处理器时钟周期内，CPU常常需要等待主存，浪费资源。所以cache的出现，是为了缓解CPU和内存之间速度的不匹配问题(结构：cpu-&gt;cache-&gt;memory)</p><h5 id="CPU-cache的局部性："><a href="#CPU-cache的局部性：" class="headerlink" title="CPU cache的局部性："></a>CPU cache的局部性：</h5><ol><li>时间局部性：如果某个数据被访问，那么在不久的将来它很可能再次被访问；</li><li>空间局部性：如果某个数据被访问，那么与它相邻的数据很快也能被访问。<h3 id="缓存一致性-MESI"><a href="#缓存一致性-MESI" class="headerlink" title="缓存一致性(MESI)"></a>缓存一致性(MESI)</h3>保证多个CPU的cache之间缓存共享数据的一致性，其中MESI即其中的四种状态：Modified（被修改的）、Exclusive（独享的）、Shared（共享的）、Invalid（无效的）；<br>如下图所示：图中M、E、S、I分别指的是Modified、Exclusive、Shared、Invalid。</li></ol><p><img src="/2018/08/02/cpu多级缓存/MESI.png" alt="图示"></p><blockquote><ul><li>Modified（被修改的）:该值现存于缓存cache中，且由于被修改而与内存中的对应值不一致，且在未来会被写入内存；</li><li>Exclusive（独享的）：该缓存行中的数据与内存中的对应值是一致的，当系统调用到该数据时及转化为Shared（共享的）状态；</li><li>Shared（共享的）：该缓存行可能会被多个CPU调用，且与多个cache中数据一致，当被一个CPU修改时，其他缓存中的该数据转化为Invalid（无效的）即被作废；</li><li>Invalid（无效的）：可能是其他CPU修改了该缓存行；</li><li><strong>其中四个状态转换之间的操作为：local read、local write、remote read、remote write。其中local指的是本地缓存，remote指的是主内存</strong></li></ul></blockquote><h4 id="在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local-write或remote-write）；若当前状态为Shared（共享的），且被remote-write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。"><a href="#在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local-write或remote-write）；若当前状态为Shared（共享的），且被remote-write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。" class="headerlink" title="在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local write或remote write）；若当前状态为Shared（共享的），且被remote write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。"></a><strong>在典型的多核系统中，每个核都有属于自己的缓存来共享内存总线bus，每个相应的CPU会发出自己的读写请求；而缓存的目的是为了减少各CPU读写共享内存的次数。上图中：除了Invalid（无效的）状态不可本地读，其他均可满足CPU的读请求；一个写请求只有在该缓存行处于Modified（被修改的）、Exclusive（独享的）状态时才可以被执行（local write或remote write）；若当前状态为Shared（共享的），且被remote write修改，则CPU须将其转化为Invalid（无效的），通过广播方式完成，此时及不允许CPU修改同一缓存行（即使修改该缓存行的不同位置的数据也是不允许）；处于Modified（被修改的）的缓存行须时刻监听试图读该缓存行（相对于内存）的操作，该操作必须将该缓存行写入内存，并将在其状态变为Shared（共享的）之前被延迟执行；一个处于Shared（共享的）状态的缓存行需要监听其他缓存使该缓存行无效或独享该缓存行的请求，若有则将转化为Invalid（无效的）状态；处于Exclusive（独享的）状态的缓存行须监听其他缓存的读缓存操作，一旦有关于该缓存行的操作，它须转化为Shared（共享的）状态；因此对于Modified（被修改的）、Exclusive（独享的）状态，其数据总是精确的，他们和缓存行的真正状态是一致的，而Shared（共享的）状态可能是非一致的；如果一个缓存将处于Shared（共享的）状态的缓存行作废，另外的缓存可能以及读取了该缓存行，但是该缓存却不会讲其升级为Exclusive（独享的）状态，是因为：其他缓存不会广播该缓存行作废的通知，同样，由于缓存并不保存该缓存行的copy的数量，因此也无法确定自己是否已经对该缓存行处于Exclusive（独享的）状态。</strong></h4><blockquote><p>由上来看：Exclusive（独享的）状态更像是一中投机性优化，因为若一个CPU想修改处于Shared（共享的）状态的缓存行，须调用总线bus事务将所有该缓存行的copy值转化为Invalid（无效的）状态；而修改处于Exclusive（独享的）状态的缓存行则不需使用总线事务</p></blockquote>]]></content>
     
