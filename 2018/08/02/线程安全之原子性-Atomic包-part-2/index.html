@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。 那两者的区别是什么？ 肯定">
+<meta name="description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全之原子性--Atomic包-Part-2">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-2/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。 那两者的区别是什么？ 肯定">
+<meta property="og:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-02T09:30:35.898Z">
+<meta property="og:updated_time" content="2018-08-02T09:32:36.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程安全之原子性--Atomic包-Part-2">
-<meta name="twitter:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。 那两者的区别是什么？ 肯定">
+<meta name="twitter:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 
 
 
@@ -667,7 +667,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:30:35+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:32:36+08:00">
                 2018-08-02
               </time>
             
@@ -777,6 +777,7 @@
       
         <h4 id="AtomicLong与AtomicInteger"><a href="#AtomicLong与AtomicInteger" class="headerlink" title="AtomicLong与AtomicInteger"></a>AtomicLong与AtomicInteger</h4><p>根据part-1中代码，其实使用<code>AtomicLong</code>代替<code>AtomicInteger</code>，而其他不用替换是完全可以的。同样也是线程安全的。</p>
 <h3 id="AtomicLong与LongAdder"><a href="#AtomicLong与LongAdder" class="headerlink" title="AtomicLong与LongAdder"></a>AtomicLong与LongAdder</h3><p>但是重点是JDK 1.8中新增的<code>LongAdder</code>类，它与<code>AtomicLong</code>在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。</p>
+<a id="more"></a>
 <p><strong>那两者的区别是什么？</strong></p>
 <p>肯定的说，新增的该类一定或多或少比<code>AtomicLong</code>类及<code>AtomicInteger</code>类有优点的，那么是什么？<br>浅析如下：</p>
 <h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><ol>
@@ -903,6 +904,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/08/02/线程安全之原子性-Atomic包-part-3/" rel="prev" title="线程安全之原子性--Atomic包-Part-3">
+                线程安全之原子性--Atomic包-Part-3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1011,7 +1016,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1169,7 +1174,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">18.0k</span>
+    <span title="Site words total count">18.5k</span>
   
 </div>
 
