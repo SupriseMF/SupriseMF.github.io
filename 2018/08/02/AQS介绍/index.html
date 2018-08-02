@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="我的红宝石星球" />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,17 +118,21 @@
 
 
 
-<meta name="description" content="Java Python 编译器 操作系统">
-<meta name="keywords" content="Java Python 编译器 操作系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="红宝石星球">
-<meta property="og:url" content="http://suprisemf.github.io/archives/2018/08/page/5/index.html">
+<meta name="description" content="概述AQS是J.U.C中的一个非常重要的类。J.U.C是java.util.concurrent的首字母简称。而AQS是J.U.C下locks包的一个抽象类。">
+<meta name="keywords" content="Java,并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AQS介绍">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/AQS介绍/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="Java Python 编译器 操作系统">
+<meta property="og:description" content="概述AQS是J.U.C中的一个非常重要的类。J.U.C是java.util.concurrent的首字母简称。而AQS是J.U.C下locks包的一个抽象类。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/AQS介绍/AQS方法列表.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/AQS介绍/AQS中两个队列.jpg">
+<meta property="og:updated_time" content="2018-08-02T11:45:03.172Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红宝石星球">
-<meta name="twitter:description" content="Java Python 编译器 操作系统">
+<meta name="twitter:title" content="AQS介绍">
+<meta name="twitter:description" content="概述AQS是J.U.C中的一个非常重要的类。J.U.C是java.util.concurrent的首字母简称。而AQS是J.U.C下locks包的一个抽象类。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/AQS介绍/AQS方法列表.png">
 
 
 
@@ -158,13 +162,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/archives/2018/08/page/5/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/AQS介绍/"/>
 
 
 
 
 
-  <title>归档 | 红宝石星球</title>
+  <title>AQS介绍 | 红宝石星球</title>
   
 
 
@@ -285,7 +289,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -607,195 +611,380 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/AQS介绍/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SupriseMF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/星球.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红宝石星球">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h2 class="post-title" itemprop="name headline">AQS介绍</h2>
         
-        OK! 目前共计 31 篇日志。 继续努力。
-      </span>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:37:15+08:00">
+                2018-08-02
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:45:03+08:00">
+                2018-08-02
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java之并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/02/AQS介绍/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/AQS介绍/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/02/AQS介绍/" class="leancloud_visitors" data-flag-title="AQS介绍">
+               <span class="post-meta-divider"></span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,998 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
+      
 
+      
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>AQS是J.U.C中的一个非常重要的类。<br>J.U.C是java.util.concurrent的首字母简称。而AQS是J.U.C下locks包的一个抽象类。<br><a id="more"></a></p>
+<hr>
+<p><strong>废话不多说，看一下类顶注释：</strong>（其中只截取了概述部分，并直接翻译一下,纯手翻，有些机械翻译，但能看懂）<br><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/ *<span class="strong">*</span></span><br><span class="line"><span class="strong"> *</span>提供实现阻塞锁和相关的框架</span><br><span class="line"> <span class="strong">*依赖的同步器（信号量，事件等）</span></span><br><span class="line"><span class="strong"> *</span>先进先出（FIFO）等待队列。该类旨在为</span><br><span class="line"> <span class="strong">*大多数依赖于单独具有原子性值去展现状态的</span></span><br><span class="line"><span class="strong"> *</span>同步器提供有用基础内容。子类</span><br><span class="line"> <span class="strong">*必须定义更改此状态的受保护方法，以及哪些方法</span></span><br><span class="line"><span class="strong"> *</span>根据被获取的对象定义该状态的含义</span><br><span class="line"> <span class="strong">*或发布。鉴于这些，该类中的其他方法都会</span></span><br><span class="line"><span class="strong"> *</span>执行所有排队和阻塞方法。子类可以维护</span><br><span class="line"> <span class="strong">*其他声明字段，但只有原子性的更新&#123;@code int&#125;值</span></span><br><span class="line"><span class="strong"> *</span>被操纵使用方法&#123;@link #getState&#125;，&#123;@ link</span><br><span class="line"> * #setState&#125;和&#123;@link #compareAndSetState&#125;因为同步机制而被跟踪。</span><br><span class="line"> <span class="strong">*</span></span><br><span class="line"><span class="strong"> *</span></span><br><span class="line"> * &lt;p&gt;子类应被定义为非公共内部帮助类</span><br><span class="line"> <span class="strong">*以用于实现他们封闭类的同步属性。</span></span><br><span class="line"><span class="strong"> *</span> 类&#123;@code AbstractQueuedSynchronizer&#125;没有实现任何</span><br><span class="line"> <span class="strong">*同步接口。相反，它定义了许多方法，例如</span></span><br><span class="line"><span class="strong"> *</span> &#123;@link #acquireInterruptibly&#125;它可以被相关锁或同步器适当地调用</span><br><span class="line"> <span class="strong">*去实现他们的public方法。</span></span><br><span class="line"><span class="strong"> *</span></span><br><span class="line"> * &lt;p&gt;此类支持其中之一或同时两者模式，包括默认的独占模式和一个共享模式。</span><br><span class="line"> <span class="strong">*当在独占模式中被获取时，</span></span><br><span class="line"><span class="strong"> *</span>通过其他线程的尝试获取是不会成功的。在共享模式中</span><br><span class="line"> <span class="strong">*多线程获取可能（但不一定）成功。这个类</span></span><br><span class="line"><span class="strong"> *</span>不会“理解”这些差异，除非在</span><br><span class="line"> <span class="strong">*方法层面，即当共享模式请求成功时，下一个</span></span><br><span class="line"><span class="strong"> *</span>等待线程（如果存在）也必须确定它是否可以</span><br><span class="line"> <span class="strong">*请求获取。在不同模式下等待的线程共享</span></span><br><span class="line"><span class="strong"> *</span>相同的FIFO队列。通常，实现子类仅支持</span><br><span class="line"> <span class="strong">*这些模式中的一种，但两者都可以在例如&#123;@link ReadWriteLock&#125;中发挥作用。</span></span><br><span class="line"><span class="strong"> *</span> 仅被独占模式或分享模式支持的子类</span><br><span class="line"> <span class="strong">*不需要定义支持未使用模式中的方法。</span></span><br><span class="line"><span class="strong"> *</span>/</span><br></pre></td></tr></table></figure></p>
+<p><strong>看一下它都有哪些方法：</strong>（大多数见名知意）</p>
+<p><img src="/2018/08/02/AQS介绍/AQS方法列表.png" alt="图示"></p>
+<p><strong>再看一下它的底层实现：</strong></p>
+<p><img src="/2018/08/02/AQS介绍/AQS中两个队列.jpg" alt="图示"></p>
+<p><strong>分析：</strong></p>
+<ol>
+<li>显然是使用双向列表，也是队列的一种。</li>
+<li>上面的Sync queue是同步队列，实际是双向列表，其中的head节点主要用于后续的调度；</li>
+<li>下面的Condition queue不是必须的，是一个单项列表；当使用到condition时才会用到此队列（可能会有多个）。</li>
+</ol>
+<hr>
+<h4 id="AQS的设计（注释中已提及，此处做总结。）"><a href="#AQS的设计（注释中已提及，此处做总结。）" class="headerlink" title="AQS的设计（注释中已提及，此处做总结。）"></a>AQS的设计（注释中已提及，此处做总结。）</h4><ol>
+<li>使用Node实现FIFO队列，可以用于构建锁或其他同步装置的基础框架。</li>
+<li>使用int基础数据类型表示状态（state），在AQS的reentrant锁中state表示获取锁的线程数量。</li>
+<li>通过继承并根据需要复写其中方法来使用该提供的框架。</li>
+<li>子类通过继承并通过实现它的acquire和release等方法管理其状态。</li>
+<li>可以同时实现独占锁和共享锁模式。它的子类不会同时使用两套API。即使是ReentrantReadWriteLock也是通过两个内部类读锁、写锁分别实现两套API来实现。</li>
+</ol>
+<hr>
+<h4 id="关键内容"><a href="#关键内容" class="headerlink" title="关键内容"></a>关键内容</h4><p>AQS内部有一个等待队列，它是”CLH”锁队列的一个变种实现；CLH指的是Craig, Landin, and Hagersten这三个人的名字首字母拼装。（我猜是他们三个共同研究出的一种队列实现方式。）好吧真是个磨人的小妖精~再看一下源码中的说明。（只翻译了一部分，剩下的大家可以选择性地看看。）<br><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment"><span class="markdown">/**CLH锁通常用于</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *自旋锁。 我们现不将它们用作阻塞同步器，而是</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *使用该相同的策略：通过持有一些它上个线程中的结点的控制信息。</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *每个节点中的“status”字段跟踪是否有线程</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *应该阻塞。 结点在其上个线程释放时会发出信号</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *否则队列的每个节点通过持有一个等待的线程，成为一个</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *特定通知式监视器。</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *status字段虽然不控制线程是否被</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *授予锁等。 一个线程可能会尝试去获取锁，如果他是在队列中的第一个时。</span></span></span><br><span class="line"><span class="comment"><span class="markdown"> *但当是第一个时，并不能保证成功;</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *它只给予线程去争取锁的权利。 所以现在被释放了锁的线程</span></span></span><br><span class="line"><span class="comment"><span class="markdown">      *可能需要重新等待。</span></span></span><br><span class="line"><span class="comment"><span class="markdown">     *</span></span></span><br><span class="line"><span class="comment"><span class="markdown">     * <span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>要排队进入CLH锁，您需要原子性地将其拼接为一个新的tail。</span></span></span><br><span class="line"><span class="comment"><span class="markdown">     *  要出队列，您只需设置head（头部）字段即可。</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">*      </span>+------+  prev +-----+       +-----+</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>head |      | <span class="xml"><span class="tag">&lt;<span class="name">----</span> |     | &lt;<span class="attr">----</span> |     |  <span class="attr">tail</span></span></span></span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">*      </span>+------+       +-----+       +-----+</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>Insertion into </span>a<span class="markdown"> CLH queue requires only </span>a<span class="markdown"> single atomic</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>operation on "tail", </span>so<span class="markdown"> there is </span>a<span class="markdown"> simple atomic point of</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>demarcation from unqueued to queued. Similarly, dequeuing</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>involves only updating </span>the<span class="markdown"> "head". However, it takes </span>a<span class="markdown"> bit</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span></span>more<span class="markdown"> work for nodes to determine who their successors </span>are<span class="markdown">,</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>in part to deal with possible cancellation due to timeouts</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>and interrupts.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>The "prev" links (not used in original CLH locks), </span>are<span class="markdown"> mainly</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>needed to handle cancellation. If </span>a<span class="markdown"> node is cancelled, its</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>successor is (normally) relinked to </span>a<span class="markdown"> non-cancelled</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>predecessor. For explanation of similar mechanics in </span>the<span class="markdown"> case</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>of spin locks, see </span>the<span class="markdown"> papers by Scott and Scherer at</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>http://www.cs.rochester.edu/u/scott/synchronization/</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>We also use "next" links to implement blocking mechanics.</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>The thread id for each node is kept in its own node, </span>so<span class="markdown"> </span>a<span class="markdown"></span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>predecessor signals </span>the<span class="markdown"> next node to wake up by traversing</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>next link to determine which thread it is.  Determination of</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>successor must avoid races with newly queued nodes to set</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span></span>the<span class="markdown"> "next" fields of their predecessors.  This is solved</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>when necessary by checking backwards from </span>the<span class="markdown"> atomically</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>updated "tail" when </span>a<span class="markdown"> node's successor appears to be null.</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>(Or, said differently, </span>the<span class="markdown"> next-links </span>are<span class="markdown"> </span>an<span class="markdown"> optimization</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span></span>so<span class="markdown"> that we </span>don't<span class="markdown"> usually need </span>a<span class="markdown"> backward scan.)</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>Cancellation introduces some conservatism to </span>the<span class="markdown"> basic</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>algorithms.  Since we must poll for cancellation of other</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>nodes, we can miss noticing whether </span>a<span class="markdown"> cancelled node is</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>ahead or behind us. This is dealt with by always unparking</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>successors upon cancellation, allowing them to stabilize on</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span></span>a<span class="markdown"> new predecessor, unless we can identify </span>an<span class="markdown"> uncancelled</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>predecessor who </span>will<span class="markdown"> carry this responsibility.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>CLH queues need </span>a<span class="markdown"> dummy header node to get started. But</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>we </span>don't<span class="markdown"> create them on construction, because it would be wasted</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>effort if there is never contention. Instead, </span>the<span class="markdown"> node</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>is constructed and head and tail pointers </span>are<span class="markdown"> set upon first</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>contention.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>Threads waiting on Conditions use </span>the<span class="markdown"> same nodes, </span>but<span class="markdown"></span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>use </span>an<span class="markdown"> additional link. Conditions only need to link nodes</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>in simple (non-concurrent) linked queues because </span>they<span class="markdown"> </span>are<span class="markdown"></span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>only accessed when exclusively held.  Upon await, </span>a<span class="markdown"> node is</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>inserted into </span>a<span class="markdown"> condition queue.  Upon signal, </span>the<span class="markdown"> node is</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>transferred to </span>the<span class="markdown"> main queue.  A special value of status</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>field is used to mark which queue </span>a<span class="markdown"> node is on.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span>Thanks go to Dave Dice, Mark Moir, Victor Luchangco, Bill</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>Scherer and Michael Scott, along with members of JSR-166</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>expert group, for helpful ideas, discussions, and critiques</span></span></span><br><span class="line"><span class="comment"><span class="markdown"><span class="bullet">* </span>on </span>the<span class="markdown"> design of this class.</span></span></span><br><span class="line"><span class="comment"><span class="markdown">*/</span></span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p><strong>小结：</strong> AQS内部维护一个CLH队列来管理锁，线程会首先尝试获取锁，如果获取失败，则将就将当前线程以及等待状态等信息包成一个Node结点，加入到同步队列SyncQueue中，当当前结点为head的直接后继时才会不断尝试继续获取锁。如果失败则会阻塞自己直至自己被唤醒。当持有锁的线程释放时，队列中的后继线程才会被唤醒。</p>
+</blockquote>
+<hr>
+<h4 id="AQS的同步组件简介"><a href="#AQS的同步组件简介" class="headerlink" title="AQS的同步组件简介"></a>AQS的同步组件简介</h4><blockquote>
+<p>此处仅做组件的简单的提出，后续会有详细的手记说明。</p>
+</blockquote>
+<h5 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h5><p>是闭锁，通过计数来保证线程间是否需要阻塞。</p>
+<h5 id="Semphore"><a href="#Semphore" class="headerlink" title="Semphore"></a>Semphore</h5><p>控制同一时刻并发的线程数量。</p>
+<h5 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h5><p>同CountDownLatch相似，均可以阻塞线程。</p>
+<h5 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h5><p>重入锁。后续手记中会详述。</p>
+<h5 id="Condition"><a href="#Condition" class="headerlink" title="Condition"></a>Condition</h5><p>使用时需结合ReentrantLock。</p>
+<h5 id="FutureTask"><a href="#FutureTask" class="headerlink" title="FutureTask"></a>FutureTask</h5><p>后续会有FutureTask的详细介绍……</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/订阅号QRcode.jpg" alt="SupriseMF wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信订阅号【星球码】，分享学习编程奇淫巧技~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢就支持我呀(*^∇^*)~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/微信收款.jpg" alt="SupriseMF 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/支付宝收款.jpg" alt="SupriseMF 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SupriseMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://suprisemf.github.io/2018/08/02/AQS介绍/" title="AQS介绍">http://suprisemf.github.io/2018/08/02/AQS介绍/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/Java内存模型/" itemprop="url">
-              
-                <span itemprop="name">Java内存模型</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T15:29:16+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/并发容器/" rel="next" title="并发容器-J.U.C之线程安全集合">
+                <i class="fa fa-chevron-left"></i> 并发容器-J.U.C之线程安全集合
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/乱序执行优化/" itemprop="url">
-              
-                <span itemprop="name">CPU多级缓存——乱序执行优化</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T15:25:46+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/cpu多级缓存/" itemprop="url">
-              
-                <span itemprop="name">CPU多级缓存——缓存一致性</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T15:12:45+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/概论大笔记/" itemprop="url">
-              
-                <span itemprop="name">并发编程与高并发解决方案概论</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T14:58:51+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2018/08/page/4/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/2018/08/">1</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2018/08/page/4/">4</a><span class="page-number current">5</span>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/08/02/AQS介绍/"
+     data-title="AQS介绍"
+     data-content=""
+     data-url="http://suprisemf.github.io/2018/08/02/AQS介绍/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/08/02/AQS介绍/"
+           data-title="AQS介绍" data-url="http://suprisemf.github.io/2018/08/02/AQS介绍/">
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -816,8 +1005,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -938,6 +1136,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AQS的设计（注释中已提及，此处做总结。）"><span class="nav-number">1.1.</span> <span class="nav-text">AQS的设计（注释中已提及，此处做总结。）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键内容"><span class="nav-number">1.2.</span> <span class="nav-text">关键内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AQS的同步组件简介"><span class="nav-number">1.3.</span> <span class="nav-text">AQS的同步组件简介</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#CountDownLatch"><span class="nav-number">1.3.1.</span> <span class="nav-text">CountDownLatch</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Semphore"><span class="nav-number">1.3.2.</span> <span class="nav-text">Semphore</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CyclicBarrier"><span class="nav-number">1.3.3.</span> <span class="nav-text">CyclicBarrier</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ReentrantLock"><span class="nav-number">1.3.4.</span> <span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Condition"><span class="nav-number">1.3.5.</span> <span class="nav-text">Condition</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#FutureTask"><span class="nav-number">1.3.6.</span> <span class="nav-text">FutureTask</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1156,6 +1370,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1734,26 +1952,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
