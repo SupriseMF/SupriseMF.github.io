@@ -669,7 +669,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T18:57:57+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:00:18+08:00">
                 2018-08-02
               </time>
             
@@ -778,20 +778,19 @@
 
       
         
-          
-          概述不可变对象一经安全发布，它就是不可变的。
-需满足的条件
-对象创建后其状态不能被修改；
-对象所有的域都是final类型；
-对象是正确创建的（在对象创建期间，其this引用未逸出）；
-其中可以采用的方式包括：
-
-将类声明为final，不可被继承；
-将所有的成员声明为私有的，不允许直接访问其私有成员；
-对变量不向外提供set方法；
-将所有成员也声明为final，只能赋值一次；
-通过构造器初始化所有成
-          ...
+          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>不可变对象一经安全发布，它就是不可变的。</p>
+<h4 id="需满足的条件"><a href="#需满足的条件" class="headerlink" title="需满足的条件"></a>需满足的条件</h4><ul>
+<li>对象创建后其状态不能被修改；</li>
+<li>对象所有的域都是final类型；</li>
+<li>对象是正确创建的（在对象创建期间，其this引用未逸出）；<blockquote>
+<p><strong>其中可以采用的方式包括：</strong></p>
+<ol>
+<li>将类声明为final，不可被继承；</li>
+<li>将所有的成员声明为私有的，不允许直接访问其私有成员；</li>
+<li>对变量不向外提供set方法；</li>
+<li>将所有成员也声明为final，只能赋值一次；</li>
+<li>通过构造器初始化所有成员，进行深度拷贝;</li>
+<li>在get方法中，不直接返回对象本身，而是克隆对象，并返回对象的拷贝。</li></ol></blockquote></li></ul>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2018/08/02/不可变对象/#more" rel="contents">
