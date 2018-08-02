@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="我的红宝石星球" />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,17 +118,23 @@
 
 
 
-<meta name="description" content="Java Python 编译器 操作系统">
-<meta name="keywords" content="Java Python 编译器 操作系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="红宝石星球">
-<meta property="og:url" content="http://suprisemf.github.io/page/2/index.html">
+<meta name="description" content="概述它是一个同步辅助类，通过它可以在一个线程（线程间会轮换）执行countdown() -&amp;gt; count值减至0的期间，保证其他线程会调用await()一直阻塞等待，最后等待的线程执行resume()，所有线程再一起执行另一个实务操作。其中有一个原子性的且不会被重置的计数器以保证上述的实现。">
+<meta name="keywords" content="Java,并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J.U.C之AQS—CountDownLatch">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="Java Python 编译器 操作系统">
+<meta property="og:description" content="概述它是一个同步辅助类，通过它可以在一个线程（线程间会轮换）执行countdown() -&amp;gt; count值减至0的期间，保证其他线程会调用await()一直阻塞等待，最后等待的线程执行resume()，所有线程再一起执行另一个实务操作。其中有一个原子性的且不会被重置的计数器以保证上述的实现。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/CountDownLatch类.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试2.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow(">
+<meta property="og:updated_time" content="2018-08-02T11:57:10.609Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红宝石星球">
-<meta name="twitter:description" content="Java Python 编译器 操作系统">
+<meta name="twitter:title" content="J.U.C之AQS—CountDownLatch">
+<meta name="twitter:description" content="概述它是一个同步辅助类，通过它可以在一个线程（线程间会轮换）执行countdown() -&amp;gt; count值减至0的期间，保证其他线程会调用await()一直阻塞等待，最后等待的线程执行resume()，所有线程再一起执行另一个实务操作。其中有一个原子性的且不会被重置的计数器以保证上述的实现。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/CountDownLatch类.png">
 
 
 
@@ -158,13 +164,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/page/2/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/"/>
 
 
 
 
 
-  <title>红宝石星球 - 凡心所向，素履以往；生如逆旅，一苇以航。</title>
+  <title>J.U.C之AQS—CountDownLatch | 红宝石星球</title>
   
 
 
@@ -285,8 +291,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -607,9 +612,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -622,7 +627,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/线程不安全——part-1/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,9 +644,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/线程不安全——part-1/" itemprop="url">线程不安全——Part-1</a></h2>
+          <h2 class="post-title" itemprop="name headline">J.U.C之AQS—CountDownLatch</h2>
         
 
         <div class="post-meta">
@@ -653,7 +656,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:09:09+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:48:25+08:00">
                 2018-08-02
               </time>
             
@@ -669,7 +672,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:12:59+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:57:10+08:00">
                 2018-08-02
               </time>
             
@@ -706,8 +709,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/02/线程不安全——part-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/线程不安全——part-1/" itemprop="commentCount"></span>
+                <a href="/2018/08/02/J-U-C之AQS—CountDownLatch/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/J-U-C之AQS—CountDownLatch/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -715,7 +718,7 @@
 
           
           
-             <span id="/2018/08/02/线程不安全——part-1/" class="leancloud_visitors" data-flag-title="线程不安全——Part-1">
+             <span id="/2018/08/02/J-U-C之AQS—CountDownLatch/" class="leancloud_visitors" data-flag-title="J.U.C之AQS—CountDownLatch">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -740,7 +743,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,045 字
+                  1,102 字
                 </span>
               
 
@@ -777,18 +780,25 @@
       
 
       
-        
-          <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><blockquote>
-<p>线程不安全类：如果一个类的对象同时被多个线程访问，若不做相应的同步或并发处理，容易出现线程不安全的现象，比如：抛出异常、逻辑处理错误等。</p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/线程不安全——part-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>它是一个同步辅助类，通过它可以在一个线程（线程间会轮换）执行countdown() -&gt; count值减至0的期间，保证其他线程会调用await()一直阻塞等待，最后等待的线程执行resume()，所有线程再一起执行另一个实务操作。其中有一个原子性的且不会被重置的计数器以保证上述的实现。<br><a id="more"></a><br>原理图如下：<br><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/CountDownLatch类.png" alt="图示"></p>
+<h3 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a>使用场景</h3><p>当一个程序需在另一个条件完成后才可以继续执行后续操作。<br>如：并行计算中最后的汇总操作场</p>
+<h3 id="例子演示"><a href="#例子演示" class="headerlink" title="例子演示"></a>例子演示</h3><h4 id="情景一：指定计数次数"><a href="#情景一：指定计数次数" class="headerlink" title="情景一：指定计数次数"></a>情景一：指定计数次数</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchExample1</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> threadCount = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ExecutorService exec = Executors.newCachedThreadPool();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(threadCount);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> threadNum = i;</span><br><span class="line">            exec.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    test(threadNum);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    <span class="comment">//保证了方法被调用即计数执行减一</span></span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        log.info(<span class="string">"finish"</span>);</span><br><span class="line">        exec.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> threadNum)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, threadNum);</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>运行结果：</strong>（截取部分）</p>
+<p><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试.png" alt="图示"></p>
+<p>根据结果，多线程并发期间，核心方法以乱序执行，但总数仍一定，且最后执行到测试语句“finish”。其中，countDownLatch.await()语句循环检查计数是否已经减为0，即保证了此时全部线程执行结束。</p>
+<h4 id="情景二：指定计数时间"><a href="#情景二：指定计数时间" class="headerlink" title="情景二：指定计数时间"></a>情景二：指定计数时间</h4><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountDownLatchExample2</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keyword">int</span> threadCount = <span class="number">2000</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line"></span><br><span class="line">        ExecutorService exec = Executors.newCachedThreadPool();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(threadCount);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; threadCount; i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> threadNum = i;</span><br><span class="line">            exec.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    test(threadNum);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                    countDownLatch.countDown();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await(<span class="number">3</span>, TimeUnit.MILLISECONDS);</span><br><span class="line">        log.info(<span class="string">"finish"</span>);</span><br><span class="line">        exec.shutdown();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">test</span><span class="params">(<span class="keyword">int</span> threadNum)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        Thread.sleep(<span class="number">100</span>);</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, threadNum);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>测试结果：</strong></p>
+<p><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试2.png" alt="图示"></p>
+<p>先来看一下await()的源码：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">public void await() throws InterruptedException &#123;</span><br><span class="line">    sync.acquireSharedInterruptibly(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Causes <span class="keyword">the</span> current thread <span class="keyword">to</span> wait <span class="keyword">until</span> <span class="keyword">the</span> latch has counted down <span class="keyword">to</span></span><br><span class="line"> * zero, unless <span class="keyword">the</span> thread <span class="keyword">is</span> &#123;@linkplain Thread<span class="comment">#interrupt interrupted&#125;,</span></span><br><span class="line"> * <span class="keyword">or</span> <span class="keyword">the</span> specified waiting <span class="built_in">time</span> elapses.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;If <span class="keyword">the</span> current <span class="built_in">count</span> <span class="keyword">is</span> zero <span class="keyword">then</span> this method returns immediately</span><br><span class="line"> * <span class="keyword">with</span> <span class="keyword">the</span> value &#123;@code <span class="literal">true</span>&#125;.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;If <span class="keyword">the</span> current <span class="built_in">count</span> <span class="keyword">is</span> <span class="keyword">greater than</span> zero <span class="keyword">then</span> <span class="keyword">the</span> current</span><br><span class="line"> * thread becomes disabled <span class="keyword">for</span> thread scheduling purposes <span class="keyword">and</span> lies</span><br><span class="line"> * dormant <span class="keyword">until</span> one <span class="keyword">of</span> three things happen:</span><br><span class="line"> * &lt;ul&gt;</span><br><span class="line"> * &lt;li&gt;The <span class="built_in">count</span> reaches zero due <span class="keyword">to</span> invocations <span class="keyword">of</span> <span class="keyword">the</span></span><br><span class="line"> * &#123;@link <span class="comment">#countDown&#125; method; or</span></span><br><span class="line"> * &lt;li&gt;Some other thread &#123;@linkplain Thread<span class="comment">#interrupt interrupts&#125;</span></span><br><span class="line"> * <span class="keyword">the</span> current thread; <span class="keyword">or</span></span><br><span class="line"> * &lt;li&gt;The specified waiting <span class="built_in">time</span> elapses.</span><br><span class="line"> * &lt;/ul&gt;</span><br><span class="line"> */</span><br><span class="line">public <span class="built_in">boolean</span> await(long <span class="keyword">timeout</span>, TimeUnit unit)</span><br><span class="line">    throws InterruptedException &#123;</span><br><span class="line"><span class="built_in">    return</span> sync.tryAcquireSharedNanos(<span class="number">1</span>, unit.toNanos(<span class="keyword">timeout</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过<code>countDownLatch.await(3, TimeUnit.MILLISECONDS)</code>方法，指定<code>timeout</code>参数实现。其中，该参数指的是在<code>test</code>方法执行时开始计数，延时<code>timeout</code>的时间后<strong>或</strong>计数已经减为0后，继续执行后续方法，此例为<code>log.info(&quot;finish&quot;)</code>，即输出<code>finish</code>。<br>而无参的await()方法只有计数到0时才会继续执行后续方法。</p>
+<p><strong>结果分析：</strong><br>例子中为了测试timeout，将timeout设置为1ms，而线程执行核心方法时设定休眠100ms，那么与结果是正好对应的，即finish总是第一个被输出的日志。</p>
+<p><strong>但是，finish输出后就直接执行了exec.shutdown()即关闭线程池的操作了啊，怎么还会有线程日志输出？</strong></p>
+<p>其实，exec.shutdown()操作：不会再接受新的线程任务，只会等待当前已经分配的线程执行完操作后再关闭，而不是在第一时间销毁所有的线程并强制关闭线程池。<strong>但是线程池还有一个立即关闭的线程池的方法 -&gt; 在第一时间销毁所有的线程并强制关闭线程池，即shutdownNow()。</strong></p>
+<p>现在修改shutdown()为shutdownNow()，再进行测试，运行结果为：（部分截图）</p>
+<p><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow(" alt="图示">测试.png)</p>
+<p><strong>结果分析：</strong><br>finish日志字段输出和其后200个<code>exception java.lang.InterruptedException: sleep interrupted</code>异常说明了测试的正确性。也是对应了上面await()源代码中的说明：<code>unless the thread is {@linkplain Thread#interrupt interrupted}</code>。</p>
+<h3 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h3><p>使用CountDownLatch中，最好是计数指定配合指定超时时间使用，避免计数因为意外的情况难以到达使得系统资源空耗或业务逻辑无法继续执行情况，以提高程序的高效性，实用性。</p>
+
       
     </div>
     
@@ -796,459 +806,115 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/订阅号QRcode.jpg" alt="SupriseMF wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信订阅号【星球码】，分享学习编程奇淫巧技~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢就支持我呀(*^∇^*)~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/微信收款.jpg" alt="SupriseMF 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/支付宝收款.jpg" alt="SupriseMF 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
 
     
 
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SupriseMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/" title="J.U.C之AQS—CountDownLatch">http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/线程封闭/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/线程封闭/" itemprop="url">线程封闭</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T19:02:38+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:06:08+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/线程封闭/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/线程封闭/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/线程封闭/" class="leancloud_visitors" data-flag-title="线程封闭">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,038 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>线程封闭是一种较为简单的线程并发的方法。它其实把对象封装到一个线程里，该对象只对该线程是可见的。当然也就是线程安全的了。</p>
-<h4 id="实现线程封闭的方法"><a href="#实现线程封闭的方法" class="headerlink" title="实现线程封闭的方法"></a>实现线程封闭的方法</h4><ol>
-<li>Ad-hoc 线程封闭：依赖程序控制实现，脆弱，是最糟糕的一种方式，不推荐！</li>
-<li>堆栈封闭：应用广泛，依靠各线程局部变量的堆栈拷贝副本实现，无并发问题。避免使用全局变量。</li>
-<li>数据库连接对应JDBC的Connection对象。</li>
-<li>ThreadLocal线程封闭：实现较好，效率较高。（以后会做源码分析……）</li>
-</ol>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/线程封闭/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/不可变对象/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/不可变对象/" itemprop="url">不可变对象</a></h2>
+        <div class="post-widgets">
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T18:41:54+08:00">
-                2018-08-02
-              </time>
-            
+        
 
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:00:18+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
+        
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
             </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/不可变对象/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/不可变对象/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/不可变对象/" class="leancloud_visitors" data-flag-title="不可变对象">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,711 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>不可变对象一经安全发布，它就是不可变的。</p>
-<h4 id="需满足的条件"><a href="#需满足的条件" class="headerlink" title="需满足的条件"></a>需满足的条件</h4><ul>
-<li>对象创建后其状态不能被修改；</li>
-<li>对象所有的域都是final类型；</li>
-<li>对象是正确创建的（在对象创建期间，其this引用未逸出）；<blockquote>
-<p><strong>其中可以采用的方式包括：</strong></p>
-<ol>
-<li>将类声明为final，不可被继承；</li>
-<li>将所有的成员声明为私有的，不允许直接访问其私有成员；</li>
-<li>对变量不向外提供set方法；</li>
-<li>将所有成员也声明为final，只能赋值一次；</li>
-<li>通过构造器初始化所有成员，进行深度拷贝;</li>
-<li>在get方法中，不直接返回对象本身，而是克隆对象，并返回对象的拷贝。</li></ol></blockquote></li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/不可变对象/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
         
+        </div>
       
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/02/AQS介绍/" rel="next" title="AQS介绍">
+                <i class="fa fa-chevron-left"></i> AQS介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1258,455 +924,51 @@
   </article>
 
 
-    
+
+    <div class="post-spread">
       
+        <div class="ds-share flat" data-thread-key="2018/08/02/J-U-C之AQS—CountDownLatch/"
+     data-title="J.U.C之AQS—CountDownLatch"
+     data-content=""
+     data-url="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
 
-  
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
 
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/安对象安全发布的四种策略/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/安对象安全发布的四种策略/" itemprop="url">安对象安全发布的四种策略</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T18:23:30+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T18:24:28+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/安对象安全发布的四种策略/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/安对象安全发布的四种策略/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/安对象安全发布的四种策略/" class="leancloud_visitors" data-flag-title="安对象安全发布的四种策略">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,345 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  5 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <blockquote>
-<p>本节例子内容较多~</p>
-</blockquote>
-<h4 id="四种方法概述"><a href="#四种方法概述" class="headerlink" title="四种方法概述"></a>四种方法概述</h4><ul>
-<li>在静态初始化函数中初始化一个函数的引用</li>
-<li>将对象的引用保存到volatile类型域AtomicReference对象中</li>
-<li>将对象的引用保存到某个正确构造对象的final类型域中（后续再进行补充！）</li>
-<li>将对象的引用保存到一个由锁保存的域中</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/安对象安全发布的四种策略/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/安全发布对象——发布与逸出/" itemprop="url">安全发布对象——发布与逸出</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T18:07:30+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T18:20:36+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/安全发布对象——发布与逸出/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/安全发布对象——发布与逸出/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/安全发布对象——发布与逸出/" class="leancloud_visitors" data-flag-title="安全发布对象——发布与逸出">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  529 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  2 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="对象发布"><a href="#对象发布" class="headerlink" title="对象发布"></a>对象发布</h4><p>使一个对象能够被其他范围之外的对象/代码所使用。</p>
-<blockquote>
-<p>实际日常开发中经常发布对象的例子有：</p>
-<ol>
-<li>通过类的非私有方法，返回对象的引用；</li>
-<li>通过公有的静态变量发布对象</li>
-</ol>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/安全发布对象——发布与逸出/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
-        
-      
+          
+
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/08/02/J-U-C之AQS—CountDownLatch/"
+           data-title="J.U.C之AQS—CountDownLatch" data-url="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/">
+      </div>
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
 
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
 
-
-          </div>
-          
-
-
-          
 
         </div>
         
@@ -1727,8 +989,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1849,6 +1120,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用场景"><span class="nav-number">2.</span> <span class="nav-text">使用场景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子演示"><span class="nav-number">3.</span> <span class="nav-text">例子演示</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#情景一：指定计数次数"><span class="nav-number">3.1.</span> <span class="nav-text">情景一：指定计数次数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#情景二：指定计数时间"><span class="nav-number">3.2.</span> <span class="nav-text">情景二：指定计数时间</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小总结"><span class="nav-number">4.</span> <span class="nav-text">小总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2067,6 +1354,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -2645,26 +1936,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
