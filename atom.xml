@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-02T09:48:37.806Z</updated>
+  <updated>2018-08-02T09:51:56.257Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>内在锁Synchronized关键字</title>
+    <link href="http://suprisemf.github.io/2018/08/02/%E5%86%85%E5%9C%A8%E9%94%81synchronized%E5%85%B3%E9%94%AE%E5%AD%97/"/>
+    <id>http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/</id>
+    <published>2018-08-02T09:50:50.000Z</published>
+    <updated>2018-08-02T09:51:56.257Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。<a id="more"></a><br>在使用得当的时候，内在锁可以让程序做到线程安全，但是在使用锁定保护短的代码路径，而且线程频繁地争用锁的时候，锁定可能成为相当繁重的操作。<a href="https://www.ibm.com/developerworks/cn/java/j-jtp04186/" target="_blank" rel="noopener">参考学习</a></p><blockquote><p>内在锁synchronized关键字的实现依赖于JVM，因此<strong>在这个关键字作用的对象的作用范围内都是同一时刻只能有一个线程进行操作。</strong></p></blockquote><p>它是一种同步锁，作用对象有四种：</p><ol><li>修饰代码块：指用大括号括起来的代码，被称为“同步代码块”，作用于调用该代码块的对象。</li><li>修饰方法：指整个方法，被称为同步方法，作用于调用该方法的对象。</li><li>修饰静态方法：指整个静态方法，由于静态方法可以被理解为类级别的对象，因此它作用于该类的所有的对象。</li><li>修饰类：指整个类，作用于该类的所有的对象。</li></ol><h4 id="引申拓展：另一种锁Lock"><a href="#引申拓展：另一种锁Lock" class="headerlink" title="引申拓展：另一种锁Lock"></a>引申拓展：另一种锁Lock</h4><p>JDK提供的基于源码的锁，依赖于特殊的CPU指令、代码实现。其代表为ReentrantLock.<br>后续将会单独做一篇手记。</p><h4 id="线程安全中原子性方式的简单对比"><a href="#线程安全中原子性方式的简单对比" class="headerlink" title="线程安全中原子性方式的简单对比"></a>线程安全中原子性方式的简单对比</h4><ol><li>synchronized：是不可中断锁，适合竞争不激烈的场景，其可读性较好。</li><li>Lock：可通过unlock进行锁的中断，在竞争激烈时仍可以保持常态，同步多样化。</li><li>Atomic包：竞争激烈时也可以保持常态，性能比Lock好，但缺点是只能通过CAS同步一个值。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h4&gt;&lt;p&gt;Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>AtomicStampReference：CAS中的ABA问题</title>

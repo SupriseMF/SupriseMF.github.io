@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://suprisemf.github.io/2018/08/02/%E5%86%85%E5%9C%A8%E9%94%81synchronized%E5%85%B3%E9%94%AE%E5%AD%97/</loc>
+    
+    <lastmod>2018-08-02T09:51:56.257Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://suprisemf.github.io/2018/08/02/AtomicStampReference%EF%BC%9ACAS%E4%B8%AD%E7%9A%84ABA%E9%97%AE%E9%A2%98/</loc>
     
     <lastmod>2018-08-02T09:48:37.806Z</lastmod>
