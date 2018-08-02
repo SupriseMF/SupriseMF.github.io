@@ -129,8 +129,8 @@
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/CountDownLatch类.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/countdownlatch测试2.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow(">
-<meta property="og:updated_time" content="2018-08-02T11:57:10.609Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow测试.png">
+<meta property="og:updated_time" content="2018-08-02T12:02:27.463Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J.U.C之AQS—CountDownLatch">
 <meta name="twitter:description" content="概述它是一个同步辅助类，通过它可以在一个线程（线程间会轮换）执行countdown() -&amp;gt; count值减至0的期间，保证其他线程会调用await()一直阻塞等待，最后等待的线程执行resume()，所有线程再一起执行另一个实务操作。其中有一个原子性的且不会被重置的计数器以保证上述的实现。">
@@ -672,7 +672,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T19:57:10+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T20:02:27+08:00">
                 2018-08-02
               </time>
             
@@ -743,7 +743,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,102 字
+                  1,099 字
                 </span>
               
 
@@ -795,7 +795,7 @@
 <p><strong>但是，finish输出后就直接执行了exec.shutdown()即关闭线程池的操作了啊，怎么还会有线程日志输出？</strong></p>
 <p>其实，exec.shutdown()操作：不会再接受新的线程任务，只会等待当前已经分配的线程执行完操作后再关闭，而不是在第一时间销毁所有的线程并强制关闭线程池。<strong>但是线程池还有一个立即关闭的线程池的方法 -&gt; 在第一时间销毁所有的线程并强制关闭线程池，即shutdownNow()。</strong></p>
 <p>现在修改shutdown()为shutdownNow()，再进行测试，运行结果为：（部分截图）</p>
-<p><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow(" alt="图示">测试.png)</p>
+<p><img src="/2018/08/02/J-U-C之AQS—CountDownLatch/shutdownNow测试.png" alt="图示"></p>
 <p><strong>结果分析：</strong><br>finish日志字段输出和其后200个<code>exception java.lang.InterruptedException: sleep interrupted</code>异常说明了测试的正确性。也是对应了上面await()源代码中的说明：<code>unless the thread is {@linkplain Thread#interrupt interrupted}</code>。</p>
 <h3 id="小总结"><a href="#小总结" class="headerlink" title="小总结"></a>小总结</h3><p>使用CountDownLatch中，最好是计数指定配合指定超时时间使用，避免计数因为意外的情况难以到达使得系统资源空耗或业务逻辑无法继续执行情况，以提高程序的高效性，实用性。</p>
 
