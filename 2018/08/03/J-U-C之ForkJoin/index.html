@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="我的红宝石星球" />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,17 +118,18 @@
 
 
 
-<meta name="description" content="Java Python 编译器 操作系统">
-<meta name="keywords" content="Java Python 编译器 操作系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="红宝石星球">
-<meta property="og:url" content="http://suprisemf.github.io/tags/并发编程/page/4/index.html">
+<meta name="description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
+<meta name="keywords" content="Java,并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J.U.C之ForkJoin">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="Java Python 编译器 操作系统">
+<meta property="og:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-03T01:03:01.820Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红宝石星球">
-<meta name="twitter:description" content="Java Python 编译器 操作系统">
+<meta name="twitter:title" content="J.U.C之ForkJoin">
+<meta name="twitter:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
 
 
 
@@ -158,13 +159,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/tags/并发编程/page/4/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/"/>
 
 
 
 
 
-  <title>标签: 并发编程 | 红宝石星球</title>
+  <title>J.U.C之ForkJoin | 红宝石星球</title>
   
 
 
@@ -285,7 +286,7 @@
     
   
 
-  <div class="container sidebar-position-right ">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -607,177 +608,368 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block tag">
-
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>并发编程<small>标签</small>
-        </h2>
-      </div>
-
-      
-        
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SupriseMF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/星球.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红宝石星球">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2018/08/02/安对象安全发布的四种策略/" itemprop="url">
-              
-                <span itemprop="name">安对象安全发布的四种策略</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">J.U.C之ForkJoin</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T18:23:30+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T09:02:20+08:00">
+                2018-08-03
+              </time>
+            
 
-    </header>
-  </article>
+            
+              <span class="post-meta-divider">|</span>
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:03:01+08:00">
+                2018-08-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java之并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/03/J-U-C之ForkJoin/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/03/J-U-C之ForkJoin/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/03/J-U-C之ForkJoin/" class="leancloud_visitors" data-flag-title="J.U.C之ForkJoin">
+               <span class="post-meta-divider"></span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,342 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/安全发布对象——发布与逸出/" itemprop="url">
-              
-                <span itemprop="name">安全发布对象——发布与逸出</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T18:07:30+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/线程安-有序性/" itemprop="url">
-              
-                <span itemprop="name">线程安全-有序性</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T18:04:36+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/线程安全-可见性/" itemprop="url">
-              
-                <span itemprop="name">线程安全-可见性</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T17:55:33+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/内在锁synchronized关键字/" itemprop="url">
-              
-                <span itemprop="name">内在锁Synchronized关键字</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T17:50:50+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。</p>
+<blockquote>
+<p>该框架采用的工作窃取算法，即<strong>当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头</strong>，以充分发挥该框架的优势（消除线程等待），提高效率，促进性能提升。<br>其中，每个线程的任务队列采用双端队列进行实现。<br>缺点：1. 当一个线程的双端队列中只有一个任务时，也会发生线程竞争。2. 由于使用双端队列，系统会分配更多的资源。</p>
+</blockquote>
+<h4 id="执行任务的局限性"><a href="#执行任务的局限性" class="headerlink" title="执行任务的局限性"></a>执行任务的局限性</h4><ol>
+<li>任务只能使用Fork或Join作为同步机制；</li>
+<li>线程队列中的任务不可以有IO操作；</li>
+<li>任务不能抛出检查异常。（若有则需要必要的代码进行处理）</li>
+</ol>
+<h4 id="ForkJoinPool"><a href="#ForkJoinPool" class="headerlink" title="ForkJoinPool"></a>ForkJoinPool</h4><p>看一下注释：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * An &#123;@link ExecutorService&#125; <span class="keyword">for</span> <span class="built_in">running</span> &#123;@link ForkJoinTask&#125;s.</span><br><span class="line"> * A &#123;@code ForkJoinPool&#125; provides <span class="keyword">the</span> entry point <span class="keyword">for</span> submissions</span><br><span class="line"> * <span class="keyword">from</span> non-&#123;@code ForkJoinTask&#125; clients, <span class="keyword">as</span> well <span class="keyword">as</span> management <span class="keyword">and</span></span><br><span class="line"> * monitoring operations.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;A &#123;@code ForkJoinPool&#125; differs <span class="keyword">from</span> other kinds <span class="keyword">of</span> &#123;@link</span><br><span class="line"> * ExecutorService&#125; mainly <span class="keyword">by</span> virtue <span class="keyword">of</span> employing</span><br><span class="line"> * &lt;em&gt;work-stealing&lt;/em&gt;: all threads <span class="keyword">in</span> <span class="keyword">the</span> pool attempt <span class="keyword">to</span> find <span class="keyword">and</span></span><br><span class="line"> * execute tasks submitted <span class="keyword">to</span> <span class="keyword">the</span> pool <span class="keyword">and</span>/<span class="keyword">or</span> created <span class="keyword">by</span> other active</span><br><span class="line"> * tasks (eventually blocking waiting <span class="keyword">for</span> work <span class="keyword">if</span> none exist). This</span><br><span class="line"> * enables efficient processing when most tasks spawn other subtasks</span><br><span class="line"> * (<span class="keyword">as</span> do most &#123;@code ForkJoinTask&#125;s), <span class="keyword">as</span> well <span class="keyword">as</span> when many small</span><br><span class="line"> * tasks are submitted <span class="keyword">to</span> <span class="keyword">the</span> pool <span class="keyword">from</span> external clients.  Especially</span><br><span class="line"> * when setting &lt;em&gt;asyncMode&lt;/em&gt; <span class="keyword">to</span> <span class="literal">true</span> <span class="keyword">in</span> constructors, &#123;@code</span><br><span class="line"> * ForkJoinPool&#125;s may also be appropriate <span class="keyword">for</span> use <span class="keyword">with</span> event-style</span><br><span class="line"> * tasks <span class="keyword">that</span> are never joined.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p>实质上，ForkJoinPool是一个从非ForkJoinTask的请求中，为运行中的ForkJoinTask的子任务提供切入点的ExecutorService。它不同于其他的ExecutorService，主要是它虚拟部署了任务窃取。尤其当在构造器中设置asyncMode为true时，ForkJoinPool也可能适当地使用事件模式的任务（从未被汇总过？？）。<br><strong>ForkJoinPool主要做实现：包括工作窃取算法、工作线程的管理、任务的状态管理、任务的执行信息等。</strong></p>
+<h4 id="ForkJoinTask"><a href="#ForkJoinTask" class="headerlink" title="ForkJoinTask"></a>ForkJoinTask</h4><p>看下注释：<br><figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * Abstract base <span class="built_in">class</span> <span class="keyword">for</span> tasks <span class="keyword">that</span> <span class="built_in">run</span> within a &#123;@link ForkJoinPool&#125;.</span><br><span class="line"> * A &#123;@code ForkJoinTask&#125; <span class="keyword">is</span> a thread-like entity <span class="keyword">that</span> <span class="keyword">is</span> much</span><br><span class="line"> * lighter weight than a normal thread.  Huge numbers <span class="keyword">of</span> tasks <span class="keyword">and</span></span><br><span class="line"> * subtasks may be hosted <span class="keyword">by</span> a small <span class="built_in">number</span> <span class="keyword">of</span> actual threads <span class="keyword">in</span> a</span><br><span class="line"> * ForkJoinPool, <span class="keyword">at</span> <span class="keyword">the</span> price <span class="keyword">of</span> <span class="keyword">some</span> usage limitations.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;A <span class="string">"main"</span> &#123;@code ForkJoinTask&#125; begins execution when <span class="keyword">it</span> <span class="keyword">is</span></span><br><span class="line"> * explicitly submitted <span class="keyword">to</span> a &#123;@link ForkJoinPool&#125;, <span class="keyword">or</span>, <span class="keyword">if</span> <span class="keyword">not</span> already</span><br><span class="line"> * engaged <span class="keyword">in</span> a ForkJoin computation, commenced <span class="keyword">in</span> <span class="keyword">the</span> &#123;@link</span><br><span class="line"> * ForkJoinPool<span class="comment">#commonPool()&#125; via &#123;@link #fork&#125;, &#123;@link #invoke&#125;, or</span></span><br><span class="line"> * related methods.  Once started, <span class="keyword">it</span> will usually <span class="keyword">in</span> turn start other</span><br><span class="line"> * subtasks.  As indicated <span class="keyword">by</span> <span class="keyword">the</span> <span class="built_in">name</span> <span class="keyword">of</span> this <span class="built_in">class</span>, many programs</span><br><span class="line"> * using &#123;@code ForkJoinTask&#125; employ only methods &#123;@link <span class="comment">#fork&#125; and</span></span><br><span class="line"> * &#123;@link <span class="comment">#join&#125;, or derivatives such as &#123;@link</span></span><br><span class="line"> * <span class="comment">#invokeAll(ForkJoinTask...) invokeAll&#125;.  However, this class also</span></span><br><span class="line"> * provides a <span class="built_in">number</span> <span class="keyword">of</span> other methods <span class="keyword">that</span> can come <span class="keyword">into</span> play <span class="keyword">in</span></span><br><span class="line"> * advanced usages, <span class="keyword">as</span> well <span class="keyword">as</span> extension mechanics <span class="keyword">that</span> allow support</span><br><span class="line"> * <span class="keyword">of</span> new forms <span class="keyword">of</span> fork/join processing.</span><br><span class="line"> *</span><br><span class="line"> * &lt;p&gt;A &#123;@code ForkJoinTask&#125; <span class="keyword">is</span> a lightweight form <span class="keyword">of</span> &#123;@link Future&#125;.</span><br><span class="line"> * The efficiency <span class="keyword">of</span> &#123;@code ForkJoinTask&#125;s stems <span class="keyword">from</span> a <span class="keyword">set</span> <span class="keyword">of</span></span><br><span class="line"> * restrictions (<span class="keyword">that</span> are only partially statically enforceable)</span><br><span class="line"> * reflecting their main use <span class="keyword">as</span> computational tasks calculating pure</span><br><span class="line"> * functions <span class="keyword">or</span> operating <span class="keyword">on</span> purely isolated objects.  The primary</span><br><span class="line"> * coordination mechanisms are &#123;@link <span class="comment">#fork&#125;, that arranges</span></span><br><span class="line"> * asynchronous execution, <span class="keyword">and</span> &#123;@link <span class="comment">#join&#125;, that doesn't proceed</span></span><br><span class="line"> * <span class="keyword">until</span> <span class="keyword">the</span> task's <span class="literal">result</span> has been computed.  Computations should</span><br><span class="line"> * ideally avoid &#123;@code synchronized&#125; methods <span class="keyword">or</span> blocks, <span class="keyword">and</span> should</span><br><span class="line"> * minimize other blocking synchronization <span class="keyword">apart from</span> joining other</span><br><span class="line"> * tasks <span class="keyword">or</span> using synchronizers such <span class="keyword">as</span> Phasers <span class="keyword">that</span> are advertised <span class="keyword">to</span></span><br><span class="line"> * cooperate <span class="keyword">with</span> fork/join scheduling.</span><br><span class="line"> */</span><br></pre></td></tr></table></figure></p>
+<p><strong>ForkJoinTask：主要提供任务中fork/join的机制。</strong></p>
+<blockquote>
+<p>我：大家自己意会一下，但可千万不要言传哦~ 真的很容易看懂的~<br>读者：emmmmm，是挺容易的，因为它容易就容易在它容易它奶奶的腿……</p>
+</blockquote>
+<h4 id="演示例子"><a href="#演示例子" class="headerlink" title="演示例子"></a>演示例子</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line"><span class="keyword">public</span> class ForkJoinTaskExample extends RecursiveTask&lt;Integer&gt; &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> final <span class="keyword">int</span> threshold = <span class="number">2</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> start;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> <span class="built_in">end</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> ForkJoinTaskExample(<span class="keyword">int</span> start, <span class="keyword">int</span> <span class="built_in">end</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.start = start;</span><br><span class="line">        <span class="keyword">this</span>.<span class="built_in">end</span> = <span class="built_in">end</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    <span class="keyword">protected</span> Integer compute() &#123;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//如果任务足够小就计算任务</span></span><br><span class="line">        <span class="keyword">boolean</span> canCompute = (<span class="built_in">end</span> - start) &lt;= threshold;</span><br><span class="line">        <span class="built_in">if</span> (canCompute) &#123;</span><br><span class="line">            <span class="built_in">for</span> (<span class="keyword">int</span> i = start; i &lt;= <span class="built_in">end</span>; i++) &#123;</span><br><span class="line">                sum += i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="built_in">else</span> &#123;</span><br><span class="line">            <span class="comment">// 如果任务大于阈值，就分裂成两个子任务计算</span></span><br><span class="line">            <span class="keyword">int</span> middle = (start + <span class="built_in">end</span>) / <span class="number">2</span>;</span><br><span class="line">            ForkJoinTaskExample leftTask = <span class="keyword">new</span> ForkJoinTaskExample(start, middle);</span><br><span class="line">            ForkJoinTaskExample rightTask = <span class="keyword">new</span> ForkJoinTaskExample(middle + <span class="number">1</span>, <span class="built_in">end</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 执行子任务</span></span><br><span class="line">            leftTask.fork();</span><br><span class="line">            rightTask.fork();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 等待任务执行结束合并其结果</span></span><br><span class="line">            <span class="keyword">int</span> leftResult = leftTask.join();</span><br><span class="line">            <span class="keyword">int</span> rightResult = rightTask.join();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 合并子任务</span></span><br><span class="line">            sum = leftResult + rightResult;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;</span><br><span class="line">        ForkJoinPool forkjoinPool = <span class="keyword">new</span> ForkJoinPool();</span><br><span class="line"></span><br><span class="line">        <span class="comment">//生成一个计算任务，计算1+2+3+4</span></span><br><span class="line">        ForkJoinTaskExample task = <span class="keyword">new</span> ForkJoinTaskExample(<span class="number">1</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//执行一个任务</span></span><br><span class="line">        Future&lt;Integer&gt; result = forkjoinPool.submit(task);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">try</span> &#123;</span><br><span class="line">            log.info(<span class="string">"result:&#123;&#125;"</span>, result.<span class="built_in">get</span>());</span><br><span class="line">        &#125; <span class="built_in">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">"exception"</span>, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="运行结果："><a href="#运行结果：" class="headerlink" title="运行结果："></a>运行结果：</h5><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">14<span class="selector-pseudo">:58</span><span class="selector-pseudo">:35.442</span> <span class="selector-attr">[main]</span> <span class="selector-tag">INFO</span> <span class="selector-tag">com</span><span class="selector-class">.mmall</span><span class="selector-class">.concurrency</span><span class="selector-class">.aqs</span><span class="selector-class">.ForkJoinTaskExample</span> <span class="selector-tag">-</span> <span class="selector-tag">result</span><span class="selector-pseudo">:5050</span></span><br></pre></td></tr></table></figure>
+<h5 id="例子分析"><a href="#例子分析" class="headerlink" title="例子分析"></a>例子分析</h5><ol>
+<li>该测试类需要继承<code>RecursiveTask</code>类，即在任务<code>fork</code>中需要递归地拆分任务;</li>
+<li><code>ForkJoinTaskExample task = new ForkJoinTaskExample(1, 100);</code>指定<code>start</code>和<code>end</code>，其构造函数完成其任务的<code>fork</code>的具体实现，之后再将其子结果<code>join</code>并返回。</li>
+<li>最后通过ForkJoinPool调用submit()执行该任务。</li>
+<li>其中：在任务拆分（fork）中，声明了一个threshold（阈值），即指定任务不可拆分的界限。</li>
+</ol>
 
       
     </div>
+    
+    
+    
 
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/订阅号QRcode.jpg" alt="SupriseMF wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信订阅号【星球码】，分享学习编程奇淫巧技~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢就支持我呀(*^∇^*)~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/微信收款.jpg" alt="SupriseMF 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/支付宝收款.jpg" alt="SupriseMF 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SupriseMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/" title="J.U.C之ForkJoin">http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/J-U-C之FutureTask/" rel="next" title="J.U.C之FutureTask">
+                <i class="fa fa-chevron-left"></i> J.U.C之FutureTask
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/tags/并发编程/page/3/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/并发编程/">1</a><span class="space">&hellip;</span><a class="page-number" href="/tags/并发编程/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/tags/并发编程/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/tags/并发编程/page/7/">7</a><a class="extend next" rel="next" href="/tags/并发编程/page/5/"><i class="fa fa-angle-right"></i></a>
-  </nav>
 
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/08/03/J-U-C之ForkJoin/"
+     data-title="J.U.C之ForkJoin"
+     data-content=""
+     data-url="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/08/03/J-U-C之ForkJoin/"
+           data-title="J.U.C之ForkJoin" data-url="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/">
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -798,8 +990,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -920,6 +1121,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行任务的局限性"><span class="nav-number">2.</span> <span class="nav-text">执行任务的局限性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ForkJoinPool"><span class="nav-number">3.</span> <span class="nav-text">ForkJoinPool</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ForkJoinTask"><span class="nav-number">4.</span> <span class="nav-text">ForkJoinTask</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示例子"><span class="nav-number">5.</span> <span class="nav-text">演示例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果："><span class="nav-number">5.1.</span> <span class="nav-text">运行结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子分析"><span class="nav-number">5.2.</span> <span class="nav-text">例子分析</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1138,6 +1355,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1716,26 +1937,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
