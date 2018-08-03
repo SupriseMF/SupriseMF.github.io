@@ -127,10 +127,10 @@
 <meta property="og:description" content="概述 此处的缓存非彼之计算机缓存。该缓存主要是降低高并发对数据库冲击，提高数据访问速度、查询命中的数据库缓存。当然也有静态缓存、动态缓存。(这些我只知其名)">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/19.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/20.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/memcache%E7%BB%93%E6%9E%84.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/Memcache%E5%8E%9F%E7%90%86%E5%9B%BE1.png">
-<meta property="og:updated_time" content="2018-08-03T03:33:03.761Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/20.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/memcache%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/Memcache%E5%8E%9F%E7%90%86%E5%9B%BE1.png">
+<meta property="og:updated_time" content="2018-08-03T03:39:45.055Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="缓存之特征、场景和组件介绍">
 <meta name="twitter:description" content="概述 此处的缓存非彼之计算机缓存。该缓存主要是降低高并发对数据库冲击，提高数据访问速度、查询命中的数据库缓存。当然也有静态缓存、动态缓存。(这些我只知其名)">
@@ -672,7 +672,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T11:33:03+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T11:39:45+08:00">
                 2018-08-03
               </time>
             
@@ -854,14 +854,14 @@
 <h4 id="guava-cache介绍"><a class="markdownIt-Anchor" href="#guava-cache介绍"></a> Guava Cache介绍</h4>
 <p>它是本地缓存的实现框架。<br>
 原理图如下：</p>
-<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/20.png" alt="图示"></p>
+<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/20.png" alt="图示"></p>
 <p>可以看出来，它的实现原理类似ConcurrentHashMap，使用多个segment细粒度锁，既保证了线程安全，又支持高并发场景需求。该类Cache类似于一个Map，也是存储键值对的集合，但它还需要处理缓存过期、动态加载等算法逻辑；根据面向对象的思想，它还需要做方法与数据关联性的封装。<br>
 Guava Cache实现的主要功能有：自动将结点加入到缓存结构中；当缓存中结点超过设置的最大元素值时，使用LRU算法实现缓存清除；它缓存的key封装在weakReference（弱引用）中，它缓存的value缓存在weakReference（弱引用）或softReference（软引用）中；它可以统计缓存中各数据的命中率、异常率、未命中率等数据；</p>
 <hr>
 <h4 id="memcache"><a class="markdownIt-Anchor" href="#memcache"></a> Memcache</h4>
 <p>它是一个高效的分布式内存cache，是众多广泛应用的开源分布式缓存的框架之一。</p>
 <p>内存结构图如下：</p>
-<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/memcache%E7%BB%93%E6%9E%84.png" alt="图示"></p>
+<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/memcache%E7%BB%93%E6%9E%84.png" alt="图示"></p>
 <p>其中涉及到四个部分：按部分作用区域由大到小分别为</p>
 <ol>
 <li>slab_class：板层类。</li>
@@ -876,7 +876,7 @@ Guava Cache实现的主要功能有：自动将结点加入到缓存结构中；
 <li>在创建slab时，首先申请内存；其中是以page为单位分配给slab空间，其中，一般page为1M大小；page按照该slab的chunk大小进行切分并形成数组。</li>
 </ul>
 <p>Memcache处理原理图如下：</p>
-<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Da/Memcache%E5%8E%9F%E7%90%86%E5%9B%BE1.png" alt="图示"></p>
+<p><img src="/2018/08/03/缓存之特征、场景和组件介绍a/%E7%BC%93%E5%AD%98%E4%B9%8B%E7%89%B9%E5%BE%81%E3%80%81%E5%9C%BA%E6%99%AF%E5%92%8C%E7%BB%84%E4%BB%B6%E4%BB%8B%E7%BB%8Daa/Memcache%E5%8E%9F%E7%90%86%E5%9B%BE1.png" alt="图示"></p>
 <p>它本身不提供分布式的解决方案。在服务端，Memcache的集群环境实际上就是一个个Memcache服务器的堆积。它cache的分布式机制是在客户端实现。通过客户端的路由来处理，以达到分布式解决方案的目的。</p>
 <p>客户端做路由的原理：</p>
 <ul>
