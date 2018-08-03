@@ -3,6 +3,29 @@
   
     
     <entry>
+      <title>数据库切库分库分表</title>
+      <link href="/2018/08/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%87%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/"/>
+      <url>/2018/08/03/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%88%87%E5%BA%93%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8/</url>
+      <content type="html"><![CDATA[<h3 id="数据库的瓶颈"><a href="#数据库的瓶颈" class="headerlink" title="数据库的瓶颈"></a>数据库的瓶颈</h3><ul><li>单个库数据量太大；考虑多个库解决问题。</li><li>单个数据库服务器压力过大、读写瓶颈；考虑多个库、读写分离解决问题。</li><li>单个表数据量过大；考虑分表解决问题。</li></ul><a id="more"></a><h3 id="数据库切库与分库"><a href="#数据库切库与分库" class="headerlink" title="数据库切库与分库"></a>数据库切库与分库</h3><blockquote><p>对数据库的操作中读多写少，且读操作占用系统资源多，耗时长，适用多个分库进行负载均衡。详情查看： <a href="https://www.imooc.com/article/22556" target="_blank" rel="noopener">自定义注解完成数据库切库</a></p></blockquote><p>切库的基础及实际应用中，随着业务增加，并发增加，需做到读写分离；<br>自定义注解完成数据库切库-代码实现；另一种方式是在业务中直接定义两个数据库链接：主库连接和从库连接；更新数据时，读取主库连接，</p><blockquote><p>支持多数据源：指一个项目里，同时可以访问多个不同的数据库。<br>原理：单个数据源在配置时会绑定一套mybatis配置，多个数据源时，不同的数据源绑定不同的mybatis配置就可以了，简单的思路就是让不同的数据源扫描不同的包，让不同的包下的mapper对应连接不同的数据源去处理逻辑。</p></blockquote><h3 id="数据库分表"><a href="#数据库分表" class="headerlink" title="数据库分表"></a>数据库分表</h3><h4 id="分表的类型"><a href="#分表的类型" class="headerlink" title="分表的类型"></a>分表的类型</h4><ol><li>横向（水平）分表（Horizontal Partitioning）<br>这种形式分区是对表的行进行分割，通过这样的方式不同分组里面的物理列分割的数据集得以组合，从而进行个体分割（单分区）或集体分割（1个或多个分区）。所有在表中定义的列在每个数据集中都能找到，所以表的特性依然得以保持。</li><li>纵向（垂直）分表（Vertical Partitioning）<br>这种分割方式一般来说是通过对表的垂直划分来减少目标表的宽度，使某些特定的列被划分到特定的分区，每个分区都包含了其中的列所对应的行。<blockquote><p>在数据库供应商开始在他们的数据库引擎中建立分区（主要是水平分区）时，DBA和建模者必须设计好表的物理分区结构，不要保存冗余的数据（不同表中同时都包含父表中的数据）或相互联结成一个逻辑父对象（通常是视图）。这种做法会使水平分区的大部分功能失效，有时候也会对垂直分区产生影响。</p></blockquote><h4 id="分表的好处"><a href="#分表的好处" class="headerlink" title="分表的好处"></a>分表的好处</h4></li><li>性能的提升（Increased performance）- 在扫描操作中，如果MySQL的优化器知道哪个分区中才包含特定查询中需要的数据，它就能直接去扫描那些分区的数据，而不用浪费很多时间扫描不需要的地方了。需要举个例子？好啊，百万行的表划分为10个分区，每个分区就包含十万行数据，那么查询分区需要的时间仅仅是全表扫描的十分之一了，很明显的对比。同时对十万行的表建立索引的速度也会比百万行的快得多得多。如果你能把这些分区建立在不同的磁盘上，这时候的I/O读写速度就“不堪设想”；</li><li>对数据管理的简化（Simplified data management）- 分区技术可以让DBA对数据的管理能力提升。通过优良的分区，DBA可以简化特定数据操作的执行方式。例如：DBA在对某些分区的内容进行删除的同时能保证余下的分区的数据完整性(这是跟对表的数据删除这种大动作做比较的)。</li></ol><p><a href="https://www.2cto.com/database/201112/115154.html" target="_blank" rel="noopener">参考文章</a></p><hr><p><strong>专栏文章推荐：</strong> <a href="https://blog.csdn.net/column/details/sharding.html" target="_blank" rel="noopener">数据库分库分表</a></p>]]></content>
+      
+      <categories>
+          
+          <category> 高并发解决方案 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Java </tag>
+            
+            <tag> 线程高并发 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
       <title>高并发之高可用手段</title>
       <link href="/2018/08/03/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%AB%98%E5%8F%AF%E7%94%A8%E6%89%8B%E6%AE%B5/"/>
       <url>/2018/08/03/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B9%8B%E9%AB%98%E5%8F%AF%E7%94%A8%E6%89%8B%E6%AE%B5/</url>
