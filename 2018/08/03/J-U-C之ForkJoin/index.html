@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
+<meta name="description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J.U.C之ForkJoin">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/03/J-U-C之ForkJoin/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
+<meta property="og:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-03T01:03:01.820Z">
+<meta property="og:updated_time" content="2018-08-03T01:03:25.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J.U.C之ForkJoin">
-<meta name="twitter:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。  该框架采用的工作窃取算法，即当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头，以充分发挥该框架的优势（消除线程等待）">
+<meta name="twitter:description" content="概述ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。">
 
 
 
@@ -667,7 +667,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:03:01+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:03:25+08:00">
                 2018-08-03
               </time>
             
@@ -775,7 +775,7 @@
       
 
       
-        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。</p>
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>ForkJoin框架是JDK 1.7提供的一种用于并行任务执行的框架。有些像Hadoop中的MapReduce机制。即将一个大任务分为（fork）多个小任务分别执行，最后将多个小任务的执行结果进行汇总（join）。<br><a id="more"></a></p>
 <blockquote>
 <p>该框架采用的工作窃取算法，即<strong>当一个线程执行完它的任务后，可以从其他线程的任务队列尾部开始自行窃取任务进行执行，最后与该队列的另一个线程接头</strong>，以充分发挥该框架的优势（消除线程等待），提高效率，促进性能提升。<br>其中，每个线程的任务队列采用双端队列进行实现。<br>缺点：1. 当一个线程的双端队列中只有一个任务时，也会发生线程竞争。2. 由于使用双端队列，系统会分配更多的资源。</p>
 </blockquote>
@@ -911,6 +911,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/08/03/J-U-C之BlockingQueue/" rel="prev" title="J.U.C之BlockingQueue">
+                J.U.C之BlockingQueue <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1019,7 +1023,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-count">40</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1177,7 +1181,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">45.3k</span>
+    <span title="Site words total count">46.0k</span>
   
 </div>
 

@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="我的红宝石星球" />
+  <meta name="keywords" content="Java,并发编程," />
 
 
 
@@ -118,17 +118,20 @@
 
 
 
-<meta name="description" content="Java Python 编译器 操作系统">
-<meta name="keywords" content="Java Python 编译器 操作系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="红宝石星球">
-<meta property="og:url" content="http://suprisemf.github.io/archives/page/2/index.html">
+<meta name="description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
+<meta name="keywords" content="Java,并发编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="J.U.C之BlockingQueue">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="Java Python 编译器 操作系统">
+<meta property="og:description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png">
+<meta property="og:updated_time" content="2018-08-03T01:07:32.954Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红宝石星球">
-<meta name="twitter:description" content="Java Python 编译器 操作系统">
+<meta name="twitter:title" content="J.U.C之BlockingQueue">
+<meta name="twitter:description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png">
 
 
 
@@ -158,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/archives/page/2/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/"/>
 
 
 
 
 
-  <title>归档 | 红宝石星球</title>
+  <title>J.U.C之BlockingQueue | 红宝石星球</title>
   
 
 
@@ -285,7 +288,7 @@
     
   
 
-  <div class="container sidebar-position-right page-archive">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -607,232 +610,388 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SupriseMF">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/星球.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="红宝石星球">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h2 class="post-title" itemprop="name headline">J.U.C之BlockingQueue</h2>
         
-        OK! 目前共计 40 篇日志。 继续努力。
-      </span>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T09:05:49+08:00">
+                2018-08-03
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:07:32+08:00">
+                2018-08-03
+              </time>
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
+                    <span itemprop="name">Java之并发编程</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/08/03/J-U-C之BlockingQueue/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/03/J-U-C之BlockingQueue/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2018/08/03/J-U-C之BlockingQueue/" class="leancloud_visitors" data-flag-title="J.U.C之BlockingQueue">
+               <span class="post-meta-divider"></span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数&#58;</span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  709 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3 分钟
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
 
       
+      
 
+      
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。<br>大致有两种情况：</p>
+<ol>
+<li>队列满了，但此时还有入队操作；</li>
+<li>队列空了，但此时还有出队操作。<a id="more"></a>
+<h4 id="场景分析"><a href="#场景分析" class="headerlink" title="场景分析"></a>场景分析</h4>主要应用在生产者-消费者场景。</li>
+<li>生产者生产对象，并放入阻塞队列，直至队列已满，被阻塞。</li>
+<li>消费者消费对象，从阻塞队列中取，直至队列已空，被阻塞。</li>
+</ol>
+<h4 id="队列操作方法"><a href="#队列操作方法" class="headerlink" title="队列操作方法"></a>队列操作方法</h4><p>一共有四套方法。</p>
+<p><img src="/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png" alt="图示"></p>
+<h5 id="第一套方法：Throws-Exception"><a href="#第一套方法：Throws-Exception" class="headerlink" title="第一套方法：Throws Exception"></a>第一套方法：Throws Exception</h5><p>如果操作不能马上执行就会抛出异常。<br>type | method<br>-| -<br>Insert | add(o)<br>Remove  |  remove(o)<br>Examine  |  element()</p>
+<h5 id="第二套方法：Special-Value"><a href="#第二套方法：Special-Value" class="headerlink" title="第二套方法：Special Value"></a>第二套方法：Special Value</h5><p>如果操作不能马上执行就会返回一个特殊值。一般是true/false<br>type | method<br>-| -<br>Insert | offer(o)<br>Remove  |  poll()<br>Examine  |  peek()</p>
+<h5 id="第三套方法：Blocks"><a href="#第三套方法：Blocks" class="headerlink" title="第三套方法：Blocks"></a>第三套方法：Blocks</h5><p>如果操作不能马上执行就会进行阻塞操作。<br>type | method<br>-| -<br>Insert | put()<br>Remove  |  take()<br>Examine  |  无</p>
+<h5 id="第四套方法：Times-Out"><a href="#第四套方法：Times-Out" class="headerlink" title="第四套方法：Times Out"></a>第四套方法：Times Out</h5><p>如果操作不能马上执行就会给定一个超时时间。如果超时时间已经过期还未执行就会返回一个特殊值。一般是true/false<br>type | method<br>-| -<br>Insert | offer(o，timeout，timeunit)<br>Remove  |  poll(timeout，timeunit)<br>Examine  | 无</p>
+<h4 id="事件类"><a href="#事件类" class="headerlink" title="事件类"></a>事件类</h4><h5 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h5><ol>
+<li>是一个有界的（容量有限,初始化时指定容量，之后不得更改）阻塞队列。</li>
+<li>其内部实现为数组。</li>
+<li>是以FIFO的方式存放数据。</li>
+</ol>
+<h5 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h5><ol>
+<li>阻塞的对象是队列的内部元素。</li>
+<li>其内部元素必须实现J.U.C中Delayed接口。Delayed接口继承了Comparable接口。说明DelayQueue中的元素需要排序。一般按照元素过期时间的优先级排序。</li>
+<li>底层实现是：PriorityQueue和Lock。</li>
+<li>使用场景广泛：连接的定时关闭、缓存对象、超时处理等。</li>
+</ol>
+<h5 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h5><ol>
+<li>是BlockingQueue的一种链接版本。</li>
+<li>见名知意，因为使用链接，故而若初始化时指定容量则是有界队列，否则默认队列的长度可变。</li>
+<li>使用链接，故底层实现是链表。</li>
+<li>是以FIFO的方式存放数据。</li>
+</ol>
+<h5 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h5><ol>
+<li>见名知意，它是BlockingQueue的附加优先级的队列。</li>
+<li>是一个无边界的队列，但有排序规则。</li>
+<li>队列允许插入的元素为空（null）。</li>
+<li>其内部元素必须实现Comparable接口。</li>
+<li>队列中优先级的排序规则：通过自定义地对Comparable接口的实现来指定规则。</li>
+<li>可以从PriorityBlockingQueue中获得一个迭代器（iterator），但并不保证按照队列中元素的优先级进行迭代。</li>
+</ol>
+<h5 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h5><ol>
+<li>见名知意，即为“同步队列”。</li>
+<li>队列内部仅允许容纳一个元素，即放入一个元素后只等待其被取走。</li>
+<li>是一个无界非缓存队列。</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/订阅号QRcode.jpg" alt="SupriseMF wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信订阅号【星球码】，分享学习编程奇淫巧技~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢就支持我呀(*^∇^*)~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/微信收款.jpg" alt="SupriseMF 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/支付宝收款.jpg" alt="SupriseMF 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SupriseMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/" title="J.U.C之BlockingQueue">http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"># Java</a>
+          
+            <a href="/tags/并发编程/" rel="tag"># 并发编程</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
         
-        
+
         
 
         
           
-          <div class="collection-title">
-            <h2 class="archive-year" id="archive-year-2018">2018</h2>
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
           </div>
         
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/03/J-U-C之AQS—Condition/" itemprop="url">
-              
-                <span itemprop="name">J.U.C之AQS—Condition</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-03T08:30:23+08:00"
-              content="2018-08-03" >
-          08-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+        </div>
+      
       
 
-        
-        
-        
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/J-U-C之ForkJoin/" rel="next" title="J.U.C之ForkJoin">
+                <i class="fa fa-chevron-left"></i> J.U.C之ForkJoin
+              </a>
+            
+          </div>
 
-        
-        
+          <span class="post-nav-divider"></span>
 
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/J-U-C之AQS—CyclicBarrier/" itemprop="url">
-              
-                <span itemprop="name">J.U.C之AQS—CyclicBarrier</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T23:55:32+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/J-U-C之AQS—Semaphore/" itemprop="url">
-              
-                <span itemprop="name">J.U.C之AQS—Semaphore</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T23:49:58+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/J-U-C之AQS—CountDownLatch/" itemprop="url">
-              
-                <span itemprop="name">J.U.C之AQS—CountDownLatch</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T19:48:25+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h3 class="post-title">
-        
-            <a class="post-title-link" href="/2018/08/02/AQS介绍/" itemprop="url">
-              
-                <span itemprop="name">AQS介绍</span>
-              
-            </a>
-        
-      </h3>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-08-02T19:37:15+08:00"
-              content="2018-08-02" >
-          08-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-    </div>
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span><a class="page-number" href="/archives/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/archives/page/8/">8</a><a class="extend next" rel="next" href="/archives/page/3/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/08/03/J-U-C之BlockingQueue/"
+     data-title="J.U.C之BlockingQueue"
+     data-content=""
+     data-url="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/08/03/J-U-C之BlockingQueue/"
+           data-title="J.U.C之BlockingQueue" data-url="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/">
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -853,8 +1012,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -975,6 +1143,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景分析"><span class="nav-number">2.</span> <span class="nav-text">场景分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列操作方法"><span class="nav-number">3.</span> <span class="nav-text">队列操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一套方法：Throws-Exception"><span class="nav-number">3.1.</span> <span class="nav-text">第一套方法：Throws Exception</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二套方法：Special-Value"><span class="nav-number">3.2.</span> <span class="nav-text">第二套方法：Special Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三套方法：Blocks"><span class="nav-number">3.3.</span> <span class="nav-text">第三套方法：Blocks</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四套方法：Times-Out"><span class="nav-number">3.4.</span> <span class="nav-text">第四套方法：Times Out</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件类"><span class="nav-number">4.</span> <span class="nav-text">事件类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayBlockingQueue"><span class="nav-number">4.1.</span> <span class="nav-text">ArrayBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DelayQueue"><span class="nav-number">4.2.</span> <span class="nav-text">DelayQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedBlockingQueue"><span class="nav-number">4.3.</span> <span class="nav-text">LinkedBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PriorityBlockingQueue"><span class="nav-number">4.4.</span> <span class="nav-text">PriorityBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SynchronousQueue"><span class="nav-number">4.5.</span> <span class="nav-text">SynchronousQueue</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1193,6 +1377,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1771,26 +1959,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

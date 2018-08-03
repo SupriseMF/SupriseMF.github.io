@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://suprisemf.github.io/2018/08/03/J-U-C%E4%B9%8BBlockingQueue/</loc>
+    
+    <lastmod>2018-08-03T01:07:32.954Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://suprisemf.github.io/2018/08/03/J-U-C%E4%B9%8BForkJoin/</loc>
     
-    <lastmod>2018-08-03T01:03:01.820Z</lastmod>
+    <lastmod>2018-08-03T01:03:25.311Z</lastmod>
     
   </url>
   
