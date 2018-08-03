@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="AtomicLong与AtomicInteger 根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。  AtomicLong与LongAdder 但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
+<meta name="description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全之原子性--Atomic包-Part-2">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-2/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="AtomicLong与AtomicInteger 根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。  AtomicLong与LongAdder 但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
+<meta property="og:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-08-02T09:32:36.242Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程安全之原子性--Atomic包-Part-2">
-<meta name="twitter:description" content="AtomicLong与AtomicInteger 根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。  AtomicLong与LongAdder 但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
+<meta name="twitter:description" content="AtomicLong与AtomicInteger根据part-1中代码，其实使用AtomicLong代替AtomicInteger，而其他不用替换是完全可以的。同样也是线程安全的。 AtomicLong与LongAdder但是重点是JDK 1.8中新增的LongAdder类，它与AtomicLong在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。">
 
 
 
@@ -738,7 +738,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  687 字
+                  701 字
                 </span>
               
 
@@ -754,7 +754,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2 分钟
+                  3 分钟
                 </span>
               
             </div>
@@ -775,82 +775,23 @@
       
 
       
-        <h4 id="atomiclong与atomicinteger"><a class="markdownIt-Anchor" href="#atomiclong与atomicinteger"></a> AtomicLong与AtomicInteger</h4>
-<p>根据part-1中代码，其实使用<code>AtomicLong</code>代替<code>AtomicInteger</code>，而其他不用替换是完全可以的。同样也是线程安全的。</p>
-<h3 id="atomiclong与longadder"><a class="markdownIt-Anchor" href="#atomiclong与longadder"></a> AtomicLong与LongAdder</h3>
-<p>但是重点是JDK 1.8中新增的<code>LongAdder</code>类，它与<code>AtomicLong</code>在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。</p>
+        <h4 id="AtomicLong与AtomicInteger"><a href="#AtomicLong与AtomicInteger" class="headerlink" title="AtomicLong与AtomicInteger"></a>AtomicLong与AtomicInteger</h4><p>根据part-1中代码，其实使用<code>AtomicLong</code>代替<code>AtomicInteger</code>，而其他不用替换是完全可以的。同样也是线程安全的。</p>
+<h3 id="AtomicLong与LongAdder"><a href="#AtomicLong与LongAdder" class="headerlink" title="AtomicLong与LongAdder"></a>AtomicLong与LongAdder</h3><p>但是重点是JDK 1.8中新增的<code>LongAdder</code>类，它与<code>AtomicLong</code>在上节的测试中有相同的效果（线程安全），只需稍微换成各自对应的方法即可。</p>
 <a id="more"></a>
 <p><strong>那两者的区别是什么？</strong></p>
-<p>肯定的说，新增的该类一定或多或少比<code>AtomicLong</code>类及<code>AtomicInteger</code>类有优点的，那么是什么？<br>
-浅析如下：</p>
-<h5 id="优点"><a class="markdownIt-Anchor" href="#优点"></a> 优点：</h5>
-<ol>
-<li>
-<p>由于AtomicLong的底层是CAS原理，即通过死循环不断地比较当前值与主内存的值，那么当线程并发量较少时其比较成功的概率是高的，但放并发量很大时，比较成功概率就会很低，越低则死循环持续的时间越久，占用的系统资源越大，系统运行的效率越低。</p>
+<p>肯定的说，新增的该类一定或多或少比<code>AtomicLong</code>类及<code>AtomicInteger</code>类有优点的，那么是什么？<br>浅析如下：</p>
+<h5 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h5><ol>
+<li><p>由于AtomicLong的底层是CAS原理，即通过死循环不断地比较当前值与主内存的值，那么当线程并发量较少时其比较成功的概率是高的，但放并发量很大时，比较成功概率就会很低，越低则死循环持续的时间越久，占用的系统资源越大，系统运行的效率越低。</p>
 </li>
-<li>
-<p>对于基础数据类型的long或double时,JVM会允许将64位的读操作或写操作拆分为两个32位的操作。同理，LongAdder也是采用相似的思想。</p>
-</li>
-</ol>
+<li><p>对于基础数据类型的long或double时,JVM会允许将64位的读操作或写操作拆分为两个32位的操作。同理，LongAdder也是采用相似的思想。</p>
 <blockquote>
 <p>LongAdder的实现思想为：<strong>热点数据分离</strong>：将AtomicLong的核心数据value分离为一个数组，每个线程访问时通过hash等算法预测到其中的一个数字进行计数，最终的计数结果为该数组各部分的求和。热点数据value会被分为多个部分的shell，每个shell独自维护各自的值，而当前对象的实际值为各部分shell的累加和。保证热点数据的有效分离，提高并行度。<strong>LongAdder类实际是在AtomicLong的基础上进行了优化：在低并发时不做分离，同AtomicLong是对base的直接CAS更新，但是高并发时将单点的压力分摊到各部分的shell上以提高性能。</strong></p>
 </blockquote>
-<h5 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点：</h5>
-<p>该类将数据分类后，再次进行各部分shell的数据进行统计时，如果此时存在并发更新，可能会导致统计的数据出现误差。</p>
+</li>
+</ol>
+<h5 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h5><p>该类将数据分类后，再次进行各部分shell的数据进行统计时，如果此时存在并发更新，可能会导致统计的数据出现误差。</p>
 <p><strong>实际使用中，在处理高并发情况的时候要优先使用LongAdder类。当线程竞争低、全局唯一的准确是数值类似序列号生成等情况优先使用AtomicXXX类</strong></p>
-<h4 id="知识拓展补充"><a class="markdownIt-Anchor" href="#知识拓展补充"></a> 知识拓展补充</h4>
-<p>下表为JAVA的8种基本数据类型所占位数及初始值:</p>
-<table>
-<thead>
-<tr>
-<th>基础数据类型</th>
-<th>所占位数</th>
-<th>初始值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>byte字节型</td>
-<td>1字节(8bit)</td>
-<td>0</td>
-</tr>
-<tr>
-<td>char字符型</td>
-<td>2字节(16bit)</td>
-<td>空格</td>
-</tr>
-<tr>
-<td>short短整型</td>
-<td>2字节(16bit)</td>
-<td>0</td>
-</tr>
-<tr>
-<td>int整型</td>
-<td>4字节(32bit)</td>
-<td>0</td>
-</tr>
-<tr>
-<td>long长整型</td>
-<td>8字节(64Bit)</td>
-<td>0L</td>
-</tr>
-<tr>
-<td>float单精度浮点型</td>
-<td>4字节(32bit)</td>
-<td>0.0f</td>
-</tr>
-<tr>
-<td>double双精度浮点型</td>
-<td>8字节(64bit)</td>
-<td>0.0d</td>
-</tr>
-<tr>
-<td>boolean</td>
-<td>java未明确指出的大小(可能1bit、1byte、4byte)</td>
-<td>false</td>
-</tr>
-</tbody>
-</table>
+<h4 id="知识拓展补充"><a href="#知识拓展补充" class="headerlink" title="知识拓展补充"></a>知识拓展补充</h4><p>下表为JAVA的8种基本数据类型所占位数及初始值:<br>基础数据类型 | 所占位数 | 初始值<br>-|-|-<br>byte字节型| 1字节(8bit) |    0<br>char字符型  | 2字节(16bit)    | 空格<br>short短整型 |  2字节(16bit)    | 0<br>int整型 |  4字节(32bit)    | 0<br>long长整型  | 8字节(64Bit)    | 0L<br>float单精度浮点型 |  4字节(32bit)    | 0.0f<br>double双精度浮点型  | 8字节(64bit) |    0.0d<br>boolean    | java未明确指出的大小(可能1bit、1byte、4byte)    | false</p>
 
       
     </div>
@@ -1075,7 +1016,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1187,7 +1128,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#atomiclong与atomicinteger"><span class="nav-number">1.</span> <span class="nav-text"> AtomicLong与AtomicInteger</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#atomiclong与longadder"><span class="nav-number"></span> <span class="nav-text"> AtomicLong与LongAdder</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点"><span class="nav-number">0.1.</span> <span class="nav-text"> 优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点"><span class="nav-number">0.2.</span> <span class="nav-text"> 缺点：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#知识拓展补充"><span class="nav-number">1.</span> <span class="nav-text"> 知识拓展补充</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#AtomicLong与AtomicInteger"><span class="nav-number">1.</span> <span class="nav-text">AtomicLong与AtomicInteger</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicLong与LongAdder"><span class="nav-number"></span> <span class="nav-text">AtomicLong与LongAdder</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#优点："><span class="nav-number">0.1.</span> <span class="nav-text">优点：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#缺点："><span class="nav-number">0.2.</span> <span class="nav-text">缺点：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#知识拓展补充"><span class="nav-number">1.</span> <span class="nav-text">知识拓展补充</span></a></li></ol></div>
             
 
           </div>
@@ -1233,7 +1174,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">53.1k</span>
   
 </div>
 

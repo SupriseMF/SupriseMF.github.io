@@ -118,23 +118,23 @@
 
 
 
-<meta name="description" content="概述 指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
+<meta name="description" content="概述指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="线程安全-可见性">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述 指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
+<meta property="og:description" content="概述指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%86%99.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E8%AF%BB.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%8F%AF%E8%A7%81%E6%80%A7%E6%B5%8B%E8%AF%95-1.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%8F%AF%E8%A7%81%E6%80%A7%E6%B5%8B%E8%AF%95-2.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/volatile写.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/volatile读.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/volatile可见性测试-1.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/volatile可见性测试-2.png">
 <meta property="og:updated_time" content="2018-08-02T10:01:10.467Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程安全-可见性">
-<meta name="twitter:description" content="概述 指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%86%99.png">
+<meta name="twitter:description" content="概述指一个线程对主内存的修改，可以及时地被其他线程观察到。  导致共享变量在线程间不可见的原因有：  多线程交叉进行。 重排序结合多线程运行。 共享变量更新后的值未及时进行工作内存与主内存的更新。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/线程安全-可见性/volatile写.png">
 
 
 
@@ -780,8 +780,7 @@
       
 
       
-        <h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4>
-<p>指一个线程对主内存的修改，可以及时地被其他线程观察到。</p>
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>指一个线程对主内存的修改，可以及时地被其他线程观察到。</p>
 <blockquote>
 <p>导致共享变量在线程间不可见的原因有：</p>
 <ol>
@@ -791,43 +790,36 @@
 </ol>
 </blockquote>
 <a id="more"></a>
-<h4 id="可见性之synchronized关键字"><a class="markdownIt-Anchor" href="#可见性之synchronized关键字"></a> 可见性之synchronized关键字</h4>
-<p>Java内存模型对synchronized关键字有两条规定。</p>
+<h4 id="可见性之synchronized关键字"><a href="#可见性之synchronized关键字" class="headerlink" title="可见性之synchronized关键字"></a>可见性之synchronized关键字</h4><p>Java内存模型对synchronized关键字有两条规定。</p>
 <ol>
 <li>线程解锁前必须把共享变量的最新值刷新到主内存。</li>
 <li>线程加锁时，将清空工作内存中共享变量的值。那么工作内存需要时只能从工作内存中取值。</li>
 </ol>
 <p><strong>工作原理：此时的加锁和解锁用的是一个锁，即多线程之间共享synchronized一个锁。</strong></p>
-<h4 id="可见性之volatile关键字"><a class="markdownIt-Anchor" href="#可见性之volatile关键字"></a> 可见性之volatile关键字</h4>
-<p><strong>工作原理：通过加入<code>内存屏障</code>和<code>禁止重排序优化</code>来实现，即通过<code>内存屏障</code>保证了<code>禁止重排序优化</code></strong><br>
-<code>内存屏障</code>从以下两点进行说明：</p>
+<h4 id="可见性之volatile关键字"><a href="#可见性之volatile关键字" class="headerlink" title="可见性之volatile关键字"></a>可见性之volatile关键字</h4><p><strong>工作原理：通过加入<code>内存屏障</code>和<code>禁止重排序优化</code>来实现，即通过<code>内存屏障</code>保证了<code>禁止重排序优化</code></strong><br><code>内存屏障</code>从以下两点进行说明：</p>
 <ol>
 <li>对volatile变量进行写操作时，会在写操作后加入一条store屏障指令，将本地工作内存中的值刷新到主内存。</li>
-<li>对volatile变量进行读操作时，会在读操作前加入一条load屏障指令，从主内存读取共享变量的值。</li>
-</ol>
-<blockquote>
+<li>对volatile变量进行读操作时，会在读操作前加入一条load屏障指令，从主内存读取共享变量的值。<blockquote>
 <p>即强迫从主内存中的共享变量进行交互。</p>
 </blockquote>
+</li>
+</ol>
 <p><strong>volatile写原理：</strong></p>
-<p><img src="/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%86%99.png" alt="volatile写"></p>
+<p><img src="/2018/08/02/线程安全-可见性/volatile写.png" alt="volatile写"></p>
 <p><strong>volatile读原理：</strong></p>
-<p><img src="/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E8%AF%BB.png" alt="volatile读"></p>
-<p>示例代码：</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample4</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="comment">// 1、count</span></span><br><span class="line">        <span class="comment">// 2、+1</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="comment">// 3、count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>多次运行结果：仍然无法保证线程安全<br>
-两次测试结果如下：</p>
-<p><img src="/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%8F%AF%E8%A7%81%E6%80%A7%E6%B5%8B%E8%AF%95-1.png" alt="图示"></p>
-<p><img src="/2018/08/02/线程安全-可见性/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8-%E5%8F%AF%E8%A7%81%E6%80%A7/volatile%E5%8F%AF%E8%A7%81%E6%80%A7%E6%B5%8B%E8%AF%95-2.png" alt="图示"></p>
-<h5 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析：</h5>
-<p>volatile修饰的count进行++时，分为三步进行：</p>
+<p><img src="/2018/08/02/线程安全-可见性/volatile读.png" alt="volatile读"></p>
+<p>示例代码：<br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CountExample4</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 请求总数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> clientTotal = <span class="number">5000</span>;</span><br><span class="line">    <span class="comment">// 同时并发执行的线程数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> threadTotal = <span class="number">200</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">volatile</span> <span class="keyword">int</span> count = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        ExecutorService executorService = Executors.newCachedThreadPool();</span><br><span class="line">        <span class="keyword">final</span> Semaphore semaphore = <span class="keyword">new</span> Semaphore(threadTotal);</span><br><span class="line">        <span class="keyword">final</span> CountDownLatch countDownLatch = <span class="keyword">new</span> CountDownLatch(clientTotal);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; clientTotal ; i++) &#123;</span><br><span class="line">            executorService.execute(() -&gt; &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    semaphore.acquire();</span><br><span class="line">                    add();</span><br><span class="line">                    semaphore.release();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">                    log.<span class="keyword">error</span>(<span class="string">"exception"</span>, e);</span><br><span class="line">                &#125;</span><br><span class="line">                countDownLatch.countDown();</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        countDownLatch.await();</span><br><span class="line">        executorService.shutdown();</span><br><span class="line">        log.info(<span class="string">"count:&#123;&#125;"</span>, count);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        count++;</span><br><span class="line">        <span class="comment">// 1、count</span></span><br><span class="line">        <span class="comment">// 2、+1</span></span><br><span class="line"></span><br><span class="line">    &#125;<span class="comment">// 3、count</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>多次运行结果：仍然无法保证线程安全<br>两次测试结果如下：</p>
+<p><img src="/2018/08/02/线程安全-可见性/volatile可见性测试-1.png" alt="图示"></p>
+<p><img src="/2018/08/02/线程安全-可见性/volatile可见性测试-2.png" alt="图示"></p>
+<h5 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h5><p>volatile修饰的count进行++时，分为三步进行：</p>
 <ol>
 <li>取出count</li>
 <li>count+1</li>
 <li>写入count</li>
 </ol>
 <p>已知在第一步的取数时，取出的都是主内存的最新值。<strong>但是写入的时候就可能发生问题。</strong> 当多个线程进行操作时，同时取出主内存中的<code>count</code>，并执行+1，然后同时写入主内存，那么导致请求总数永远比<code>clientcount</code>值小，即<strong>volatile关键字只能保证可见性，但并具有原子性，不能保证线程安全</strong>！</p>
-<h5 id="volatile使用的场景"><a class="markdownIt-Anchor" href="#volatile使用的场景"></a> volatile使用的场景</h5>
-<p>场景需具备的条件：</p>
+<h5 id="volatile使用的场景"><a href="#volatile使用的场景" class="headerlink" title="volatile使用的场景"></a>volatile使用的场景</h5><p>场景需具备的条件：</p>
 <ol>
 <li>对变量的写操作不依赖与当前值</li>
 <li>该变量没有包含在具有其他变量的不变的式子中。</li>
@@ -1061,7 +1053,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1173,7 +1165,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text"> 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性之synchronized关键字"><span class="nav-number">2.</span> <span class="nav-text"> 可见性之synchronized关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性之volatile关键字"><span class="nav-number">3.</span> <span class="nav-text"> 可见性之volatile关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析"><span class="nav-number">3.1.</span> <span class="nav-text"> 分析：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#volatile使用的场景"><span class="nav-number">3.2.</span> <span class="nav-text"> volatile使用的场景</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性之synchronized关键字"><span class="nav-number">2.</span> <span class="nav-text">可见性之synchronized关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可见性之volatile关键字"><span class="nav-number">3.</span> <span class="nav-text">可见性之volatile关键字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#分析："><span class="nav-number">3.1.</span> <span class="nav-text">分析：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#volatile使用的场景"><span class="nav-number">3.2.</span> <span class="nav-text">volatile使用的场景</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1219,7 +1211,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">53.1k</span>
   
 </div>
 

@@ -118,18 +118,18 @@
 
 
 
-<meta name="description" content="概述 Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta name="description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="内在锁Synchronized关键字">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/内在锁synchronized关键字/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述 Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta property="og:description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-08-02T09:51:56.257Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="内在锁Synchronized关键字">
-<meta name="twitter:description" content="概述 Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
+<meta name="twitter:description" content="概述Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。">
 
 
 
@@ -775,9 +775,7 @@
       
 
       
-        <h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4>
-<p>Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。<a id="more"></a><br>
-在使用得当的时候，内在锁可以让程序做到线程安全，但是在使用锁定保护短的代码路径，而且线程频繁地争用锁的时候，锁定可能成为相当繁重的操作。<a href="https://www.ibm.com/developerworks/cn/java/j-jtp04186/" target="_blank" rel="noopener">参考学习</a></p>
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Java 语言中主要的同步手段就是 synchronized 关键字，它强制实行互斥，确保执行 synchronized 块的线程的动作，能够被后来执行受相同锁保护的 synchronized 块的其他线程看到。<a id="more"></a><br>在使用得当的时候，内在锁可以让程序做到线程安全，但是在使用锁定保护短的代码路径，而且线程频繁地争用锁的时候，锁定可能成为相当繁重的操作。<a href="https://www.ibm.com/developerworks/cn/java/j-jtp04186/" target="_blank" rel="noopener">参考学习</a></p>
 <blockquote>
 <p>内在锁synchronized关键字的实现依赖于JVM，因此<strong>在这个关键字作用的对象的作用范围内都是同一时刻只能有一个线程进行操作。</strong></p>
 </blockquote>
@@ -788,11 +786,8 @@
 <li>修饰静态方法：指整个静态方法，由于静态方法可以被理解为类级别的对象，因此它作用于该类的所有的对象。</li>
 <li>修饰类：指整个类，作用于该类的所有的对象。</li>
 </ol>
-<h4 id="引申拓展另一种锁lock"><a class="markdownIt-Anchor" href="#引申拓展另一种锁lock"></a> 引申拓展：另一种锁Lock</h4>
-<p>JDK提供的基于源码的锁，依赖于特殊的CPU指令、代码实现。其代表为ReentrantLock.<br>
-后续将会单独做一篇手记。</p>
-<h4 id="线程安全中原子性方式的简单对比"><a class="markdownIt-Anchor" href="#线程安全中原子性方式的简单对比"></a> 线程安全中原子性方式的简单对比</h4>
-<ol>
+<h4 id="引申拓展：另一种锁Lock"><a href="#引申拓展：另一种锁Lock" class="headerlink" title="引申拓展：另一种锁Lock"></a>引申拓展：另一种锁Lock</h4><p>JDK提供的基于源码的锁，依赖于特殊的CPU指令、代码实现。其代表为ReentrantLock.<br>后续将会单独做一篇手记。</p>
+<h4 id="线程安全中原子性方式的简单对比"><a href="#线程安全中原子性方式的简单对比" class="headerlink" title="线程安全中原子性方式的简单对比"></a>线程安全中原子性方式的简单对比</h4><ol>
 <li>synchronized：是不可中断锁，适合竞争不激烈的场景，其可读性较好。</li>
 <li>Lock：可通过unlock进行锁的中断，在竞争激烈时仍可以保持常态，同步多样化。</li>
 <li>Atomic包：竞争激烈时也可以保持常态，性能比Lock好，但缺点是只能通过CAS同步一个值。</li>
@@ -1021,7 +1016,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1133,7 +1128,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text"> 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引申拓展另一种锁lock"><span class="nav-number">2.</span> <span class="nav-text"> 引申拓展：另一种锁Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全中原子性方式的简单对比"><span class="nav-number">3.</span> <span class="nav-text"> 线程安全中原子性方式的简单对比</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#引申拓展：另一种锁Lock"><span class="nav-number">2.</span> <span class="nav-text">引申拓展：另一种锁Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全中原子性方式的简单对比"><span class="nav-number">3.</span> <span class="nav-text">线程安全中原子性方式的简单对比</span></a></li></ol></div>
             
 
           </div>
@@ -1179,7 +1174,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">53.1k</span>
   
 </div>
 

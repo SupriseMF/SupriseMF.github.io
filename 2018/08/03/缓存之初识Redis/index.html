@@ -105,7 +105,7 @@
 
 
 
-  <meta name="keywords" content="我的红宝石星球" />
+  <meta name="keywords" content="Java,线程高并发," />
 
 
 
@@ -118,17 +118,20 @@
 
 
 
-<meta name="description" content="Java Python 编译器 操作系统">
-<meta name="keywords" content="Java Python 编译器 操作系统">
-<meta property="og:type" content="website">
-<meta property="og:title" content="红宝石星球">
-<meta property="og:url" content="http://suprisemf.github.io/page/8/index.html">
+<meta name="description" content="概述Redis即Remote Dictionary Service的简称，即远程字典服务。它是一个远程的非关系型内存数据库。性能强劲。具有复制特性，以及为解决数据而生的独一无二的数据模型：可以存储键值对、以及五种不同类型的值之间的映射。并提供将内存中数据持久化到硬盘功能。可以使用复制特性扩展读性能；可以使用客户端分片扩展写性能。">
+<meta name="keywords" content="Java,线程高并发">
+<meta property="og:type" content="article">
+<meta property="og:title" content="缓存之初识Redis">
+<meta property="og:url" content="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="Java Python 编译器 操作系统">
+<meta property="og:description" content="概述Redis即Remote Dictionary Service的简称，即远程字典服务。它是一个远程的非关系型内存数据库。性能强劲。具有复制特性，以及为解决数据而生的独一无二的数据模型：可以存储键值对、以及五种不同类型的值之间的映射。并提供将内存中数据持久化到硬盘功能。可以使用复制特性扩展读性能；可以使用客户端分片扩展写性能。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/Redis.png">
+<meta property="og:updated_time" content="2018-08-03T05:26:45.438Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="红宝石星球">
-<meta name="twitter:description" content="Java Python 编译器 操作系统">
+<meta name="twitter:title" content="缓存之初识Redis">
+<meta name="twitter:description" content="概述Redis即Remote Dictionary Service的简称，即远程字典服务。它是一个远程的非关系型内存数据库。性能强劲。具有复制特性，以及为解决数据而生的独一无二的数据模型：可以存储键值对、以及五种不同类型的值之间的映射。并提供将内存中数据持久化到硬盘功能。可以使用复制特性扩展读性能；可以使用客户端分片扩展写性能。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/Redis.png">
 
 
 
@@ -158,13 +161,13 @@
 
 
 
-  <link rel="canonical" href="http://suprisemf.github.io/page/8/"/>
+  <link rel="canonical" href="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/"/>
 
 
 
 
 
-  <title>红宝石星球 - 凡心所向，素履以往；生如逆旅，一苇以航。</title>
+  <title>缓存之初识Redis | 红宝石星球</title>
   
 
 
@@ -285,8 +288,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -607,9 +609,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -622,7 +624,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/spring的自定义注解/">
+    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SupriseMF">
@@ -639,9 +641,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/spring的自定义注解/" itemprop="url">Spring的自定义注解</a></h2>
+          <h2 class="post-title" itemprop="name headline">缓存之初识Redis</h2>
         
 
         <div class="post-meta">
@@ -653,8 +653,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:56:47+08:00">
-                2018-08-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-03T13:25:16+08:00">
+                2018-08-03
               </time>
             
 
@@ -669,8 +669,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:19:48+08:00">
-                2018-08-02
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T13:26:45+08:00">
+                2018-08-03
               </time>
             
           </span>
@@ -688,8 +688,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
+                  <a href="/categories/高并发解决方案/" itemprop="url" rel="index">
+                    <span itemprop="name">高并发解决方案</span>
                   </a>
                 </span>
 
@@ -706,8 +706,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/08/02/spring的自定义注解/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/spring的自定义注解/" itemprop="commentCount"></span>
+                <a href="/2018/08/03/缓存之初识Redis/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/03/缓存之初识Redis/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -715,7 +715,7 @@
 
           
           
-             <span id="/2018/08/02/spring的自定义注解/" class="leancloud_visitors" data-flag-title="Spring的自定义注解">
+             <span id="/2018/08/03/缓存之初识Redis/" class="leancloud_visitors" data-flag-title="缓存之初识Redis">
                <span class="post-meta-divider"></span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -740,430 +740,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  745 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="自定义的注解"><a href="#自定义的注解" class="headerlink" title="自定义的注解"></a>自定义的注解</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明注解需两个属性。此ThreadSafe只是一个**线程安全**的标识</span></span><br><span class="line"><span class="meta">@Target(ElementType.TYPE)</span><span class="comment">//给类做注解，其中target的其他值很多</span></span><br><span class="line"><span class="meta">@Retention(RetentionPolicy.SOURCE)</span><span class="comment">//只在源码中起作用：标识。其他值详述。</span></span><br><span class="line"><span class="keyword">public</span> <span class="meta">@interface</span> ThreadSafe &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过value（）给其名字，并给出默认名称。</span></span><br><span class="line">    String value() <span class="keyword">default</span> <span class="string">""</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/spring的自定义注解/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/线程安全之原子性-Atomic包-part-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/线程安全之原子性-Atomic包-part-1/" itemprop="url">线程安全之原子性--Atomic包-Part-1</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:47:11+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:19:28+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/线程安全之原子性-Atomic包-part-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/线程安全之原子性-Atomic包-part-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/线程安全之原子性-Atomic包-part-1/" class="leancloud_visitors" data-flag-title="线程安全之原子性--Atomic包-Part-1">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,161 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="概览"><a href="#概览" class="headerlink" title="概览"></a>概览</h4><h6 id="线程安全"><a href="#线程安全" class="headerlink" title="线程安全"></a>线程安全</h6><ul>
-<li>原子性：提供了互斥访问，同一时刻只能有一个线程来对它进行操作；</li>
-<li>可见性：一个线程对主内存的修改可以及时地被其他线程知道；</li>
-<li>有序性：一个线程观察其他线程中的指令执行顺序，由于指令重排序的存在，该观察结果一般杂乱无序。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/线程安全之原子性-Atomic包-part-1/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/并发的优势与风险/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/并发的优势与风险/" itemprop="url">并发的优势与风险</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:43:02+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:18:59+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/并发的优势与风险/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/并发的优势与风险/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/并发的优势与风险/" class="leancloud_visitors" data-flag-title="并发的优势与风险">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  185 字
+                  415 字
                 </span>
               
 
@@ -1200,18 +777,34 @@
       
 
       
-        
-          <h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><h4 id="速度"><a href="#速度" class="headerlink" title="速度"></a>速度</h4><ul>
-<li>系统可以处理多个请求，响应速度更快；</li>
-<li>复杂的操作可以分割为多个进程同时进行。</li></ul>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/并发的优势与风险/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>Redis即<strong>Re</strong>mote <strong>Di</strong>ctionary <strong>S</strong>ervice的简称，即远程字典服务。<br>它是一个远程的非关系型内存数据库。性能强劲。具有复制特性，以及为解决数据而生的独一无二的数据模型：可以存储键值对、以及五种不同类型的值之间的映射。并提供将内存中数据持久化到硬盘功能。可以使用复制特性扩展读性能；可以使用客户端分片扩展写性能。<br><a id="more"></a><br>如下图所示：</p>
+<p><img src="/2018/08/03/缓存之初识Redis/Redis.png" alt="图示"></p>
+<h4 id="Redis特点"><a href="#Redis特点" class="headerlink" title="Redis特点"></a>Redis特点</h4><ol>
+<li>支持数据的持久化，将内存中数据持久化到硬盘，重启后可以再次加载至内存。</li>
+<li>支持上图中string、hash、list、set、sorted set等数据类型。</li>
+<li>支持数据的备份，即master-slave主从数据备份。</li>
+<li>功能强大：</li>
+</ol>
+<ul>
+<li>性能极高：读取速度高达11W/s，写速度高达8.1W/s（官方数据）。</li>
+<li>支持丰富的数据类型。</li>
+<li>其操作均具有原子性，包括多个操作后另外操作的原子性。</li>
+<li>支持publish、subscribe、通知、key过期等等功能。</li>
+</ul>
+<h4 id="Redis适用场景"><a href="#Redis适用场景" class="headerlink" title="Redis适用场景"></a>Redis适用场景</h4><ol>
+<li>当需要取出n个最新数据的操作时。</li>
+<li>当需要实现排行榜类似的应用时。</li>
+<li>当需要精准设定过期时间的应用时。</li>
+<li>当需要使用计数器的应用时。</li>
+<li>当需要做唯一性检查时。</li>
+<li>当需要获取某一时间段内所有数据排头的数据时。</li>
+<li>实时系统。</li>
+<li>垃圾系统。</li>
+<li>使用pub、sub构建消息系统。</li>
+<li>构建队列系统。</li>
+<li>实现最基础的缓存功能时。</li>
+</ol>
+
       
     </div>
     
@@ -1219,443 +812,115 @@
     
 
     
+      <div>
+        <div id="wechat_subscriber" style="display: block; padding: 10px 0; margin: 20px auto; width: 100%; text-align: center">
+    <img id="wechat_subscriber_qcode" src="/images/订阅号QRcode.jpg" alt="SupriseMF wechat" style="width: 200px; max-width: 100%;"/>
+    <div>欢迎关注微信订阅号【星球码】，分享学习编程奇淫巧技~</div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>喜欢就支持我呀(*^∇^*)~</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/微信收款.jpg" alt="SupriseMF 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/支付宝收款.jpg" alt="SupriseMF 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
 
     
 
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    SupriseMF
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/" title="缓存之初识Redis">http://suprisemf.github.io/2018/08/03/缓存之初识Redis/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/Java内存模型/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/Java内存模型/" itemprop="url">Java内存模型</a></h2>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:29:16+08:00">
-                2018-08-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:18:34+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-
+            <a href="/tags/线程高并发/" rel="tag"># 线程高并发</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/Java内存模型/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/Java内存模型/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/Java内存模型/" class="leancloud_visitors" data-flag-title="Java内存模型">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,232 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  4 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。<br>其中<strong>Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范</strong></p>
-</blockquote>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/Java内存模型/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://suprisemf.github.io/2018/08/02/乱序执行优化/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="SupriseMF">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/星球.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="红宝石星球">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h2 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/02/乱序执行优化/" itemprop="url">CPU多级缓存——乱序执行优化</a></h2>
+        <div class="post-widgets">
         
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-02T15:25:46+08:00">
-                2018-08-02
-              </time>
-            
+        
 
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-02T17:17:47+08:00">
-                2018-08-02
-              </time>
-            
-          </span>
-
+        
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Java之并发编程/" itemprop="url" rel="index">
-                    <span itemprop="name">Java之并发编程</span>
-                  </a>
-                </span>
-
-                
-                
-              
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
             </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/08/02/乱序执行优化/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2018/08/02/乱序执行优化/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-             <span id="/2018/08/02/乱序执行优化/" class="leancloud_visitors" data-flag-title="CPU多级缓存——乱序执行优化">
-               <span class="post-meta-divider"></span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数&#58;</span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  184 字
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1 分钟
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body han-init-context" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="处理器为提高运算速度而做出违反源代码执行顺序的优化"><a href="#处理器为提高运算速度而做出违反源代码执行顺序的优化" class="headerlink" title="处理器为提高运算速度而做出违反源代码执行顺序的优化"></a>处理器为提高运算速度而做出违反源代码执行顺序的优化</h3><p>此方法在编译器的中间代码或四元式优化阶段及生成目标代码优化有过大量的使用，是主要的优化手段！<br></p>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/02/乱序执行优化/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
           </div>
-          <!--/noindex-->
         
+        </div>
       
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
       
 
       
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/03/缓存之特征、场景和组件介绍a/" rel="next" title="缓存之特征、场景和组件介绍">
+                <i class="fa fa-chevron-left"></i> 缓存之特征、场景和组件介绍
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1665,21 +930,51 @@
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><a class="extend next" rel="next" href="/page/9/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2018/08/03/缓存之初识Redis/"
+     data-title="缓存之初识Redis"
+     data-content=""
+     data-url="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
 
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
 
 
           </div>
           
 
+  <p>热评文章</p>
+  <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
+
 
           
+
+  
+    <div class="comments" id="comments">
+      <div class="ds-thread" data-thread-key="2018/08/03/缓存之初识Redis/"
+           data-title="缓存之初识Redis" data-url="http://suprisemf.github.io/2018/08/03/缓存之初识Redis/">
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1700,8 +995,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1822,6 +1126,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis特点"><span class="nav-number">2.</span> <span class="nav-text">Redis特点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Redis适用场景"><span class="nav-number">3.</span> <span class="nav-text">Redis适用场景</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2040,6 +1360,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -2618,26 +1942,6 @@
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 

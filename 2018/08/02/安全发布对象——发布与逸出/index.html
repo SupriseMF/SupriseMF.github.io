@@ -118,21 +118,21 @@
 
 
 
-<meta name="description" content="对象发布 使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
+<meta name="description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="安全发布对象——发布与逸出">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="对象发布 使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
+<meta property="og:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/%E9%9D%9E%E6%B3%95%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/%E5%8F%91%E5%B8%83%E9%80%B8%E5%87%BA.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/发布逸出.png">
 <meta property="og:updated_time" content="2018-08-02T10:20:36.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="安全发布对象——发布与逸出">
-<meta name="twitter:description" content="对象发布 使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/%E9%9D%9E%E6%B3%95%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95.png">
+<meta name="twitter:description" content="对象发布使一个对象能够被其他范围之外的对象/代码所使用。  实际日常开发中经常发布对象的例子有：  通过类的非私有方法，返回对象的引用； 通过公有的静态变量发布对象">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png">
 
 
 
@@ -778,8 +778,7 @@
       
 
       
-        <h4 id="对象发布"><a class="markdownIt-Anchor" href="#对象发布"></a> 对象发布</h4>
-<p>使一个对象能够被其他范围之外的对象/代码所使用。</p>
+        <h4 id="对象发布"><a href="#对象发布" class="headerlink" title="对象发布"></a>对象发布</h4><p>使一个对象能够被其他范围之外的对象/代码所使用。</p>
 <blockquote>
 <p>实际日常开发中经常发布对象的例子有：</p>
 <ol>
@@ -788,21 +787,16 @@
 </ol>
 </blockquote>
 <a id="more"></a>
-<h4 id="对象逸出"><a class="markdownIt-Anchor" href="#对象逸出"></a> 对象逸出</h4>
-<p>是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。</p>
-<h5 id="发布对象示范例子"><a class="markdownIt-Anchor" href="#发布对象示范例子"></a> 发布对象示范例子：</h5>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> NotSafePublish &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span>[] states = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过类的非私有方法，返回对象的引用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span>[] getStates() &#123;</span><br><span class="line">        <span class="keyword">return</span> states;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        NotSafePublish unsafePublish = <span class="keyword">new</span> NotSafePublish();</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过上面的非法发布，修改其私有变量</span></span><br><span class="line">        unsafePublish.getStates()[<span class="number">0</span>] = <span class="string">"d"</span>;</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="对象逸出"><a href="#对象逸出" class="headerlink" title="对象逸出"></a>对象逸出</h4><p>是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。</p>
+<h5 id="发布对象示范例子："><a href="#发布对象示范例子：" class="headerlink" title="发布对象示范例子："></a>发布对象示范例子：</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> NotSafePublish &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span>[] states = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过类的非私有方法，返回对象的引用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span>[] getStates() &#123;</span><br><span class="line">        <span class="keyword">return</span> states;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        NotSafePublish unsafePublish = <span class="keyword">new</span> NotSafePublish();</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过上面的非法发布，修改其私有变量</span></span><br><span class="line">        unsafePublish.getStates()[<span class="number">0</span>] = <span class="string">"d"</span>;</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>观察结果：</p>
-<p><img src="/2018/08/02/安全发布对象——发布与逸出/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/%E9%9D%9E%E6%B3%95%E5%8F%91%E5%B8%83%E6%B5%8B%E8%AF%95.png" alt="图示"></p>
+<p><img src="/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png" alt="图示"></p>
 <p>显然该发布方式是<strong>非线程安全</strong>的。</p>
-<h5 id="对象逸出示范例子"><a class="markdownIt-Anchor" href="#对象逸出示范例子"></a> 对象逸出示范例子：</h5>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Escape</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义可能会逸出的私有变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> thisCanEscape = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回一内部类的引用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Escape</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> InnerClass();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InnerClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="built_in">log</span>.info(<span class="string">"&#123;&#125;"</span>, Escape.<span class="keyword">this</span>.thisCanEscape);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用公有方法</span></span><br><span class="line">        <span class="keyword">new</span> Escape();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="对象逸出示范例子："><a href="#对象逸出示范例子：" class="headerlink" title="对象逸出示范例子："></a>对象逸出示范例子：</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Escape</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义可能会逸出的私有变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> thisCanEscape = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回一内部类的引用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Escape</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> InnerClass();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InnerClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="built_in">log</span>.info(<span class="string">"&#123;&#125;"</span>, Escape.<span class="keyword">this</span>.thisCanEscape);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用公有方法</span></span><br><span class="line">        <span class="keyword">new</span> Escape();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>观察结果：</p>
-<p><img src="/2018/08/02/安全发布对象——发布与逸出/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/%E5%8F%91%E5%B8%83%E9%80%B8%E5%87%BA.png" alt="图示"></p>
+<p><img src="/2018/08/02/安全发布对象——发布与逸出/发布逸出.png" alt="图示"></p>
 <p>显然内部类的成员变量被一个公有方法观察到了！</p>
-<h4 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h4>
-<p>显然上述的方式都是错误的，不被推荐的！<br>
-不正确地发布对象可能会导致两种错误：</p>
+<h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>显然上述的方式都是错误的，不被推荐的！<br>不正确地发布对象可能会导致两种错误：</p>
 <ol>
 <li>发布对象所在线程以外的线程都可以看到发布对象的值（状态）。</li>
 <li>（更严重）其他线程看到的对象的引用是最新的，但值（状态）是已过期的。</li>
@@ -1033,7 +1027,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-count">49</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1145,7 +1139,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象发布"><span class="nav-number">1.</span> <span class="nav-text"> 对象发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象逸出"><span class="nav-number">2.</span> <span class="nav-text"> 对象逸出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#发布对象示范例子"><span class="nav-number">2.1.</span> <span class="nav-text"> 发布对象示范例子：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象逸出示范例子"><span class="nav-number">2.2.</span> <span class="nav-text"> 对象逸出示范例子：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text"> 小结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#对象发布"><span class="nav-number">1.</span> <span class="nav-text">对象发布</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对象逸出"><span class="nav-number">2.</span> <span class="nav-text">对象逸出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#发布对象示范例子："><span class="nav-number">2.1.</span> <span class="nav-text">发布对象示范例子：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对象逸出示范例子："><span class="nav-number">2.2.</span> <span class="nav-text">对象逸出示范例子：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#小结"><span class="nav-number">3.</span> <span class="nav-text">小结</span></a></li></ol></div>
             
 
           </div>
@@ -1191,7 +1185,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.7k</span>
+    <span title="Site words total count">53.1k</span>
   
 </div>
 
