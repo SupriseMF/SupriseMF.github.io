@@ -118,22 +118,22 @@
 
 
 
-<meta name="description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
+<meta name="description" content="概述  已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。 其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java内存模型">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/02/Java内存模型/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
+<meta property="og:description" content="概述  已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。 其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM抽象结构.png">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/同步操作与规则.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E6%8A%BD%E8%B1%A1%E7%BB%93%E6%9E%84.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%A7%84%E5%88%99.png">
 <meta property="og:updated_time" content="2018-08-02T09:18:34.726Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java内存模型">
-<meta name="twitter:description" content="概述 已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/JMM与硬件结构.png">
+<meta name="twitter:description" content="概述  已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。 其中Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png">
 
 
 
@@ -779,14 +779,18 @@
       
 
       
-        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><blockquote>
-<p>已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。<br>其中<strong>Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范</strong></p>
+        <h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4>
+<blockquote>
+<p>已知多核CPU对于代码指令的乱序执行存在跟我们预期结果不一致的问题，解决方法就是使用Java内存模型规范对多线程操作进行约束。<br>
+其中<strong>Java内存模型是为屏蔽掉不同操作系统，不同硬件设备的差异，使Java程序对于多线程的环境有相同的执行结果，而对Java虚拟机（JVM）与硬件设备交互协调的规范</strong></p>
 </blockquote>
 <a id="more"></a>
-<h5 id="JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"><a href="#JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。" class="headerlink" title="JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"></a>JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</h5><h4 id="Java内存模型（JMM）"><a href="#Java内存模型（JMM）" class="headerlink" title="Java内存模型（JMM）"></a>Java内存模型（JMM）</h4><p>JMM与硬件结构如下图：</p>
-<p><img src="/2018/08/02/Java内存模型/JMM与硬件结构.png" alt=""></p>
+<h5 id="jmm规定一个线程在何时-如何对内存中其他线程修改后的共享变量的可见性及如何在必须时同步访问共享变量"><a class="markdownIt-Anchor" href="#jmm规定一个线程在何时-如何对内存中其他线程修改后的共享变量的可见性及如何在必须时同步访问共享变量"></a> JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</h5>
+<h4 id="java内存模型jmm"><a class="markdownIt-Anchor" href="#java内存模型jmm"></a> Java内存模型（JMM）</h4>
+<p>JMM与硬件结构如下图：</p>
+<p><img src="/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E4%B8%8E%E7%A1%AC%E4%BB%B6%E7%BB%93%E6%9E%84.png" alt=""></p>
 <p>JMM内部抽象结构如下图：</p>
-<p><img src="/2018/08/02/Java内存模型/JMM抽象结构.png" alt="此处JMM"></p>
+<p><img src="/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/JMM%E6%8A%BD%E8%B1%A1%E7%BB%93%E6%9E%84.png" alt="此处JMM"></p>
 <p>堆区（Heap）：是运行时数据区，并由GC（Garbage Collection）负责，可以在运行时动态分配内存大小，也不必通知编译器。<strong>缺点：由于运行时动态分配内存，故存取速度稍慢</strong></p>
 <blockquote>
 <p>静态成员变量跟随类的定义一起存放在堆中。堆中的对象可以被对该对象持有引用的线程访问，且其成员变量也可以被访问；<strong>当多个线程对同一对象的同一方法进行访问时，其实每个线程都有对该对象的数据的<em>私有拷贝</em>，而不会出现混乱</strong>。</p>
@@ -797,7 +801,8 @@
 <p>本地变量（local variable）也可能是一个引用变量，指向一个变量的引用，此时引用变量是存放在线程栈（Thread Stack）中，但被引用变量仍然存放在堆Heap中。</p>
 </blockquote>
 <hr>
-<h3 id="同步的八种操纵"><a href="#同步的八种操纵" class="headerlink" title="同步的八种操纵"></a>同步的八种操纵</h3><ul>
+<h3 id="同步的八种操纵"><a class="markdownIt-Anchor" href="#同步的八种操纵"></a> 同步的八种操纵</h3>
+<ul>
 <li>lock（锁定）：作用于主内存的变量，把一个标示为一条线程独占状态；</li>
 <li>unloc（解锁）：作用于主内存的变量，把一个处于锁定状态的变量释放；</li>
 <li>read（读取）：作用于主内存的变量，把一个变量从主内存传输到编程的工作内存，供随后的load操作使用；</li>
@@ -807,8 +812,9 @@
 <li>store（存储）：作用于主内存的变量，将工作内存的一个变量的值传递给主内存中，供随后的write操作使用；</li>
 <li>write（写入）：作用于主内存的变量，将store操作从内存中的一个变量值传送到主内存的变量中。</li>
 </ul>
-<h3 id="同步的规则"><a href="#同步的规则" class="headerlink" title="同步的规则"></a>同步的规则</h3><p>同步操作与规则如下图：</p>
-<p><img src="/2018/08/02/Java内存模型/同步操作与规则.png" alt=""></p>
+<h3 id="同步的规则"><a class="markdownIt-Anchor" href="#同步的规则"></a> 同步的规则</h3>
+<p>同步操作与规则如下图：</p>
+<p><img src="/2018/08/02/Java内存模型/Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B/%E5%90%8C%E6%AD%A5%E6%93%8D%E4%BD%9C%E4%B8%8E%E8%A7%84%E5%88%99.png" alt=""></p>
 <ul>
 <li>如果把一个变量从主内存中复制到工作内存，需要按顺序执行read和load操作；如果把变量从工作内存同步回主内存中，需要按顺序执行store和write操作。<strong>需要按照先后顺序，但不要求连续执行！</strong></li>
 <li>不允许read和load、store和write操作之一单独出现。</li>
@@ -1044,7 +1050,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1156,7 +1162,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。"><span class="nav-number">1.1.</span> <span class="nav-text">JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Java内存模型（JMM）"><span class="nav-number">2.</span> <span class="nav-text">Java内存模型（JMM）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的八种操纵"><span class="nav-number"></span> <span class="nav-text">同步的八种操纵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的规则"><span class="nav-number"></span> <span class="nav-text">同步的规则</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text"> 概述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#jmm规定一个线程在何时-如何对内存中其他线程修改后的共享变量的可见性及如何在必须时同步访问共享变量"><span class="nav-number">1.1.</span> <span class="nav-text"> JMM规定一个线程在何时、如何对内存中其他线程修改后的共享变量的可见性，及如何在必须时同步访问共享变量。</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#java内存模型jmm"><span class="nav-number">2.</span> <span class="nav-text"> Java内存模型（JMM）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的八种操纵"><span class="nav-number"></span> <span class="nav-text"> 同步的八种操纵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步的规则"><span class="nav-number"></span> <span class="nav-text"> 同步的规则</span></a></div>
             
 
           </div>
@@ -1202,7 +1208,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.7k</span>
+    <span title="Site words total count">49.9k</span>
   
 </div>
 

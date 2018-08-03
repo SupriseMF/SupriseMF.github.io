@@ -118,20 +118,20 @@
 
 
 
-<meta name="description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
+<meta name="description" content="概述 BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。 大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
 <meta name="keywords" content="Java,并发编程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="J.U.C之BlockingQueue">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
+<meta property="og:description" content="概述 BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。 大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/J-U-C%E4%B9%8BBlockingQueue/blockingqueue.png">
 <meta property="og:updated_time" content="2018-08-03T01:07:32.954Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="J.U.C之BlockingQueue">
-<meta name="twitter:description" content="概述BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png">
+<meta name="twitter:description" content="概述 BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。 大致有两种情况：  队列满了，但此时还有入队操作； 队列空了，但此时还有出队操作。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/J-U-C之BlockingQueue/J-U-C%E4%B9%8BBlockingQueue/blockingqueue.png">
 
 
 
@@ -740,7 +740,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  709 字
+                  691 字
                 </span>
               
 
@@ -777,38 +777,142 @@
       
 
       
-        <h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。<br>大致有两种情况：</p>
+        <h4 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h4>
+<p>BlockingQueue见名知意，即阻塞队列。它是一个线程安全的队列。<br>
+大致有两种情况：</p>
 <ol>
 <li>队列满了，但此时还有入队操作；</li>
-<li>队列空了，但此时还有出队操作。<a id="more"></a>
-<h4 id="场景分析"><a href="#场景分析" class="headerlink" title="场景分析"></a>场景分析</h4>主要应用在生产者-消费者场景。</li>
+<li>队列空了，但此时还有出队操作。</li>
+</ol>
+<a id="more"></a>
+<h4 id="场景分析"><a class="markdownIt-Anchor" href="#场景分析"></a> 场景分析</h4>
+<p>主要应用在生产者-消费者场景。</p>
+<ol>
 <li>生产者生产对象，并放入阻塞队列，直至队列已满，被阻塞。</li>
 <li>消费者消费对象，从阻塞队列中取，直至队列已空，被阻塞。</li>
 </ol>
-<h4 id="队列操作方法"><a href="#队列操作方法" class="headerlink" title="队列操作方法"></a>队列操作方法</h4><p>一共有四套方法。</p>
-<p><img src="/2018/08/03/J-U-C之BlockingQueue/blockingqueue.png" alt="图示"></p>
-<h5 id="第一套方法：Throws-Exception"><a href="#第一套方法：Throws-Exception" class="headerlink" title="第一套方法：Throws Exception"></a>第一套方法：Throws Exception</h5><p>如果操作不能马上执行就会抛出异常。<br>type | method<br>-| -<br>Insert | add(o)<br>Remove  |  remove(o)<br>Examine  |  element()</p>
-<h5 id="第二套方法：Special-Value"><a href="#第二套方法：Special-Value" class="headerlink" title="第二套方法：Special Value"></a>第二套方法：Special Value</h5><p>如果操作不能马上执行就会返回一个特殊值。一般是true/false<br>type | method<br>-| -<br>Insert | offer(o)<br>Remove  |  poll()<br>Examine  |  peek()</p>
-<h5 id="第三套方法：Blocks"><a href="#第三套方法：Blocks" class="headerlink" title="第三套方法：Blocks"></a>第三套方法：Blocks</h5><p>如果操作不能马上执行就会进行阻塞操作。<br>type | method<br>-| -<br>Insert | put()<br>Remove  |  take()<br>Examine  |  无</p>
-<h5 id="第四套方法：Times-Out"><a href="#第四套方法：Times-Out" class="headerlink" title="第四套方法：Times Out"></a>第四套方法：Times Out</h5><p>如果操作不能马上执行就会给定一个超时时间。如果超时时间已经过期还未执行就会返回一个特殊值。一般是true/false<br>type | method<br>-| -<br>Insert | offer(o，timeout，timeunit)<br>Remove  |  poll(timeout，timeunit)<br>Examine  | 无</p>
-<h4 id="事件类"><a href="#事件类" class="headerlink" title="事件类"></a>事件类</h4><h5 id="ArrayBlockingQueue"><a href="#ArrayBlockingQueue" class="headerlink" title="ArrayBlockingQueue"></a>ArrayBlockingQueue</h5><ol>
+<h4 id="队列操作方法"><a class="markdownIt-Anchor" href="#队列操作方法"></a> 队列操作方法</h4>
+<p>一共有四套方法。</p>
+<p><img src="/2018/08/03/J-U-C之BlockingQueue/J-U-C%E4%B9%8BBlockingQueue/blockingqueue.png" alt="图示"></p>
+<h5 id="第一套方法throws-exception"><a class="markdownIt-Anchor" href="#第一套方法throws-exception"></a> 第一套方法：Throws Exception</h5>
+<p>如果操作不能马上执行就会抛出异常。</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>add(o)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>remove(o)</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>element()</td>
+</tr>
+</tbody>
+</table>
+<h5 id="第二套方法special-value"><a class="markdownIt-Anchor" href="#第二套方法special-value"></a> 第二套方法：Special Value</h5>
+<p>如果操作不能马上执行就会返回一个特殊值。一般是true/false</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>offer(o)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>poll()</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>peek()</td>
+</tr>
+</tbody>
+</table>
+<h5 id="第三套方法blocks"><a class="markdownIt-Anchor" href="#第三套方法blocks"></a> 第三套方法：Blocks</h5>
+<p>如果操作不能马上执行就会进行阻塞操作。</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>put()</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>take()</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h5 id="第四套方法times-out"><a class="markdownIt-Anchor" href="#第四套方法times-out"></a> 第四套方法：Times Out</h5>
+<p>如果操作不能马上执行就会给定一个超时时间。如果超时时间已经过期还未执行就会返回一个特殊值。一般是true/false</p>
+<table>
+<thead>
+<tr>
+<th>type</th>
+<th>method</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Insert</td>
+<td>offer(o，timeout，timeunit)</td>
+</tr>
+<tr>
+<td>Remove</td>
+<td>poll(timeout，timeunit)</td>
+</tr>
+<tr>
+<td>Examine</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h4 id="事件类"><a class="markdownIt-Anchor" href="#事件类"></a> 事件类</h4>
+<h5 id="arrayblockingqueue"><a class="markdownIt-Anchor" href="#arrayblockingqueue"></a> ArrayBlockingQueue</h5>
+<ol>
 <li>是一个有界的（容量有限,初始化时指定容量，之后不得更改）阻塞队列。</li>
 <li>其内部实现为数组。</li>
 <li>是以FIFO的方式存放数据。</li>
 </ol>
-<h5 id="DelayQueue"><a href="#DelayQueue" class="headerlink" title="DelayQueue"></a>DelayQueue</h5><ol>
+<h5 id="delayqueue"><a class="markdownIt-Anchor" href="#delayqueue"></a> DelayQueue</h5>
+<ol>
 <li>阻塞的对象是队列的内部元素。</li>
 <li>其内部元素必须实现J.U.C中Delayed接口。Delayed接口继承了Comparable接口。说明DelayQueue中的元素需要排序。一般按照元素过期时间的优先级排序。</li>
 <li>底层实现是：PriorityQueue和Lock。</li>
 <li>使用场景广泛：连接的定时关闭、缓存对象、超时处理等。</li>
 </ol>
-<h5 id="LinkedBlockingQueue"><a href="#LinkedBlockingQueue" class="headerlink" title="LinkedBlockingQueue"></a>LinkedBlockingQueue</h5><ol>
+<h5 id="linkedblockingqueue"><a class="markdownIt-Anchor" href="#linkedblockingqueue"></a> LinkedBlockingQueue</h5>
+<ol>
 <li>是BlockingQueue的一种链接版本。</li>
 <li>见名知意，因为使用链接，故而若初始化时指定容量则是有界队列，否则默认队列的长度可变。</li>
 <li>使用链接，故底层实现是链表。</li>
 <li>是以FIFO的方式存放数据。</li>
 </ol>
-<h5 id="PriorityBlockingQueue"><a href="#PriorityBlockingQueue" class="headerlink" title="PriorityBlockingQueue"></a>PriorityBlockingQueue</h5><ol>
+<h5 id="priorityblockingqueue"><a class="markdownIt-Anchor" href="#priorityblockingqueue"></a> PriorityBlockingQueue</h5>
+<ol>
 <li>见名知意，它是BlockingQueue的附加优先级的队列。</li>
 <li>是一个无边界的队列，但有排序规则。</li>
 <li>队列允许插入的元素为空（null）。</li>
@@ -816,7 +920,8 @@
 <li>队列中优先级的排序规则：通过自定义地对Comparable接口的实现来指定规则。</li>
 <li>可以从PriorityBlockingQueue中获得一个迭代器（iterator），但并不保证按照队列中元素的优先级进行迭代。</li>
 </ol>
-<h5 id="SynchronousQueue"><a href="#SynchronousQueue" class="headerlink" title="SynchronousQueue"></a>SynchronousQueue</h5><ol>
+<h5 id="synchronousqueue"><a class="markdownIt-Anchor" href="#synchronousqueue"></a> SynchronousQueue</h5>
+<ol>
 <li>见名知意，即为“同步队列”。</li>
 <li>队列内部仅允许容纳一个元素，即放入一个元素后只等待其被取走。</li>
 <li>是一个无界非缓存队列。</li>
@@ -1045,7 +1150,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1157,7 +1262,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景分析"><span class="nav-number">2.</span> <span class="nav-text">场景分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列操作方法"><span class="nav-number">3.</span> <span class="nav-text">队列操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一套方法：Throws-Exception"><span class="nav-number">3.1.</span> <span class="nav-text">第一套方法：Throws Exception</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二套方法：Special-Value"><span class="nav-number">3.2.</span> <span class="nav-text">第二套方法：Special Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三套方法：Blocks"><span class="nav-number">3.3.</span> <span class="nav-text">第三套方法：Blocks</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四套方法：Times-Out"><span class="nav-number">3.4.</span> <span class="nav-text">第四套方法：Times Out</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件类"><span class="nav-number">4.</span> <span class="nav-text">事件类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayBlockingQueue"><span class="nav-number">4.1.</span> <span class="nav-text">ArrayBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DelayQueue"><span class="nav-number">4.2.</span> <span class="nav-text">DelayQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedBlockingQueue"><span class="nav-number">4.3.</span> <span class="nav-text">LinkedBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PriorityBlockingQueue"><span class="nav-number">4.4.</span> <span class="nav-text">PriorityBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SynchronousQueue"><span class="nav-number">4.5.</span> <span class="nav-text">SynchronousQueue</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text"> 概述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景分析"><span class="nav-number">2.</span> <span class="nav-text"> 场景分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#队列操作方法"><span class="nav-number">3.</span> <span class="nav-text"> 队列操作方法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#第一套方法throws-exception"><span class="nav-number">3.1.</span> <span class="nav-text"> 第一套方法：Throws Exception</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第二套方法special-value"><span class="nav-number">3.2.</span> <span class="nav-text"> 第二套方法：Special Value</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第三套方法blocks"><span class="nav-number">3.3.</span> <span class="nav-text"> 第三套方法：Blocks</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#第四套方法times-out"><span class="nav-number">3.4.</span> <span class="nav-text"> 第四套方法：Times Out</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事件类"><span class="nav-number">4.</span> <span class="nav-text"> 事件类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#arrayblockingqueue"><span class="nav-number">4.1.</span> <span class="nav-text"> ArrayBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#delayqueue"><span class="nav-number">4.2.</span> <span class="nav-text"> DelayQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#linkedblockingqueue"><span class="nav-number">4.3.</span> <span class="nav-text"> LinkedBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#priorityblockingqueue"><span class="nav-number">4.4.</span> <span class="nav-text"> PriorityBlockingQueue</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#synchronousqueue"><span class="nav-number">4.5.</span> <span class="nav-text"> SynchronousQueue</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1203,7 +1308,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.7k</span>
+    <span title="Site words total count">49.9k</span>
   
 </div>
 
