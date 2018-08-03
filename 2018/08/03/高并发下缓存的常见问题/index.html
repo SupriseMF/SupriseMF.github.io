@@ -118,21 +118,22 @@
 
 
 
-<meta name="description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。导致缓存一致性出现问题的情况：  更新数据库成功，但更新缓存时失败。 更新缓存成功，但更新数据库时失败。 当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。 淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现mis">
+<meta name="description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。">
 <meta name="keywords" content="Java,线程高并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="高并发下缓存的常见问题">
 <meta property="og:url" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/index.html">
 <meta property="og:site_name" content="红宝石星球">
-<meta property="og:description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。导致缓存一致性出现问题的情况：  更新数据库成功，但更新缓存时失败。 更新缓存成功，但更新数据库时失败。 当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。 淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现mis">
+<meta property="og:description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/缓存一致性问题.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/25.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/26.png">
-<meta property="og:updated_time" content="2018-08-03T05:34:46.368Z">
+<meta property="og:updated_time" content="2018-08-03T06:18:34.232Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="高并发下缓存的常见问题">
-<meta name="twitter:description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。导致缓存一致性出现问题的情况：  更新数据库成功，但更新缓存时失败。 更新缓存成功，但更新数据库时失败。 当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。 淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现mis">
-<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/25.png">
+<meta name="twitter:description" content="缓存一致性当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。缓存的一致性依赖于缓存的过期和更新策略。">
+<meta name="twitter:image" content="http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/缓存一致性问题.png">
 
 
 
@@ -670,7 +671,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T13:34:46+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T14:18:34+08:00">
                 2018-08-03
               </time>
             
@@ -741,7 +742,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  797 字
+                  802 字
                 </span>
               
 
@@ -778,14 +779,16 @@
       
 
       
-        <h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><p>当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。<br>缓存的一致性依赖于缓存的过期和更新策略。<br>导致缓存一致性出现问题的情况：</p>
+        <h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><p>当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。<br>缓存的一致性依赖于缓存的过期和更新策略。<br><a id="more"></a><br>如下图所示：</p>
+<p><img src="/2018/08/03/高并发下缓存的常见问题/缓存一致性问题.png" alt="图示"></p>
+<p>导致缓存一致性出现问题的情况：</p>
 <ol>
 <li>更新数据库成功，但更新缓存时失败。</li>
 <li>更新缓存成功，但更新数据库时失败。</li>
 <li>当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。</li>
-<li>淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现miss情况。<a id="more"></a>
-<h4 id="缓存并发问题"><a href="#缓存并发问题" class="headerlink" title="缓存并发问题"></a>缓存并发问题</h4>如下图示：</li>
+<li>淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现miss情况。</li>
 </ol>
+<h4 id="缓存并发问题"><a href="#缓存并发问题" class="headerlink" title="缓存并发问题"></a>缓存并发问题</h4><p>如下图示：</p>
 <p><img src="/2018/08/03/高并发下缓存的常见问题/25.png" alt="图示"></p>
 <p>当出现缓存不一致情况或某个缓存中数据的key更新后，线程会向数据库请求并查询数据。但发生在多并发情形下，该并发问题会对数据库造成巨大的冲击，甚至会导致缓存雪崩。<br>如图中所示，为解决缓存并发中的问题，需要对线程访问数据库时加锁：查询数据库前加锁，在重建缓存后解锁。</p>
 <h4 id="缓存穿透问题"><a href="#缓存穿透问题" class="headerlink" title="缓存穿透问题"></a>缓存穿透问题</h4><p>如下图示：</p>
