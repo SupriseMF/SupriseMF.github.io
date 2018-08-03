@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-03T01:34:05.535Z</updated>
+  <updated>2018-08-03T01:54:34.408Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>多线程并发的最佳实践总结</title>
+    <link href="http://suprisemf.github.io/2018/08/03/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E5%B9%B6%E5%8F%91%E7%9A%84%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5%E6%80%BB%E7%BB%93/"/>
+    <id>http://suprisemf.github.io/2018/08/03/多线程并发的最佳实践总结/</id>
+    <published>2018-08-03T01:53:38.000Z</published>
+    <updated>2018-08-03T01:54:34.408Z</updated>
+    
+    <content type="html"><![CDATA[<p><script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script></p><h4 id="使用本地变量"><a href="#使用本地变量" class="headerlink" title="使用本地变量"></a>使用本地变量</h4><ol><li>优先考虑使用本地变量，避免创建一个类或实例的变量；</li><li>这样可以节省内存，并进行复用；<h4 id="使用不可变类"><a href="#使用不可变类" class="headerlink" title="使用不可变类"></a>使用不可变类</h4>降低代码中需要的同步变量，充分利用JVM提供的功能。</li></ol><a id="more"></a><h4 id="最小化锁的作用域范围"><a href="#最小化锁的作用域范围" class="headerlink" title="最小化锁的作用域范围"></a>最小化锁的作用域范围</h4><p>大名鼎鼎的阿姆达尔定律，表达式为：<br>$$S=\frac{1}{1-a+\frac{a}{n}}$$</p><p>其中：<br>a是并行计算部分所占的比例，<br>n是并行计算所处理的结点个数，<br>S是最终的加速比。</p><blockquote><p>当1-a=0时，(即没有串行，只有并行)最大加速比s=n；当a=0时（即只有串行，没有并行），最小加速比s=1；当n→∞时，极限加速比s→ 1/（1-a），这也就是加速比的上限。例如，若串行代码占整个代码的25%，则并行处理的总体性能不可能超过4。</p></blockquote><h4 id="使用线程池的Executor"><a href="#使用线程池的Executor" class="headerlink" title="使用线程池的Executor"></a>使用线程池的Executor</h4><p>避免new Thread创建线程。通过线程池的管理，尅提高线程的复用性（避免新建线程的昂贵的资源消耗），简化线程生命周期的管理。</p><h4 id="避免使用线程的wait-和notify"><a href="#避免使用线程的wait-和notify" class="headerlink" title="避免使用线程的wait()和notify()"></a>避免使用线程的wait()和notify()</h4><p>优先考虑使用线程的辅助工具类，宁可使用同步也不使用线程的wait()和notify()方法。因为线程间的通讯会消耗较多的系统资源。</p><h4 id="使用BlockingQueue实现生产者-消费者模式"><a href="#使用BlockingQueue实现生产者-消费者模式" class="headerlink" title="使用BlockingQueue实现生产者-消费者模式"></a>使用BlockingQueue实现生产者-消费者模式</h4><p>阻塞队列是生产者-消费者模式的最好的实现方式，不仅包括单个生产者单个消费者，还支持多个生产者多个消费者情况。</p><h4 id="优先使用并发集合"><a href="#优先使用并发集合" class="headerlink" title="优先使用并发集合"></a>优先使用并发集合</h4><p>JDK提供了ConcurrentHashMap、CopyOnWriteArrayList、CopyOnWriteArraySet、BlockingQueue中的Deque和BlockingDeque五大并发集合，他们有着较好性能；宁使用该并发集合，而避免使用synchronizedXXX的锁同步集合。</p><h4 id="使用Semaphore创建有界的访问"><a href="#使用Semaphore创建有界的访问" class="headerlink" title="使用Semaphore创建有界的访问"></a>使用Semaphore创建有界的访问</h4><p>为了建立可靠稳定的系统，对数据库、文件系统、SOCKET的访问需进行有界的控制。</p><h4 id="尽量减少同步方法使用"><a href="#尽量减少同步方法使用" class="headerlink" title="尽量减少同步方法使用"></a>尽量减少同步方法使用</h4><ol><li>宁可使用同步代码块，也要尽量减少同步方法使用。</li><li>其中synchronized关键字标识方法时，所有调用到该方法的域都会被JVM进行锁定监督.</li><li>使用synchronized 同步代码块只会锁定一个对象，而不会将当前整个方法锁定；如果更改共同的变量或类的字段，优先选择原子性变量，其次使用volatile。如果你需要互斥锁，可以考虑使用ReentrantLock。</li></ol><h4 id="避免使用静态变量"><a href="#避免使用静态变量" class="headerlink" title="避免使用静态变量"></a>避免使用静态变量</h4><p>静态变量在多线程并发环境中会造成较多的问题。当使用静态变量时，优先将其指定为final变量，若用其来保存集合Collection变量，则考虑使用只读集合。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default&quot;&gt;&lt;/script&gt;&lt;/p&gt;
+&lt;h4 id=&quot;使用本地变量&quot;&gt;&lt;a href=&quot;#使用本地变量&quot; class=&quot;headerlink&quot; title=&quot;使用本地变量&quot;&gt;&lt;/a&gt;使用本地变量&lt;/h4&gt;&lt;ol&gt;
+&lt;li&gt;优先考虑使用本地变量，避免创建一个类或实例的变量；&lt;/li&gt;
+&lt;li&gt;这样可以节省内存，并进行复用；&lt;h4 id=&quot;使用不可变类&quot;&gt;&lt;a href=&quot;#使用不可变类&quot; class=&quot;headerlink&quot; title=&quot;使用不可变类&quot;&gt;&lt;/a&gt;使用不可变类&lt;/h4&gt;降低代码中需要的同步变量，充分利用JVM提供的功能。&lt;/li&gt;
+&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>死锁</title>
@@ -522,37 +550,6 @@
 &lt;li&gt;将对象的引用保存到volatile类型域AtomicReference对象中&lt;/li&gt;
 &lt;li&gt;将对象的引用保存到某个正确构造对象的final类型域中（后续再进行补充！）&lt;/li&gt;
 &lt;li&gt;将对象的引用保存到一个由锁保存的域中&lt;/li&gt;&lt;/ul&gt;
-    
-    </summary>
-    
-      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
-    
-      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安全发布对象——发布与逸出</title>
-    <link href="http://suprisemf.github.io/2018/08/02/%E5%AE%89%E5%85%A8%E5%8F%91%E5%B8%83%E5%AF%B9%E8%B1%A1%E2%80%94%E2%80%94%E5%8F%91%E5%B8%83%E4%B8%8E%E9%80%B8%E5%87%BA/"/>
-    <id>http://suprisemf.github.io/2018/08/02/安全发布对象——发布与逸出/</id>
-    <published>2018-08-02T10:07:30.000Z</published>
-    <updated>2018-08-02T10:20:36.072Z</updated>
-    
-    <content type="html"><![CDATA[<h4 id="对象发布"><a href="#对象发布" class="headerlink" title="对象发布"></a>对象发布</h4><p>使一个对象能够被其他范围之外的对象/代码所使用。</p><blockquote><p>实际日常开发中经常发布对象的例子有：</p><ol><li>通过类的非私有方法，返回对象的引用；</li><li>通过公有的静态变量发布对象</li></ol></blockquote><a id="more"></a><h4 id="对象逸出"><a href="#对象逸出" class="headerlink" title="对象逸出"></a>对象逸出</h4><p>是一种错误的对象发布。当一个对象还未构造完成就已经被其他的线程观察到。</p><h5 id="发布对象示范例子："><a href="#发布对象示范例子：" class="headerlink" title="发布对象示范例子："></a>发布对象示范例子：</h5><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Slf</span>4j</span><br><span class="line"><span class="meta">@NotThreadSafe</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> NotSafePublish &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="built_in">String</span>[] states = &#123;<span class="string">"a"</span>, <span class="string">"b"</span>, <span class="string">"c"</span>&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//通过类的非私有方法，返回对象的引用</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">String</span>[] getStates() &#123;</span><br><span class="line">        <span class="keyword">return</span> states;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="built_in">void</span> main(<span class="built_in">String</span>[] args) &#123;</span><br><span class="line">        NotSafePublish unsafePublish = <span class="keyword">new</span> NotSafePublish();</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line"></span><br><span class="line">        <span class="comment">//通过上面的非法发布，修改其私有变量</span></span><br><span class="line">        unsafePublish.getStates()[<span class="number">0</span>] = <span class="string">"d"</span>;</span><br><span class="line">        log.info(<span class="string">"&#123;&#125;"</span>, Arrays.toString(unsafePublish.getStates()));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>观察结果：</p><p><img src="/2018/08/02/安全发布对象——发布与逸出/非法发布测试.png" alt="图示"></p><p>显然该发布方式是<strong>非线程安全</strong>的。</p><h5 id="对象逸出示范例子："><a href="#对象逸出示范例子：" class="headerlink" title="对象逸出示范例子："></a>对象逸出示范例子：</h5><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Escape</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">//定义可能会逸出的私有变量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> thisCanEscape = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回一内部类的引用</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Escape</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> InnerClass();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//私有内部类</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">InnerClass</span> &#123;</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">InnerClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="built_in">log</span>.info(<span class="string">"&#123;&#125;"</span>, Escape.<span class="keyword">this</span>.thisCanEscape);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//调用公有方法</span></span><br><span class="line">        <span class="keyword">new</span> Escape();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>观察结果：</p><p><img src="/2018/08/02/安全发布对象——发布与逸出/发布逸出.png" alt="图示"></p><p>显然内部类的成员变量被一个公有方法观察到了！</p><h4 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h4><p>显然上述的方式都是错误的，不被推荐的！<br>不正确地发布对象可能会导致两种错误：</p><ol><li>发布对象所在线程以外的线程都可以看到发布对象的值（状态）。</li><li>（更严重）其他线程看到的对象的引用是最新的，但值（状态）是已过期的。</li></ol><p>若该对象是可变对象，那么它必须要被安全发布。 <em>对象未完成之前不可以将其发布。</em> 多多注意。</p><p><strong>避免方法：通过专有的start()或初始化方法统一启动。其中可以采用工厂方法结合私有构造函数，完成对象的创建和监听器的注册</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h4 id=&quot;对象发布&quot;&gt;&lt;a href=&quot;#对象发布&quot; class=&quot;headerlink&quot; title=&quot;对象发布&quot;&gt;&lt;/a&gt;对象发布&lt;/h4&gt;&lt;p&gt;使一个对象能够被其他范围之外的对象/代码所使用。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;实际日常开发中经常发布对象的例子有：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;通过类的非私有方法，返回对象的引用；&lt;/li&gt;
-&lt;li&gt;通过公有的静态变量发布对象&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
     
     </summary>
     
