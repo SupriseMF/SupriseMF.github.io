@@ -126,7 +126,7 @@
 <meta property="og:site_name" content="红宝石星球">
 <meta property="og:description" content="使用本地变量  优先考虑使用本地变量，避免创建一个类或实例的变量； 这样可以节省内存，并进行复用；   使用不可变类 降低代码中需要的同步变量，充分利用JVM提供的功能。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-03T02:08:24.155Z">
+<meta property="og:updated_time" content="2018-08-03T02:31:44.803Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程并发的最佳实践总结">
 <meta name="twitter:description" content="使用本地变量  优先考虑使用本地变量，避免创建一个类或实例的变量； 这样可以节省内存，并进行复用；   使用不可变类 降低代码中需要的同步变量，充分利用JVM提供的功能。">
@@ -667,7 +667,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T10:08:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T10:31:44+08:00">
                 2018-08-03
               </time>
             
@@ -738,7 +738,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  791 字
+                  719 字
                 </span>
               
 
@@ -775,7 +775,7 @@
       
 
       
-        <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script> -->
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
 <!-- <link href="https://cdn.bootcss.com/KaTeX/0.7.1/katex.min.css" rel="stylesheet"> -->
 <h4 id="使用本地变量"><a class="markdownIt-Anchor" href="#使用本地变量"></a> 使用本地变量</h4>
 <ol>
@@ -789,15 +789,6 @@
 <p>大名鼎鼎的阿姆达尔定律，表达式为：</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>1</mn><mo>−</mo><mi>a</mi><mo>+</mo><mfrac><mrow><mi>a</mi></mrow><mrow><mi>n</mi></mrow></mfrac></mrow></mfrac></mrow><annotation encoding="application/x-tex">S=\frac{1}{1-a+\frac{a}{n}}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="strut" style="height:1.32144em;"></span><span class="strut bottom" style="height:2.35244em;vertical-align:-1.0310000000000001em;"></span><span class="base"><span class="mord mathit" style="margin-right:0.05764em;">S</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mord rule" style="margin-right:0.2777777777777778em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord mathit">a</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mord rule" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.695392em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">n</span></span></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.2em;"><svg width="400em" height="0.2em" viewbox="0 0 400000 200" preserveaspectratio="xMinYMin slice"><path d="M0 80H400000 v40H0z M0 80H400000 v40H0z"/></svg></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathit mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span><span style="top:-3.15em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.2em;"><svg width="400em" height="0.2em" viewbox="0 0 400000 200" preserveaspectratio="xMinYMin slice"><path d="M0 80H400000 v40H0z M0 80H400000 v40H0z"/></svg></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0310000000000001em;"></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>\begin{aligned}<br>
-f_Y(y) &amp; = f_X[h(y)]|h’(y)| \[2ex]<br>
-&amp; = f_X[h(y)]h’(y) \[2ex]<br>
-&amp; = \frac{1}{\theta}e^{-\frac{x}{\theta}}[\frac{dx}{dy}(-\frac{\theta}{ln(1-y)})] \[2ex]<br>
-&amp; = \frac{1}{\theta}e^{-\frac{-\frac{\theta}{ln(1-y)}}{\theta}}\frac{\theta}{1-y} \[2ex]<br>
-&amp; = \frac{1}{\theta}e^{ln(1-y)}\frac{\theta}{1-y} \[2ex]<br>
-&amp; = \frac{1-y}{\theta}\frac{\theta}{1-y} \[2ex]<br>
-&amp; = 1<br>
-\end{aligned}</p>
 <p>其中：<br>
 a是并行计算部分所占的比例，<br>
 n是并行计算所处理的结点个数，<br>
@@ -1201,7 +1192,7 @@ S是最终的加速比。</p>
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">49.8k</span>
+    <span title="Site words total count">49.7k</span>
   
 </div>
 
