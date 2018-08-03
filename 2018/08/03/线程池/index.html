@@ -129,7 +129,8 @@
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/线程池/threadpoolexecutor状态.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/线程池/threadpoolexecutor方法.png">
 <meta property="og:image" content="http://suprisemf.github.io/2018/08/03/线程池/类图关系.png">
-<meta property="og:updated_time" content="2018-08-03T01:18:05.603Z">
+<meta property="og:image" content="http://suprisemf.github.io/2018/08/03/线程池/executors内部方法.png">
+<meta property="og:updated_time" content="2018-08-03T01:29:35.788Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线程池">
 <meta name="twitter:description" content="Thread类new Thread的弊端 每次new Thread新建对象，性能差。 线程缺乏统一的管理，可能无限制地新建线程，相互竞争，有可能占用更多的系统资源导致宕机或者OOM。 缺少更多高级功能，如：更多执行、定期执行，线程中断等。">
@@ -671,7 +672,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:18:05+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-08-03T09:29:35+08:00">
                 2018-08-03
               </time>
             
@@ -742,7 +743,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,793 字
+                  1,816 字
                 </span>
               
 
@@ -843,7 +844,12 @@
 </ol>
 <h4 id="ThreadPoolExecutor的类图"><a href="#ThreadPoolExecutor的类图" class="headerlink" title="ThreadPoolExecutor的类图"></a>ThreadPoolExecutor的类图</h4><p><img src="/2018/08/03/线程池/类图关系.png" alt="图示"></p>
 <p>其中左上角部分：<br>Executor：一个运行线程任务的简单接口。<br>ExecutorService：拓展了Executor：添加了管理执行器生命周期、任务生命周期的方法。<br>ScheduledExecutorService：拓展了ExecutorService：支持Future和定期执行任务。</p>
-<h4 id="Executor框架接口"><a href="#Executor框架接口" class="headerlink" title="Executor框架接口"></a>Executor框架接口</h4><ol>
+<h4 id="Executors类"><a href="#Executors类" class="headerlink" title="Executors类"></a>Executors类</h4><blockquote>
+<p>该类是针对Executor接口提供的工厂方法和工具方法。</p>
+</blockquote>
+<p>Executors类内部方法：</p>
+<p><img src="/2018/08/03/线程池/executors内部方法.png" alt="图示"></p>
+<ol>
 <li>Executors的newCachedThreadPool()方法：创建一个容量大小可变的线程池：根据需要回收线程或新建线程。</li>
 <li>Executors的newFixedThreadPool(int nThreads)方法，创建一个固定大小的线程池。若线程池已满则阻塞在workQueue中。</li>
 <li>Executors的newScheduledThreadPool(int corePoolSize)方法，也是固定大小的线程池，但支持定时执行或周期执行任务。</li>
@@ -1192,7 +1198,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread类"><span class="nav-number">1.</span> <span class="nav-text">Thread类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new-Thread的弊端"><span class="nav-number">1.1.</span> <span class="nav-text">new Thread的弊端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池"><span class="nav-number">2.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池的好处"><span class="nav-number">2.1.</span> <span class="nav-text">线程池的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor"><span class="nav-number">2.2.</span> <span class="nav-text">ThreadPoolExecutor</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化的参数"><span class="nav-number">2.2.1.</span> <span class="nav-text">初始化的参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化参数间的关系"><span class="nav-number">2.2.2.</span> <span class="nav-text">初始化参数间的关系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的状态"><span class="nav-number">2.3.</span> <span class="nav-text">ThreadPoolExecutor的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的方法成员"><span class="nav-number">2.4.</span> <span class="nav-text">ThreadPoolExecutor的方法成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的类图"><span class="nav-number">2.5.</span> <span class="nav-text">ThreadPoolExecutor的类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executor框架接口"><span class="nav-number">2.6.</span> <span class="nav-text">Executor框架接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#看看源码"><span class="nav-number">2.7.</span> <span class="nav-text">看看源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示例子"><span class="nav-number">2.8.</span> <span class="nav-text">演示例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果："><span class="nav-number">2.8.1.</span> <span class="nav-text">运行结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子分析"><span class="nav-number">2.8.2.</span> <span class="nav-text">例子分析</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理配置"><span class="nav-number">2.9.</span> <span class="nav-text">合理配置</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread类"><span class="nav-number">1.</span> <span class="nav-text">Thread类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#new-Thread的弊端"><span class="nav-number">1.1.</span> <span class="nav-text">new Thread的弊端</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池"><span class="nav-number">2.</span> <span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#线程池的好处"><span class="nav-number">2.1.</span> <span class="nav-text">线程池的好处</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor"><span class="nav-number">2.2.</span> <span class="nav-text">ThreadPoolExecutor</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化的参数"><span class="nav-number">2.2.1.</span> <span class="nav-text">初始化的参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#初始化参数间的关系"><span class="nav-number">2.2.2.</span> <span class="nav-text">初始化参数间的关系</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的状态"><span class="nav-number">2.3.</span> <span class="nav-text">ThreadPoolExecutor的状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的方法成员"><span class="nav-number">2.4.</span> <span class="nav-text">ThreadPoolExecutor的方法成员</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ThreadPoolExecutor的类图"><span class="nav-number">2.5.</span> <span class="nav-text">ThreadPoolExecutor的类图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Executors类"><span class="nav-number">2.6.</span> <span class="nav-text">Executors类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#看看源码"><span class="nav-number">2.7.</span> <span class="nav-text">看看源码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#演示例子"><span class="nav-number">2.8.</span> <span class="nav-text">演示例子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行结果："><span class="nav-number">2.8.1.</span> <span class="nav-text">运行结果：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#例子分析"><span class="nav-number">2.8.2.</span> <span class="nav-text">例子分析</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#合理配置"><span class="nav-number">2.9.</span> <span class="nav-text">合理配置</span></a></li></ol></li></ol></div>
             
 
           </div>
