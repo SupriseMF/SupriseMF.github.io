@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://suprisemf.github.io/"/>
-  <updated>2018-08-03T05:26:45.438Z</updated>
+  <updated>2018-08-03T05:34:46.368Z</updated>
   <id>http://suprisemf.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>高并发下缓存的常见问题</title>
+    <link href="http://suprisemf.github.io/2018/08/03/%E9%AB%98%E5%B9%B6%E5%8F%91%E4%B8%8B%E7%BC%93%E5%AD%98%E7%9A%84%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://suprisemf.github.io/2018/08/03/高并发下缓存的常见问题/</id>
+    <published>2018-08-03T05:32:24.000Z</published>
+    <updated>2018-08-03T05:34:46.368Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="缓存一致性"><a href="#缓存一致性" class="headerlink" title="缓存一致性"></a>缓存一致性</h4><p>当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。<br>缓存的一致性依赖于缓存的过期和更新策略。<br>导致缓存一致性出现问题的情况：</p><ol><li>更新数据库成功，但更新缓存时失败。</li><li>更新缓存成功，但更新数据库时失败。</li><li>当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。</li><li>淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现miss情况。<a id="more"></a><h4 id="缓存并发问题"><a href="#缓存并发问题" class="headerlink" title="缓存并发问题"></a>缓存并发问题</h4>如下图示：</li></ol><p><img src="/2018/08/03/高并发下缓存的常见问题/25.png" alt="图示"></p><p>当出现缓存不一致情况或某个缓存中数据的key更新后，线程会向数据库请求并查询数据。但发生在多并发情形下，该并发问题会对数据库造成巨大的冲击，甚至会导致缓存雪崩。<br>如图中所示，为解决缓存并发中的问题，需要对线程访问数据库时加锁：查询数据库前加锁，在重建缓存后解锁。</p><h4 id="缓存穿透问题"><a href="#缓存穿透问题" class="headerlink" title="缓存穿透问题"></a>缓存穿透问题</h4><p>如下图示：</p><p><img src="/2018/08/03/高并发下缓存的常见问题/26.png" alt="图示"></p><p>在高并发场景下，某一个缓存的key的多线程并发访问中未被命中，由于缓存架构存在访问的容错性，会允许线程从后端获取数据，从而对数据库造成巨大冲击。<br>当缓存中的key对应的数据为空时，导致大量的无效查询操作，且对数据库造成巨大压力。<br>避免缓存穿透的解决方案：</p><ol><li>对查询结果为空的对象也进行缓存：如果查询的集合数据类型为null，要转换为空的集合；如果缓存时单个对象的null，需要通过字段标识进行区分，避免null的出现。同时需要保持缓存的时效性。实现简单，适用于命中率不高但更新频繁的场景。</li><li>单独过滤处理：对所有可能数据为空的key划分统一的区域存放，并在请求前进行拦截。实现较复杂，适用于命中率不高且更新不频繁的场景。</li></ol><h4 id="缓存雪崩现象"><a href="#缓存雪崩现象" class="headerlink" title="缓存雪崩现象"></a>缓存雪崩现象</h4><blockquote><p>缓存的颠簸（抖动）问题：是一种轻微的缓存雪崩现象，但仍会降低系统性能，并对系统稳定造成巨大的影响。一般是由缓存结点的故障导致。也需要一致性hash算法解决。</p></blockquote><p>由于缓存的问题，导致大量的请求到达后端的数据库，从而导致数据库崩溃，甚至整个系统崩溃。<br>导致缓存雪崩的情况有：缓存并发问题、缓存穿透、缓存抖动等。如：一个时间点内，缓存中的数据周期性地集中失效，也可能导致雪崩。其中可随机性地设置缓存的失效过期时间，避免集中失效。</p><h4 id="推荐文章"><a href="#推荐文章" class="headerlink" title="推荐文章"></a>推荐文章</h4><p><a href="https://www.imooc.com/article/20918" target="_blank" rel="noopener">Redis在股票分时K线图计算的实践</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;缓存一致性&quot;&gt;&lt;a href=&quot;#缓存一致性&quot; class=&quot;headerlink&quot; title=&quot;缓存一致性&quot;&gt;&lt;/a&gt;缓存一致性&lt;/h4&gt;&lt;p&gt;当对缓存中的数据失效要求较高时，需要要求缓存中的数据与数据库中的数据保持一致，其中包括缓存结点与其副本中的数据保持一致。&lt;br&gt;缓存的一致性依赖于缓存的过期和更新策略。&lt;br&gt;导致缓存一致性出现问题的情况：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;更新数据库成功，但更新缓存时失败。&lt;/li&gt;
+&lt;li&gt;更新缓存成功，但更新数据库时失败。&lt;/li&gt;
+&lt;li&gt;当更新数据库成功后，淘汰缓存出现失败，也会导致数据的不一致。&lt;/li&gt;
+&lt;li&gt;淘汰缓存成功，但更新数据库时出现失败，导致查询缓存时出现miss情况。&lt;/li&gt;&lt;/ol&gt;
+    
+    </summary>
+    
+      <category term="高并发解决方案" scheme="http://suprisemf.github.io/categories/%E9%AB%98%E5%B9%B6%E5%8F%91%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    
+    
+      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
+    
+      <category term="线程高并发" scheme="http://suprisemf.github.io/tags/%E7%BA%BF%E7%A8%8B%E9%AB%98%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>缓存之初识Redis</title>
@@ -484,40 +513,6 @@
     <summary type="html">
     
       &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;AQS是J.U.C中的一个非常重要的类。&lt;br&gt;J.U.C是java.util.concurrent的首字母简称。而AQS是J.U.C下locks包的一个抽象类。&lt;br&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="Java之并发编程" scheme="http://suprisemf.github.io/categories/Java%E4%B9%8B%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-    
-      <category term="Java" scheme="http://suprisemf.github.io/tags/Java/"/>
-    
-      <category term="并发编程" scheme="http://suprisemf.github.io/tags/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>并发容器-J.U.C之线程安全集合</title>
-    <link href="http://suprisemf.github.io/2018/08/02/%E5%B9%B6%E5%8F%91%E5%AE%B9%E5%99%A8/"/>
-    <id>http://suprisemf.github.io/2018/08/02/并发容器/</id>
-    <published>2018-08-02T11:29:10.000Z</published>
-    <updated>2018-08-02T11:31:45.937Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="copyOnWriteArrayList"><a href="#copyOnWriteArrayList" class="headerlink" title="copyOnWriteArrayList"></a>copyOnWriteArrayList</h3><blockquote><p>线程写操作时复制，当有新元素添加到copyOnWriteArrayList时，它先从原有的数组中拷贝出一份，在新开辟出的新数组中写入，写完后再将原数组指向新数组。其操作都是在锁的域中，防止在多线程中复制出多个副本出来，导致原数组指向错误。</p></blockquote><p><strong>特点：</strong></p><ol><li>由于写操作需进行复制操作，耗用内存；当元素内容过多时，该复制操作会占用非常多的内存，导致minor-GC，甚至full-GC。</li><li>虽然最终会保持一致性，但不能用于实时读的操作。</li><li>读写分离，且适合读多写少的场景。</li><li>若add或set的数据不清楚或过多，要慎用！</li><li>读时不加锁，写时加锁。</li></ol><a id="more"></a><p><strong>测试例子：</strong>（还是原来的测试框架，测试实例变量声明如下）</p><figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> static <span class="built_in">List</span>&lt;<span class="built_in">Integer</span>&gt; <span class="built_in">list</span> = <span class="literal">new</span> CopyOnWriteArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure><p><strong>运行结果：</strong><br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">22<span class="selector-pseudo">:03</span><span class="selector-pseudo">:09.363</span> <span class="selector-attr">[main]</span> <span class="selector-tag">INFO</span> <span class="selector-tag">com</span><span class="selector-class">.mmall</span><span class="selector-class">.concurrency</span><span class="selector-class">.concurrent</span><span class="selector-class">.CopyOnWriteArrayListExample</span> <span class="selector-tag">-</span> <span class="selector-tag">size</span><span class="selector-pseudo">:5000</span></span><br></pre></td></tr></table></figure></p><p>结果验证了该类为线程安全的！</p><p>看一下它的源码：<br><figure class="highlight cs"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** The lock protecting all mutators */</span></span><br><span class="line">final transient ReentrantLock <span class="keyword">lock</span> = <span class="keyword">new</span> ReentrantLock();</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> boolean <span class="title">add</span>(<span class="params">E e</span>) </span>&#123;</span><br><span class="line">    final ReentrantLock <span class="keyword">lock</span> = <span class="keyword">this</span>.<span class="keyword">lock</span>;</span><br><span class="line">    <span class="keyword">lock</span>.<span class="keyword">lock</span>();</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        Object[] elements = getArray();</span><br><span class="line">        <span class="keyword">int</span> len = elements.length;</span><br><span class="line">        Object[] newElements = Arrays.copyOf(elements, len + <span class="number">1</span>);</span><br><span class="line">        newElements[len] = e;</span><br><span class="line">        setArray(newElements);</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">lock</span>.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p><p><strong>显然是使用重入锁进行操作加锁。add方法的实现与上面的说明对应！</strong></p><h3 id="copyOnWriteArraySet"><a href="#copyOnWriteArraySet" class="headerlink" title="copyOnWriteArraySet"></a>copyOnWriteArraySet</h3><blockquote><p>对应于HashSet。</p></blockquote><p><strong>它的底层实现与copyOnWriteArrayList是一样的。特点也是一样的。当使用迭代器iterator迭代时，速度快效率高线程安全。</strong></p><h3 id="ConcurrentSkipListSet"><a href="#ConcurrentSkipListSet" class="headerlink" title="ConcurrentSkipListSet"></a>ConcurrentSkipListSet</h3><blockquote><p>对应于TreeSet。是JDK 1.6中新增的类，同样支持自然排序。在构造时可以自定义比较器。基于map集合，故而多线程并发环境下，它的类内插入、移除、访问方法都是线程安全的。但是对于批量操作，比如addAll()、removeAll()、retainAll()、containsAll并不能保证其操作的原子性。</p></blockquote><p>例子就不用演示了，跟上面的例子方法几乎完全一样，运行结果也显示是线程安全的！批量操作时就不能保证线程安全了！需额外增加锁机制。</p><h3 id="ConcurrentHashMap"><a href="#ConcurrentHashMap" class="headerlink" title="ConcurrentHashMap"></a>ConcurrentHashMap</h3><blockquote><p>对应于HashMap。其中需注意，key或Value不需为null。高并发环境中，表现较好。（后续会详细讲）</p></blockquote><h3 id="ConcurrentSkipListMap"><a href="#ConcurrentSkipListMap" class="headerlink" title="ConcurrentSkipListMap"></a>ConcurrentSkipListMap</h3><blockquote><p>对应于TreeMap。内部是使用SkipList即跳表的结构实现。</p></blockquote><p><strong>SkipList：</strong> 跳跃链表是一种随机化数据结构，基于并联的链表，其效率可比拟于二叉查找树(对于大多数操作需要O(log n)平均时间)，并且对并发算法友好。基本上，跳跃列表是对有序的链表增加上附加的前进链接，增加是以随机化的方式进行的，所以在列表中的查找可以快速的跳过部分列表(因此得名)。  <a href="https://blog.csdn.net/qpzkobe/article/details/80057046" target="_blank" rel="noopener">推荐阅读</a></p><p><strong>跳表性质：</strong></p><ol><li>由很多层结构组成；</li><li>每一层都是一个有序的链表；</li><li>最底层(Level 1)的链表包含所有元素；</li><li>如果一个元素出现在 Level i 的链表中，则它在 Level i 之下的链表也都会出现；</li><li>每个节点包含两个指针，一个指向同一链表中的下一个元素，一个指向下面一层的元素。<br><a href="https://www.cnblogs.com/a8457013/p/8251967.html" target="_blank" rel="noopener">推荐阅读</a></li></ol><p><strong>虽然ConcurrentSkipListMap的效率不及ConcurrentHashMap，但它也有ConcurrentHashMap不可比拟的优点：</strong></p><ol><li>ConcurrentSkipListMap中的key值是有序的。</li><li>支持更高的线程并发。其存取时间与线程数量是几乎没有关系的。即线程越多，越有利于ConcurrentSkipListMap的性能发挥。</li></ol><blockquote><p>上面介绍的几个例子就不进行例子演示了，均只是改变了变量的声明，其他内容仍然与原测试结构相同。</p></blockquote>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;copyOnWriteArrayList&quot;&gt;&lt;a href=&quot;#copyOnWriteArrayList&quot; class=&quot;headerlink&quot; title=&quot;copyOnWriteArrayList&quot;&gt;&lt;/a&gt;copyOnWriteArrayList&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;线程写操作时复制，当有新元素添加到copyOnWriteArrayList时，它先从原有的数组中拷贝出一份，在新开辟出的新数组中写入，写完后再将原数组指向新数组。其操作都是在锁的域中，防止在多线程中复制出多个副本出来，导致原数组指向错误。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;特点：&lt;/strong&gt;&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;由于写操作需进行复制操作，耗用内存；当元素内容过多时，该复制操作会占用非常多的内存，导致minor-GC，甚至full-GC。&lt;/li&gt;
-&lt;li&gt;虽然最终会保持一致性，但不能用于实时读的操作。&lt;/li&gt;
-&lt;li&gt;读写分离，且适合读多写少的场景。&lt;/li&gt;
-&lt;li&gt;若add或set的数据不清楚或过多，要慎用！&lt;/li&gt;
-&lt;li&gt;读时不加锁，写时加锁。&lt;/li&gt;
-&lt;/ol&gt;
     
     </summary>
     
